@@ -8,7 +8,7 @@ Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-Version 0.91 Mar 21, 2024  Note: some inconsistencies from package 0.9.3
+Version 0.93 Apr 9, 2024 (updated in line with package v0.9.3)
 
 # Introduction to Croquet for Unity
 
@@ -126,9 +126,9 @@ The following are all the mixins used in these tutorials:
 
 **Interactable**: to detect user interactions on the pawn (currently pointer clicks)
 
-**Avatar**: can be moved instantly by the local user, while announcing every move so that other users can see (with a small latency) the same changes
+**Drivable**: can be moved instantly by the local user, while announcing every move so that other users can see (with a small latency) the same changes
 
-Both **Spatial** and **Smoothed** introduce a **Croquet Spatial Component** , which requires the presence of a **Croquet Spatial System** in the scene. The other three come with their own component/system pairs (e.g., **Croquet Avatar Component** , **Croquet Avatar System** ).
+Both **Spatial** and **Smoothed** introduce a **Croquet Spatial Component** , which requires the presence of a **Croquet Spatial System** in the scene. The other three come with their own component/system pairs (e.g., **Croquet Drivable Component** , **Croquet Drivable System** ).
 
 Here are the various prefabs used throughout the tutorials, along with their included mixins and the tutorials they are used in:
 
@@ -139,8 +139,8 @@ Here are the various prefabs used throughout the tutorials, along with their inc
 | groundPlane       | Spatial, Interactable          | 6,7,8,9   |
 | interactableCube  | Smoothed, Interactable         | 6,7       |
 | smoothedCube      | Smoothed                       | 2,3,4,5   |
-| tutorial8Avatar   | Smoothed, Material, Avatar     | 8         |
-| tutorial9Avatar   | Smoothed, Material, Interactable, Avatar | 9 |
+| tutorial8Avatar   | Smoothed, Material, Drivable     | 8         |
+| tutorial9Avatar   | Smoothed, Material, Interactable, Drivable | 9 |
 | woodCube          | Smoothed, Material, Interactable | 7,8,9   |
 
 **NOTE**: Prefabs for use by scenes will only be found if they have been added to the Default Local Group in Unity's Addressables manager. Each prefab must be tagged with labels naming all the scenes that are expected to use it, or the label "default" to mean that the prefab is available for all scenes. When a scene starts up, the prefabs available for that scene are listed in the Unity console.
@@ -692,10 +692,10 @@ TestActor.register('TestActor');
 
 *Tutorial 8 provides the first avatars to move and interact with the world. Each user controls their own avatar of course.*
 
-We add the AM\_Avatar mixin to the new AvatarActor. Avatars have a driver property that holds the viewId of the user controlling them.
+We add the AM\_Drivable mixin to the new AvatarActor. Drivables have a driver property that holds the viewId of the user controlling them.
 
 ```js
-class AvatarActor extends mix(Actor).with(AM_Spatial, AM_Avatar) {
+class AvatarActor extends mix(Actor).with(AM_Spatial, AM_Drivable) {
     get gamePawnType() {
         return "tutorial8Avatar";
     }
@@ -767,7 +767,7 @@ When there is an avatar to be shoved, we invoke its beShoved method directly (wh
 The default color value defined for this actor, with its negative first value, ties in with a special interpretation in our Material System: if the first (i.e., red) value is -1, the color is ignored. This is useful when the prefab has a natural material state (in this case, a wood texture) that we would like to keep as-is unless and until an explicit color is applied.
 
 ```js
-class AvatarActor extends mix(Actor).with(AM_Spatial, AM_Avatar) {
+class AvatarActor extends mix(Actor).with(AM_Spatial, AM_Drivable) {
     get gamePawnType() {
         return "tutorial9Avatar";
     }
@@ -804,16 +804,16 @@ class AvatarActor extends mix(Actor).with(AM_Spatial, AM_Avatar) {
 AvatarActor.register('AvatarActor');
 ```
 
-The **Mouse Look Avatar** component that appears on that prefab asks the **Croquet Avatar System** which object is the currently active avatar - which by default is set according to the avatar whose driver property matches the local viewId. If the script finds that the active avatar is not the object it's currently running on, it ignores all user interaction. Otherwise it responds to a combination of mouse and keyboard: when the right mouse button is down, the mouse continuously updates the yaw, while the WASD keys determine movement.
+The **Mouse Look Avatar** component that appears on that prefab asks the **Croquet Drivable System** which object is the currently active drivable - which by default is set according to the drivable whose driver property matches the local viewId. If the script finds that the active drivable is not the object it's currently running on, it ignores all user interaction. Otherwise it responds to a combination of mouse and keyboard: when the right mouse button is down, the mouse continuously updates the yaw, while the WASD keys determine movement.
 
-The third-person camera following is handled by two components added to this scene's main camera: **Follow Cam** places the camera relative to a designated game object in the scene, and **Assign Follow Cam Target** uses the active-avatar setting - again, queried from the Avatar System - to designate that target.
+The third-person camera following is handled by two components added to this scene's main camera: **Follow Cam** places the camera relative to a designated game object in the scene, and **Assign Follow Cam Target** uses the active-drivable setting - again, queried from the Drivable System - to designate that target.
 
 # Sample Project: Demolition
 
 ![](images/image8.gif)
 ----------------------
 
-*How to create a multiplayer game with hundreds of perfectly synchronized blocks in Croquet for Unity.* 
+*How to create a multiplayer game with hundreds of perfectly synchronized blocks in Croquet for Unity.*
 
 *Introduces the use of Rapier physics and Join Codes, Creating Custom Unity-Editor Scene-Based levels, and level progression management. Also demonstrates how C4U can support crossplay with a web app, in this case launched through a QR code.*
 
@@ -833,7 +833,7 @@ We have also implemented a web app that uses the same JavaScript model code as t
 
 ![](images/image14.gif)
 
-*How to create a multiplayer game with a thousand perfectly synchronized bots, missiles and avatars in Croquet for Unity.* 
+*How to create a multiplayer game with a thousand perfectly synchronized bots, missiles and avatars in Croquet for Unity.*
 
 *Introducing Navigation Grid and a deep dive on Behaviors.*
 
@@ -923,10 +923,10 @@ Within the Croquet side of the game, the avatar actor reacts to when a user take
 ```js
 //------------------------------------------------------------------------------------------
 //-- AvatarActor ---------------------------------------------------------------------------
-// This is you. Most of the control code for the avatar is in the pawn in Avatar.js.
+// This is you.
 //------------------------------------------------------------------------------------------
 
-class AvatarActor extends mix(Actor).with(AM_Spatial, AM_Avatar, AM_OnGrid) {
+class AvatarActor extends mix(Actor).with(AM_Spatial, AM_Drivable, AM_OnGrid) {
     get pawn() {
         return "AvatarPawn";
     }
@@ -967,7 +967,7 @@ class AvatarActor extends mix(Actor).with(AM_Spatial, AM_Avatar, AM_OnGrid) {
 AvatarActor.register('AvatarActor');
 ```
 
-Below are some of the components on the "tank" prefab used for the avatar pawns in Guardians. In this case, the manifest declares the **Avatar** mixin to give the pawn the view-side-driven motion described above for the local avatar , and the **Smoothed** mixin for responding to position updates when the tank is representing a remote avatar - i.e., another user's. The also requests that the **colorIndex** property (for which the getter is seen in the code fragment above) be supplied on object creation; this is used by the custom **Set My Color From Index** script that is also seen here. Finally, the custom **Move Around** script carries out the actual driving of the local avatar's position based on horizontal- and vertical-axis inputs (whether from keyboard or some other controller).
+Below are some of the components on the "tank" prefab used for the avatar pawns in Guardians. In this case, the manifest declares the **Drivable** mixin to give the pawn the view-side-driven motion described above for the local avatar , and the **Smoothed** mixin for responding to position updates when the tank is representing a remote avatar - i.e., another user's. The also requests that the **colorIndex** property (for which the getter is seen in the code fragment above) be supplied on object creation; this is used by the custom **Set My Color From Index** script that is also seen here. Finally, the custom **Move Around** script carries out the actual driving of the local avatar's position based on horizontal- and vertical-axis inputs (whether from keyboard or some other controller).
 
 ![](images/image23.png)
 
@@ -994,7 +994,7 @@ A new wave is generated every 30 seconds, so we use a similar future message for
 if (wave > 0) this.future(30000).makeWave(wave + 1, Math.floor(numBots * 1.2), key);
 ```
 
-A wave value of 0 is for testing the system so can be ignored for now. This future message tells the system to run the same makeWave function we are inside of, but start 30 seconds from now(). The next wave will increase the number of bots generated by 20% or multiplying by 1.2. 
+A wave value of 0 is for testing the system so can be ignored for now. This future message tells the system to run the same makeWave function we are inside of, but start 30 seconds from now(). The next wave will increase the number of bots generated by 20% or multiplying by 1.2.
 
 ```js
 makeWave(wave, numBots, key = this.gameState.runKey) {
