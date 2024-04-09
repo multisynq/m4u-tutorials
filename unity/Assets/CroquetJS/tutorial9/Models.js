@@ -1,6 +1,6 @@
 // Tutorial 9 Models
 
-import { Actor, mix, AM_Spatial, AM_Behavioral, Behavior, sphericalRandom, v3_add, v3_sub, v3_normalize, UserManager, User, AM_Avatar, q_axisAngle, toRad } from "@croquet/worldcore-kernel";
+import { Actor, mix, AM_Spatial, AM_Drivable, AM_Behavioral, Behavior, sphericalRandom, v3_add, v3_sub, v3_normalize, UserManager, User, q_axisAngle, toRad } from "@croquet/worldcore-kernel";
 import { GameModelRoot } from "@croquet/game-models";
 
 //------------------------------------------------------------------------------------------
@@ -91,7 +91,7 @@ ColorActor.register('ColorActor');
 
 // AvatarActor includes the AM_Avatar mixin.  Avatars have a driver property that holds the viewId of the user controlling them.
 
-class AvatarActor extends mix(Actor).with(AM_Spatial, AM_Avatar) {
+class AvatarActor extends mix(Actor).with(AM_Spatial, AM_Drivable) {
     get gamePawnType() { return "tutorial9Avatar" }
 
     get color() { return this._color || [-1, 0, 0] }
@@ -115,7 +115,11 @@ class AvatarActor extends mix(Actor).with(AM_Spatial, AM_Avatar) {
     beShoved(v) {
         const translation = v3_add(this.translation, v);
         if (this.driver) {
-            this.snap({ translation });
+            // the C4U bridge normally filters out all updates to a locally
+            // driven gameObject from its own actor.  override that filtering
+            // explicitly, so that even the view that normally drives this
+            // avatar is updated.
+            this.snapOverridingDriver({ translation });
         } else {
             this.set({ translation });
         }
