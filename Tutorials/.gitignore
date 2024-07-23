@@ -95,3 +95,7 @@ TextMesh\ Pro.meta
 /[Aa]ssets/[Pp]ackages*
 /[Aa]ssets/CroquetJS/build-tools
 /[Aa]ssets/CroquetJS/build-tools.meta
+
+# WebGL templates CroquetLoader
+Assets/WebGLTemplates/CroquetLoader
+Assets/WebGLTemplates/CroquetLoader.meta
