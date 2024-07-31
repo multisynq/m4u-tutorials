@@ -22,6 +22,8 @@
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.24.8",
     "@babel/preset-env": "^7.25.0",
+    "@croquet/game-models": "file:_Runtime/Packages/game-models",
+    "@croquet/unity-bridge": "file:_Runtime/Packages/unity-bridge",
     "@croquet/worldcore-kernel": "^2.0.0-alpha",
     "@croquet/worldcore-rapier": "^2.0.0-alpha",
     "assert": "^2.1.0",

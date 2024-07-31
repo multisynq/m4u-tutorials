@@ -11,9 +11,6 @@
         "globalThis": false
     },
     "rules": {
-        "import/no-unresolved": ["error", {
-            "ignore": [ "^@croquet/(unity-bridge|game-models)$" ]
-        }],
         "import/prefer-default-export": "off",
         "max-classes-per-file": "off",
         "constructor-super": "error",
