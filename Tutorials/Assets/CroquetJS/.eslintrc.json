@@ -1,17 +1,21 @@
 {
+    "parserOptions": {
+        "ecmaVersion": 2020
+    },
     "extends": "airbnb-base",
     "env": {
         "browser": true,
         "es6": true
     },
-    "parserOptions": {
-        "ecmaVersion": "latest"
-    },
     "globals": {
         "globalThis": false
     },
     "rules": {
+        "import/extensions": ["warn", "never"],
         "import/prefer-default-export": "off",
+        "import/no-cycle": "off",
+        "import/newline-after-import": "off",
+        "import/no-unresolved": "off",
         "max-classes-per-file": "off",
         "constructor-super": "error",
         "class-methods-use-this": "off",
@@ -39,10 +43,11 @@
         "no-confusing-arrow": "off",
         "no-cond-assign": ["error", "except-parens"],
         "no-fallthrough": ["error", { "commentPattern": "fall through" }],
-        "indent": ["warn", 4],
+        "indent": "off",
         "space-before-blocks": ["warn"],
         "padded-blocks": "off",
         "nonblock-statement-body-position": "warn",
+        "no-mixed-spaces-and-tabs": "off",
         "max-len": "off",
         "spaced-comment": "off",
         "no-var": "warn",
@@ -50,7 +55,8 @@
         "one-var": "off",
         "one-var-declaration-per-line": "off",
         "keyword-spacing": "warn",
-        "arrow-parens": ["warn", "as-needed"],
+        "arrow-spacing": "off",
+        "arrow-parens": ["as-needed"],
         "arrow-body-style": "off",
         "block-spacing": "off",
         "object-curly-spacing": "off",

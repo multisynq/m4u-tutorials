@@ -6,19 +6,21 @@ Croquet needs a JavaScript engine to execute JS code, and its supporting JS code
 
 Depending on the host OS and build configuration, Croquet can use one of three ways to execute JavaScript:
 
-### Native
+### WebView
 
 This is the preferred option. It uses the platform's own JS runtime via a WebView. This currently works on MacOS, iOS, and Android builds.
 
-C# creates a Web Server and a WebView. The WebView loads `Native/webview.html` from the WebServer. The HTML file loads the Croquet JS code. The JS code opens a WebSocket connection to the Web Server and thus establishes a communication channel between C# and JS.
+C# creates a Web Server and a WebView. The WebView loads `WebView/webview.html` from the Web Server. The HTML file loads the Croquet JS code. The JS code opens a WebSocket connection to the Web Server and thus establishes a communication channel between C# and JS.
 
 ### Node
 
 On Windows, we launch a Web Server and a NodeJS process to execute JS code. The Croquet JS code opens a WebSocket connection to the Web Server and thus establishes a communication channel between C# and JS.
 
-### Browser
+### WebGL
 
-On WebGL builds, the Web Browser provides the JS execution context. It loads `Browser/index.html` which executes both the C# code that has been compiled to WASM, and the Croquet JS code. Since both run in the same JS context, they communicate directly, rather than via a WebSocket.
+On WebGL builds, the Web Browser provides the JS execution context. It essentially loads `WebGL/index.html` which executes both the C# code that has been compiled to WASM, and the Croquet JS code. Since both run in the same JS context, they communicate directly, rather than via a WebSocket.
+
+The build process copies this folder and a bundle of all the JS source code into `Assets/WebGLTemplates/CroquetLoader`, from which the regular Unity WebGL build continues.
 
 ## Packages
 
