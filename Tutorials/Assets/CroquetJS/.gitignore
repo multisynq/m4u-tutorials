@@ -1,0 +1,10 @@
+# .gitignore for CroquetJS folder
+
+.js-build
+.last-installed-tools
+.last-build-state
+
+scene-definitions.txt*
+
+node_modules
+dist

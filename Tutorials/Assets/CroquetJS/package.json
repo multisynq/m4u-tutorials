@@ -1,10 +1,12 @@
 {
-  "name": "croquet-for-unity-tutorials",
-  "description": "Croquet for Unity Tutorials",
+  "name": "croquet-for-unity-template",
+  "description": "Croquet for Unity Template",
   "private": true,
   "author": "Croquet Labs",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.24.8",
+    "@babel/preset-env": "^7.25.3",
     "copy-webpack-plugin": "^12.0.2",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -20,8 +22,6 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.24.8",
-    "@babel/preset-env": "^7.25.0",
     "@croquet/game-models": "file:_Runtime/Packages/game-models",
     "@croquet/unity-bridge": "file:_Runtime/Packages/unity-bridge",
     "@croquet/worldcore-kernel": "^2.0.0-alpha",
