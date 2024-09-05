@@ -145,17 +145,16 @@ MyUser.register('MyUser');
 //------------------------------------------------------------------------------------------
 
 class SyncVarActor extends Actor {
-    get gamePawnType() { return "" }
-    init(options) {
-        super.init(options);
-        this.subscribe("CroquetSyncVarMgr", "set1", this.syncVarChange); // setValue set1
-    }
-    syncVarChange(msg) {
-        console.log("setValueFromCroquet", msg);
-        this.publish("CroquetSyncVarMgr", "set2", msg); // setValueFromCroquet set2
-    }
+  get gamePawnType() { return '' }
+  init(options) {
+    super.init(options)
+    this.subscribe('SyncVar', 'set1', this.syncVarChange)
+  }
+  syncVarChange(msg) {
+    this.publish('SyncVar', 'set2', msg)
+  }
 }
-SyncVarActor.register('SyncVarActor');
+SyncVarActor.register('SyncVarActor')
 
 //------------------------------------------------------------------------------------------
 //-- MyModelRoot ---------------------------------------------------------------------------
@@ -169,11 +168,11 @@ export class MyModelRoot extends GameModelRoot {
 
     init(options) {
         super.init(options);
-        console.log("Start model root!");
+        this.syncer = SyncVarActor.create({});
+
         this.base = BaseActor.create();
         this.parent = TestActor.create({parent: this.base, translation: [0, 1, 0]});
         this.child = ColorActor.create({parent: this.parent, translation: [0, 0, -2]});
-        this.syncer = SyncVarActor.create({});
 
         this.parent.behavior.start({ name: "SpinBehavior", axis: [0, -1, 0], tickRate: 500 });
         this.child.behavior.start({ name: "SpinBehavior", axis: [0, 0, 1], speed: 3 });
