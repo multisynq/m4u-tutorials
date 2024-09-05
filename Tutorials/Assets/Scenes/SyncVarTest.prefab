@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2992231179095933856}
   - component: {fileID: 2992231179095933857}
-  - component: {fileID: 2992231179095933862}
-  - component: {fileID: 9072772249158495183}
+  - component: {fileID: 192686018}
   m_Layer: 0
   m_Name: SyncVarTest
   m_TagString: Untagged
@@ -46,24 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3453d76c672404e1a8c9f7de0996c67f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2992231179095933862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2992231179095933863}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cb4635171f3a4894947d4b770a199bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  netId: 29882
-  health: 100
-  legHealth: 100
-  torsoHealth: 100
-  headHealth: 100
---- !u!114 &9072772249158495183
+--- !u!114 &192686018
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

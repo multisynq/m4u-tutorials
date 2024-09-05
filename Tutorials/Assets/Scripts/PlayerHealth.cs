@@ -37,7 +37,7 @@ public class PlayerHealth : SyncedBehaviour {
     GUI.Label(new Rect(10, 70, 100, 20), $"Head:   {headHealth.ToString("F1")}");
   }
   void CalcHealth() {
-    // health = (legHealth + torsoHealth + headHealth) / 3;
+    health = (legHealth + torsoHealth + headHealth) / 3;
   }
   void Update() {
     // each key loses healt on a body part, l,t,h
