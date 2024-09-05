@@ -53,12 +53,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2992231179095933863}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2cb4635171f3a4894947d4b770a199bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  netId: 29882
   health: 100
+  legHealth: 100
+  torsoHealth: 100
+  headHealth: 100
 --- !u!114 &9072772249158495183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,4 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb4635171f3a4894947d4b770a199bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  netId: 29886
+  health: 100
+  legHealth: 100
+  torsoHealth: 100
+  headHealth: 100
