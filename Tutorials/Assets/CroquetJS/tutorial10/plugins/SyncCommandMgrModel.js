@@ -1,5 +1,5 @@
 import { Model } from '@croquet/croquet';
-      
+
 export class SyncCommandMgrModel extends Model {
     init(options) {
         super.init(options);
