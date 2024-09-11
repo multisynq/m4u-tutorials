@@ -29,12 +29,17 @@ public class PlayerHealth : SyncedBehaviour {
 
   void OnGUI() {
     GUI.backgroundColor = new Color(0f, 0f, 0f, 0.2f);
-    GUI.Box(new Rect(0, 0, 120, 100), ""); // panel background
+    GUI.Box(new Rect(0, 0, 200, 100), ""); // panel background
     GUI.contentColor = Color.white;
-    GUI.Label(new Rect(10, 10, 100, 20), $"Health: {health.ToString("F1")}");
-    GUI.Label(new Rect(10, 30, 100, 20), $"Leg:    {legHealth.ToString("F1")}");
-    GUI.Label(new Rect(10, 50, 100, 20), $"Torso:  {torsoHealth.ToString("F1")}");
-    GUI.Label(new Rect(10, 70, 100, 20), $"Head:   {headHealth.ToString("F1")}");
+
+    GUIStyle style = new();
+    style.alignment = TextAnchor.MiddleCenter;
+    style.fontSize = 20;
+
+    GUI.Label(new Rect(30, 10, 100, 20), $" Health: {health.ToString("F1")}", style);
+    GUI.Label(new Rect(30, 30, 100, 20), $" Leg:    {legHealth.ToString("F1")}", style);
+    GUI.Label(new Rect(30, 50, 100, 20), $" Torso:  {torsoHealth.ToString("F1")}", style);
+    GUI.Label(new Rect(30, 70, 100, 20), $" Head:   {headHealth.ToString("F1")}", style);
   }
   void CalcHealth() {
     health = (legHealth + torsoHealth + headHealth) / 3;
