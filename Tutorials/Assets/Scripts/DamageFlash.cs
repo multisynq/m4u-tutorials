@@ -11,7 +11,7 @@ public class DamageFlash : SyncedBehaviour {
     showDamagePanel = true;
     timer = Time.time;
     damageMessage = $"Damage: {bodyPart}";
-    Debug.Log($"[SyncCommand] TakeDamage called for {bodyPart}");
+    Debug.Log($"[SyncCommand] DamageFlash.TakeDamage( {bodyPart} ) ");
   }
   
   void Start() {
@@ -26,7 +26,9 @@ public class DamageFlash : SyncedBehaviour {
       GUIStyle style = new GUIStyle();
       style.alignment = TextAnchor.MiddleCenter;
       style.fontSize = 40;
-      style.normal.textColor = new Color(0.5f, 1f, 0.5f, 1f); // lime green
+      // bright red
+      style.normal.textColor = new Color(1, 0.8f, 0.6f, 1);
+      GUI.color = style.normal.textColor;
 
       GUI.Label(new Rect(0, 0, Screen.width, Screen.height), damageMessage, style);
     }
@@ -40,13 +42,19 @@ public class DamageFlash : SyncedBehaviour {
     // Check for key presses and call TakeDamage via SyncCommandMgr
     if (syncCommandMgr != null) {
       if (Input.GetKeyDown(KeyCode.T)) {
-        syncCommandMgr.ExecuteCommand($"{netId}_TakeDamage", "Torso");
+        Debug.Log("<color=red>Torso</color> T key pressed");
+        TakeDamage("Torso");
+        // syncCommandMgr.ExecuteCommand($"{netId}_TakeDamage", "Torso");
       }
       else if (Input.GetKeyDown(KeyCode.H)) {
-        syncCommandMgr.ExecuteCommand($"{netId}_TakeDamage", "Head");
+        Debug.Log("<color=red>Head</color> H key pressed");
+        TakeDamage("Head");
+        // syncCommandMgr.ExecuteCommand($"{netId}_TakeDamage", "Head");
       }
       else if (Input.GetKeyDown(KeyCode.L)) {
-        syncCommandMgr.ExecuteCommand($"{netId}_TakeDamage", "Legs");
+        Debug.Log("<color=red>Legs</color> L key pressed");
+        TakeDamage("Legs");
+        // syncCommandMgr.ExecuteCommand($"{netId}_TakeDamage", "Legs");
       }
     }
     else {

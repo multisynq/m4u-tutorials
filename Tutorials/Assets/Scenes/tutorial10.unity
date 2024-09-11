@@ -147,6 +147,80 @@ MonoBehaviour:
   legHealth: 100
   torsoHealth: 100
   headHealth: 100
+--- !u!1001 &212771583
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3877746751552557305, guid: e5df933f6b375c5459f033fb93c036a4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877746751552557305, guid: e5df933f6b375c5459f033fb93c036a4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 388.79926
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877746751552557305, guid: e5df933f6b375c5459f033fb93c036a4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 280.78885
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877746751552557305, guid: e5df933f6b375c5459f033fb93c036a4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 121.683586
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877746751552557305, guid: e5df933f6b375c5459f033fb93c036a4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877746751552557305, guid: e5df933f6b375c5459f033fb93c036a4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877746751552557305, guid: e5df933f6b375c5459f033fb93c036a4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877746751552557305, guid: e5df933f6b375c5459f033fb93c036a4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877746751552557305, guid: e5df933f6b375c5459f033fb93c036a4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877746751552557305, guid: e5df933f6b375c5459f033fb93c036a4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877746751552557305, guid: e5df933f6b375c5459f033fb93c036a4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3880246609773622205, guid: e5df933f6b375c5459f033fb93c036a4,
+        type: 3}
+      propertyPath: m_Name
+      value: GameLog-Window
+      objectReference: {fileID: 0}
+    - target: {fileID: 3946061458565385731, guid: e5df933f6b375c5459f033fb93c036a4,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e5df933f6b375c5459f033fb93c036a4, type: 3}
 --- !u!115 &260473116
 MonoScript:
   m_ObjectHideFlags: 0
@@ -622,7 +696,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.56225526, g: 0.59121156, b: 0.8962264, a: 1}
+  m_BackGroundColor: {r: 0.18569775, g: 0.20264909, b: 0.3679245, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -955,9 +1029,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'WASD to move your avatar
-
-    Click to add/destroy cubes'
+  m_text: <color=#ffaa00>[SyncVar]</color>\n<color=#ffdd00>[SyncCommand]</color>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
