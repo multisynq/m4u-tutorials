@@ -9,6 +9,7 @@ export class SyncVarMgrModel extends Model {
     console.log('### <color=magenta>SyncVarMgrModel.init() <<<<<<<<<<<<<<<<<<<<< </color>')
   }
   syncVarChange(msg) {
+    console.log(`<color=blue>[SyncVar]</color> <color=yellow>JS</color> CroquetModel <color=magenta>SyncVarMgrModel.syncVarChange()</color> msg = <color=white>${JSON.stringify(msg)}</color>`)
     this.publish('SyncVar', 'set2', msg)
   }
 }

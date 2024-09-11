@@ -681,6 +681,10 @@ PrefabInstance:
       propertyPath: netId
       value: 231608
       objectReference: {fileID: 0}
+    - target: {fileID: 192686018, guid: af204991c7b464ae68a9e4a2e1d17b13, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2992231179095933856, guid: af204991c7b464ae68a9e4a2e1d17b13,
         type: 3}
       propertyPath: m_RootOrder
