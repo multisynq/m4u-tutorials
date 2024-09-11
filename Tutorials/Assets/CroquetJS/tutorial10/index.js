@@ -6,6 +6,7 @@ export class MyModelRoot extends GameModelRootWithPlugins {
     super.init(options);
   }
 }
+//@ts-ignore
 MyModelRoot.register('MyModelRoot');
 
 StartSession(MyModelRoot, GameViewRoot);
