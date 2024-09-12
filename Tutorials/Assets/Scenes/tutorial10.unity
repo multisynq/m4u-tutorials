@@ -214,9 +214,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameLog-Window
       objectReference: {fileID: 0}
+    - target: {fileID: 3880302746020909147, guid: e5df933f6b375c5459f033fb93c036a4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3946061458565385731, guid: e5df933f6b375c5459f033fb93c036a4,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3947205639446747059, guid: e5df933f6b375c5459f033fb93c036a4,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -565,7 +575,7 @@ PrefabInstance:
     - target: {fileID: 3479632283134871797, guid: 1e816dfed6d2248eba7d62bdd192bdb9,
         type: 3}
       propertyPath: JSLogForwarding.log
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3479632283134871797, guid: 1e816dfed6d2248eba7d62bdd192bdb9,
         type: 3}
@@ -1058,10 +1068,10 @@ RectTransform:
   m_Father: {fileID: 928950516}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.19461104}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -0.000015259}
+  m_SizeDelta: {x: 948, y: 188.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2146102220
 MonoBehaviour:
@@ -1083,7 +1093,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <color=#ffaa00>[SyncVar]</color>\n<color=#ffdd00>[SyncCommand]</color>
+  m_text: "<color=#ffaa00>[SyncVar]</color>\\n<color=#ffdd00>[SyncCommand]</color>\n<size=-8>\nPress
+    <color=#ffaa00>T</color>, <color=#ffaa00>H</color>, or <color=#ffaa00>L</color>
+    \nto demo player damage</size>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

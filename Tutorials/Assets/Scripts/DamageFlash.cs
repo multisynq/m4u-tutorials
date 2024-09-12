@@ -35,24 +35,24 @@ public class DamageFlash : SyncedBehaviour {
     // Check for key presses and call TakeDamage via SyncCommandMgr
       if (Input.GetKeyDown(KeyCode.T)) {
         Debug.Log("<color=red>Torso</color> T key pressed");
-        // TakeDamage("Torso");
-        CallSyncCommand(TakeDamage, "Torso");
+        // TakeDamage("Torso"); // local call only
+        CallSyncCommand(TakeDamage, "Torso"); // calls on all Views
       }
       else if (Input.GetKeyDown(KeyCode.H)) {
         Debug.Log("<color=red>Head</color> H key pressed");
-        // TakeDamage("Head");
-        CallSyncCommand(TakeDamage, "Head");
+        // TakeDamage("Head"); // local call only
+        // CallSyncCommand(TakeDamage, "Head");
+        RPC("TakeDamage", RpcTarget.All, "Legs"); // calls on all Views
       }
       else if (Input.GetKeyDown(KeyCode.L)) {
         Debug.Log("<color=red>Legs</color> L key pressed");
         // TakeDamage("Legs");
-        CallSyncCommand(TakeDamage, "Legs");
-        // RPC("TakeDamage", RpcTarget.All, "Legs");
-        // RPC(TakeDamage, RpcTarget.All, "Legs");
+        // CallSyncCommand(TakeDamage, "Legs");
+        RPC(TakeDamage, RpcTarget.All, "Legs");
       }
   }
 
-  [SyncCommand]
+  [SyncRPC]
   public void TakeDamage(string bodyPart) {
     showDamagePanel = true;
     timer = Time.time;
