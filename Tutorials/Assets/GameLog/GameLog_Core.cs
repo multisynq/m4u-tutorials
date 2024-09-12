@@ -14,6 +14,9 @@ public class GameLog_Core : MonoBehaviour {
     public GameObject Page2;
     public ScrollRect scrollRect;
 
+    public string search;
+    public InputField searchInput;
+
     private static GameLog_Core instance;
     public static GameLog_Core Instance {
         get {
@@ -123,6 +126,11 @@ public class GameLog_Core : MonoBehaviour {
         foreach (RectTransform r in GameLog.AllTextOBJ) {
             r.GetComponent<Text>().fontSize += 2;
         }
+    }
+
+    // inputField value changed handler
+    public void OnValueChanged(string value) {
+        search = searchInput.text;
     }
 
     bool b;
