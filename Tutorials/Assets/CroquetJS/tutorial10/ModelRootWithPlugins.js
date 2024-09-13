@@ -1,41 +1,46 @@
 import { GameModelRoot } from '@croquet/game-models';
-import { Model as CroquetModel } from '@croquet/croquet';
+import { Model } from '@croquet/croquet';
 
+//--------------------------------------------------------------------------------------------
 // Object to store plugin modules
 const globalPluginModules = {};
-
-const loadPlugins = () => {
-  // Get all files that end with .plugin.js
+//--------------------------------------------------------------------------------------------
+const webpackImportPluginJsFiles = () => { // a top-scope function for webpack to load plugins
+  // Webpack require all:  plugins/*.js (prevent loading myself)
   // @ts-ignore
-  const webpackLoader = require.context('./plugins', true, /\.js$/);
+  const webpackLoader = require.context('./plugins', true, /^\.\/[^.]+(?<!ModelRootWithPlugins)\.js$/);
   
   return webpackLoader.keys()
     .filter(moduleNm => {
       const fullPath = webpackLoader.resolve(moduleNm); // Use resolve to get the full path
       const hasJsExt = fullPath.endsWith('.js') // Check if the resolved path ends with .js
+      const isNotMyself = !fullPath.includes('ModelRootWithPlugins.js'); // Exclude this file
       console.log(`### ${(hasJsExt)?'(Not .js)':'(Yes .js)'} Checking plugin: ${fullPath} `);
-      return hasJsExt; 
+      return hasJsExt && isNotMyself; 
     })
     .forEach(moduleNm => {
       // Log the valid plugin being loaded
       console.log(`### Loading plugin: ${moduleNm}`);
-      const loadedModule = webpackLoader(moduleNm); // Import the plugin
+      //                        vvv
+      const loadedModule = webpackLoader(moduleNm); // IMPORT one plugin/*.js file < < < < < < < < 
+      //                        ^^^
       globalPluginModules[moduleNm] = loadedModule; // Store the plugin in the global object
     });
 };
 
+//--------------------------------------------------------------------------------------------
+(function() { // <<<< An Immediately Invoked Function Expression (IIFE)
+  console.log(`### >>>>> Importing plugins/*.js`);
+  webpackImportPluginJsFiles();
+})(); //         <<<< An Immediately Invoked Function Expression (IIFE)
 
-// Load plugin modules
-(function loadPluginModules() { // <<<< An Immediately Invoked Async Function Expression (IIAFE)
-  console.log(`### >>>>> Importing {proxies/*.js}`);
-  loadPlugins();
-})(); // <<<< An Immediately Invoked Async Function Expression (IIAFE)
-
-export class GameModelRootWithPlugins extends GameModelRoot {
+//--------------------------------------------------------------------------------------------
+//========== |||||||||||||||||||| =================================================================
+export class ModelRootWithPlugins extends GameModelRoot {
   init(options) {
     // @ts-ignore
     super.init(options);
-    console.log(`### GameModelRootWithPlugins.init() ${JSON.stringify(globalPluginModules)}`);
+    console.log(`### ModelRootWithPlugins.init() ${JSON.stringify(globalPluginModules)}`);
     
     // Create proxy instances and assign them to this
     Object.keys(globalPluginModules).forEach((name) => {
@@ -72,17 +77,17 @@ export class GameModelRootWithPlugins extends GameModelRoot {
       console.log(`### ----------- Creating instance of plugin '${name}' ---------`);
 
       // check if PluginClass extends Croquet.Model
-      if (!(PluginClass.prototype instanceof CroquetModel)) {
-        console.log(`### Plugin '${name}' does not extend Croquet.Model`);
+      if (!(PluginClass.prototype instanceof Model)) { // as in Croquet Model
+        console.error(`### Plugin '${name}' does not extend Croquet.Model`);
         return;
       } else {
-        console.log(`### Plugin '${name}' extends Croquet.Model`);
+        console.log(`### Plugin '${name}' correctly extends Croquet.Model`);
         // call create() if it exists
         if (typeof PluginClass.create === 'function') {
           console.log(`### 'plugins/${PluginClass.name}.js' has static ${PluginClass.name}.create() function`);
           this[`__${name}`] = PluginClass.create();
         } else {
-          console.error(`### Plugin '${name}' extends Croquet.Model! It lacks a .create() function`);
+          console.error(`### Plugin '${name}' extends Croquet.Model, but it lacks a .create() function!!`);
         }
       }
       

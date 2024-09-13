@@ -1,62 +1,70 @@
-using System;
 using UnityEngine;
-
+/*
+  DamageFlash.cs
+  A demonstration of using:
+    [SyncCommand]   and   [SyncRPC]   attributes 
+  to call methods sync-hronously on all networked clients.
+*/
+//========== ||||||||||| ========================
 public class DamageFlash : SyncedBehaviour {
   private float timer = 0;
   private bool showDamagePanel = false;
   private string damageMessage = "";
-  
-  void Start() {
-  }
 
-  void OnGUI() {
-    if (showDamagePanel) {
-      int scale = (int)(Screen.width / 800.0f);
-      GUI.color = new Color(1, 0, 0, 0.5f); // Semi-transparent red
-      GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Texture2D.whiteTexture);
-
-      GUIStyle style = new GUIStyle();
-      style.alignment = TextAnchor.MiddleCenter;
-      style.fontSize = 40 * scale;
-      // bright red
-      style.normal.textColor = new Color(1, 0.8f, 0.6f, 1);
-      GUI.color = style.normal.textColor;
-
-      GUI.Label(new Rect(0, 0, Screen.width, Screen.height), damageMessage, style);
-    }
-  }
-
-  void Update() {
-
-    if (showDamagePanel && Time.time - timer > 0.8f) {
-      showDamagePanel = false;
-    }
-
-    // Check for key presses and call TakeDamage via SyncCommandMgr
-      if (Input.GetKeyDown(KeyCode.T)) {
-        Debug.Log("<color=red>Torso</color> T key pressed");
-        // TakeDamage("Torso");
-        CallSyncCommand(TakeDamage, "Torso");
-      }
-      else if (Input.GetKeyDown(KeyCode.H)) {
-        Debug.Log("<color=red>Head</color> H key pressed");
-        // TakeDamage("Head");
-        CallSyncCommand(TakeDamage, "Head");
-      }
-      else if (Input.GetKeyDown(KeyCode.L)) {
-        Debug.Log("<color=red>Legs</color> L key pressed");
-        // TakeDamage("Legs");
-        CallSyncCommand(TakeDamage, "Legs");
-        // RPC("TakeDamage", RpcTarget.All, "Legs");
-        // RPC(TakeDamage, RpcTarget.All, "Legs");
-      }
-  }
-
-  [SyncCommand]
+  [SyncRPC] // identical to [SyncCommand] (Variant A)
   public void TakeDamage(string bodyPart) {
     showDamagePanel = true;
     timer = Time.time;
     damageMessage = $"Damage: {bodyPart}";
     Debug.Log($"[SyncCommand] DamageFlash.TakeDamage( {bodyPart} ) ");
   }
+
+  [SyncCommand] // identical to [SyncRPC] (Variant B)
+  public void Heal() {
+    showDamagePanel = true;
+    timer = Time.time;
+    damageMessage = $"Heal all";
+    Debug.Log($"[SyncCommand] DamageFlash.Heal() ");
+  }
+  // Methods with [SyncCommand] or [SyncRPC] attributes can be called from RPC() or CallSyncCommand()
+  // [SyncCommand] or [SyncRPC] are identical in functionality to make porting from legacy networking easier.
+
+  void Update() {
+
+    if (showDamagePanel && Time.time - timer > 0.8f) {
+      showDamagePanel = false;      // after   0.8 seconds, hide the damage panel
+    }
+
+    // Check for key presses and call TakeDamage() three identical ways: Variant A, B, C
+    // These variants make porting from legacy networking easier.
+    if (Input.GetKeyDown(KeyCode.T)) {
+      RPC("TakeDamage", RpcTarget.All, "Torso"); // calls on all Views (Variant A)
+    }
+    else if (Input.GetKeyDown(KeyCode.H)) {
+      RPC(TakeDamage, RpcTarget.All, "Head");    // calls on all Views (Variant B)
+    }
+    else if (Input.GetKeyDown(KeyCode.L)) {
+      CallSyncCommand(TakeDamage, "Legs");       // calls on all Views (Variant C)
+    }
+    else if (Input.GetKeyDown(KeyCode.R)) {
+      CallSyncCommand(Heal);                     // calls on all Views (Variant C)
+    }
+  }
+
+
+  void OnGUI() { // Old school Unity UI! Yuck. But self-contained!
+    if (showDamagePanel) {
+      // A fullscreen transparent red or green panel with text
+      int scale = (int)(Screen.width / 800.0f);
+      int left = Screen.width / 2 * scale;
+      var isHeal = damageMessage.Contains("Heal");
+      GUI.color = (isHeal) ?  new Color(0, 1, 0, 0.8f) : new Color(1, 0, 0, 0.8f); // Semi-transparent green or red
+      GUI.DrawTexture(new Rect(left, 0, Screen.width/2, Screen.height), Texture2D.whiteTexture); // Fullscreen panel
+      GUIStyle style = new() { alignment = TextAnchor.MiddleCenter, fontSize = 45 * scale };
+      style.normal.textColor = (isHeal) ? Color.white : Color.white; // Green or red text
+      GUI.color = style.normal.textColor;
+      GUI.Label(new Rect(left, 0, Screen.width/2, Screen.height), damageMessage, style); // Text: "Heal" or Damage: ______
+    }
+  }
+
 }

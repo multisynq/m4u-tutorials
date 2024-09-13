@@ -1,7 +1,7 @@
 import { StartSession, GameViewRoot } from '@croquet/unity-bridge';
-import { GameModelRootWithPlugins } from './GameModelRootWithPlugins';    
+import { ModelRootWithPlugins } from './ModelRootWithPlugins';    
 
-export class MyModelRoot extends GameModelRootWithPlugins {
+export class MyModelRoot extends ModelRootWithPlugins {
   async init(options) {
     super.init(options);
   }
