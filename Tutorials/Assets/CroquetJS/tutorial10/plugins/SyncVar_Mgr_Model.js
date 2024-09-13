@@ -1,5 +1,5 @@
 import { Model } from '@croquet/croquet';
-      
+        
 export class SyncVarMgrModel extends Model {
   get gamePawnType() { return '' }
   init(options) {
@@ -13,3 +13,4 @@ export class SyncVarMgrModel extends Model {
   }
 }
 SyncVarMgrModel.register('SyncVarMgrModel')
+      
