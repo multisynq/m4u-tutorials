@@ -1,42 +1,16 @@
-using System;
 using UnityEngine;
-
+/*
+  DamageFlash.cs
+  A demonstration of using:
+    [SyncCommand]   and   [SyncRPC]   attributes 
+  to call methods sync-hronously on all networked clients.
+*/
+//========== ||||||||||| ========================
 public class DamageFlash : SyncedBehaviour {
   private float timer = 0;
   private bool showDamagePanel = false;
   private string damageMessage = "";
-  
-  void Start() {
-  }
 
-
-  void Update() {
-
-    if (showDamagePanel && Time.time - timer > 0.8f) {
-      showDamagePanel = false;      // after   0.8 seconds, hide the damage panel
-    }
-
-    // Check for key presses and call TakeDamage() three identical ways: Variant A, B, C
-    // These variants make porting from legacy networking easier.
-    if (Input.GetKeyDown(KeyCode.T)) {
-      Debug.Log("Torso damage");
-      RPC("TakeDamage", RpcTarget.All, "Torso"); // calls on all Views (Variant A)
-    }
-    else if (Input.GetKeyDown(KeyCode.H)) {
-      Debug.Log("Head damage");
-      RPC(TakeDamage, RpcTarget.All, "Head");    // calls on all Views (Variant B)
-    }
-    else if (Input.GetKeyDown(KeyCode.L)) {
-      Debug.Log("Legs damage");
-      CallSyncCommand(TakeDamage, "Legs");       // calls on all Views (Variant C)
-    }
-    else if (Input.GetKeyDown(KeyCode.R)) {
-      Debug.Log("Heal!");
-      CallSyncCommand(Heal);       // calls on all Views (Variant C)
-    }
-  }
-  // Methods must be marked with [SyncCommand] or [SyncRPC] to be called from RPC() or CallSyncCommand()
-  // These two Attributes variants are identical in functionality to make porting from legacy networking easier.
   [SyncRPC] // identical to [SyncCommand] (Variant A)
   public void TakeDamage(string bodyPart) {
     showDamagePanel = true;
@@ -52,6 +26,31 @@ public class DamageFlash : SyncedBehaviour {
     damageMessage = $"Heal all";
     Debug.Log($"[SyncCommand] DamageFlash.Heal() ");
   }
+  // Methods with [SyncCommand] or [SyncRPC] attributes can be called from RPC() or CallSyncCommand()
+  // [SyncCommand] or [SyncRPC] are identical in functionality to make porting from legacy networking easier.
+
+  void Update() {
+
+    if (showDamagePanel && Time.time - timer > 0.8f) {
+      showDamagePanel = false;      // after   0.8 seconds, hide the damage panel
+    }
+
+    // Check for key presses and call TakeDamage() three identical ways: Variant A, B, C
+    // These variants make porting from legacy networking easier.
+    if (Input.GetKeyDown(KeyCode.T)) {
+      RPC("TakeDamage", RpcTarget.All, "Torso"); // calls on all Views (Variant A)
+    }
+    else if (Input.GetKeyDown(KeyCode.H)) {
+      RPC(TakeDamage, RpcTarget.All, "Head");    // calls on all Views (Variant B)
+    }
+    else if (Input.GetKeyDown(KeyCode.L)) {
+      CallSyncCommand(TakeDamage, "Legs");       // calls on all Views (Variant C)
+    }
+    else if (Input.GetKeyDown(KeyCode.R)) {
+      CallSyncCommand(Heal);                     // calls on all Views (Variant C)
+    }
+  }
+
 
   void OnGUI() { // Old school Unity UI! Yuck. But self-contained!
     if (showDamagePanel) {
