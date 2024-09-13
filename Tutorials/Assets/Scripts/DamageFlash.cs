@@ -57,12 +57,14 @@ public class DamageFlash : SyncedBehaviour {
     if (showDamagePanel) {
       // A fullscreen transparent red or green panel with text
       int scale = (int)(Screen.width / 800.0f);
-      GUI.color = (damageMessage.StartsWith("Heal")) ?  new Color(0, 1, 0, 0.5f) : new Color(1, 0, 0, 0.5f); // Semi-transparent green or red
-      GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Texture2D.whiteTexture); // Fullscreen panel
-      GUIStyle style = new() { alignment = TextAnchor.MiddleCenter, fontSize = 40 * scale };
-      style.normal.textColor = new Color(1, 0.8f, 0.6f, 1); // bright red
+      int left = Screen.width / 2 * scale;
+      var isHeal = damageMessage.Contains("Heal");
+      GUI.color = (isHeal) ?  new Color(0, 1, 0, 0.8f) : new Color(1, 0, 0, 0.8f); // Semi-transparent green or red
+      GUI.DrawTexture(new Rect(left, 0, Screen.width/2, Screen.height), Texture2D.whiteTexture); // Fullscreen panel
+      GUIStyle style = new() { alignment = TextAnchor.MiddleCenter, fontSize = 45 * scale };
+      style.normal.textColor = (isHeal) ? Color.white : Color.white; // Green or red text
       GUI.color = style.normal.textColor;
-      GUI.Label(new Rect(0, 0, Screen.width, Screen.height), damageMessage, style); // Text: "Heal" or Damage: ______
+      GUI.Label(new Rect(left, 0, Screen.width/2, Screen.height), damageMessage, style); // Text: "Heal" or Damage: ______
     }
   }
 
