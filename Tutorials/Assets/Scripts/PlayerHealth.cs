@@ -5,9 +5,9 @@ public class PlayerHealth : SyncedBehaviour {
   [SyncVar(CustomName = "hp", OnChangedCallback = nameof(OnHealthChanged) )] 
   public int health = 100;
 
-  [SyncVar(updateInterval=0.5f)] public int legHealth = 100;
+  [SyncVar] public int legHealth = 100;
   [SyncVar] public int torsoHealth = 100;
-  [SyncVar] public int headHealth = 100;
+  [SyncVar(updateInterval=0.5f)] public int headHealth = 100;
 
   private void OnHealthChanged(int newValue) {
     int newHealth = newValue;
