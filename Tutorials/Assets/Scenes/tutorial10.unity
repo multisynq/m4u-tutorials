@@ -966,12 +966,12 @@ MonoBehaviour:
     <color=#ddd>Demo
     uses files:</color></size>
 
-    <color=#ddd><size=-12>Assets / CroquetJs / </size><color=white>PlayerHealth.cs</color>
-    <size=-10>( demos <color=#ffaa00>[SyncVar]</color> )</size>
-
-    <size=-12>Assets
-    / CroquetJs / </size><color=white>TakeDamage.cs </color><size=-10>( demos <color=#ffdd00>[SyncCommand]</color>
+    <color=#ddd><size=-20>Assets / CroquetJs / tutorial10
+    / </size><color=white>PlayerHealth.cs</color> <size=-10>( demos <color=#ffaa00>[SyncVar]</color>
     )</size>
+
+    <size=-20>Assets / CroquetJs / tutorial10 / </size><color=white>TakeDamage.cs
+    </color><size=-10>( demos <color=#ffdd00>[SyncCommand]</color> )</size>
 
     </color>'
   m_isRightToLeft: 0
