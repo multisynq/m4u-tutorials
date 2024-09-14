@@ -1,7 +1,7 @@
 
 import { Model } from '@croquet/croquet';
 
-export class TransformMgrModel extends Model {
+export class SyncTransform_Mgr_Model extends Model {
   get gamePawnType() { return '' }
   init(options) {
     super.init(options)
