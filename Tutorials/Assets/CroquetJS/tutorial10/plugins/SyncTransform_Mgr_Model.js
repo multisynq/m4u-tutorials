@@ -14,4 +14,4 @@ export class SyncTransform_Mgr_Model extends Model {
   rotChg(msg) { this.publish('Xform', 'setRot2', msg) }
   sclChg(msg) { this.publish('Xform', 'setScl2', msg) }
 }
-TransformMgrModel.register('TransformMgrModel')
+SyncTransform_Mgr_Model.register('TransformMgrModel')
