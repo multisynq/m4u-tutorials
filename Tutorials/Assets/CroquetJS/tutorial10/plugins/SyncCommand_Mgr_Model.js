@@ -1,6 +1,6 @@
 import { Model } from '@croquet/croquet';
         
-export class SyncCommandMgrModel extends Model {
+export class SyncCommand_Mgr_Model extends Model {
     init(options) {
         super.init(options);
         this.subscribe('SyncCommand', 'execute1', this.onSyncCommandExecute);
@@ -11,5 +11,4 @@ export class SyncCommandMgrModel extends Model {
         this.publish('SyncCommand', 'execute2', msg);
     }
 }
-SyncCommandMgrModel.register('SyncCommandMgrModel');
-      
+SyncCommand_Mgr_Model.register('SyncCommandMgrModel');
