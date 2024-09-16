@@ -43,7 +43,3 @@ export class SyncVar_Mgr_View extends View {
   }
 }
 
-// export const createTheseModelViewPairs = [
-//   {model: SyncVar_Mgr_Model, view: SyncVar_Mgr_View},
-//   // {model: SyncVar_Mgr_Model, view: null}, // alternately no view
-// ]
