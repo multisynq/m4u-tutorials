@@ -4,7 +4,7 @@ export class SyncCommand_Mgr_Model extends Model {
     init(options) {
         super.init(options);
         this.subscribe('SyncCommand', 'execute1', this.onSyncCommandExecute);
-        console.log('### <color=magenta>SyncCommandMgrModel.init() <<<<<<<<<<<<<<<<<<<<< </color>');
+        console.log('### <color=magenta>SyncCommand_Mgr_Model.init() <<<<<<<<<<<<<<<<<<<<< </color>');
     }
     onSyncCommandExecute(msg) {
         console.log(`<color=blue>[SyncCommand]</color> <color=yellow>JS</color> CroquetModel <color=magenta>SyncCommandMgrModel.onSyncCommandExecute()</color> msg = <color=white>${JSON.stringify(msg)}</color>`);
@@ -12,3 +12,4 @@ export class SyncCommand_Mgr_Model extends Model {
     }
 }
 SyncCommand_Mgr_Model.register('SyncCommandMgrModel');
+      

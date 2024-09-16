@@ -1,5 +1,6 @@
 import { GameModelRoot } from '@croquet/game-models';
-import { Model } from '@croquet/croquet';
+import { Model, View } from '@croquet/croquet';
+import { GameViewRoot } from '@croquet/unity-bridge';
 
 //--------------------------------------------------------------------------------------------
 // Object to store plugin modules
@@ -28,6 +29,30 @@ const webpackImportPluginJsFiles = () => { // a top-scope function for webpack t
     });
 };
 
+function allExportsOfModules(modules) {
+  const exports = [];
+
+  Object.values(modules).forEach(module => {
+    if (typeof module === 'function' && isClass(module)) {
+      exports.push({ type: 'class', moduleNm: module.name, value: module });
+    } else if (typeof module === 'object' && module !== null) {
+      Object.entries(module).forEach(([key, klass]) => {
+        if (isClass(klass)) {
+          exports.push({ type: 'class', moduleNm:module.name, klassName: key, klass });
+        } else if (typeof klass === 'function') {
+          exports.push({ type: 'function', moduleNm:module.name, funcName: key, func: klass });
+        }
+      });
+    }
+  });
+
+  return exports;
+}
+
+function allExportsOfModulesExtendingClass(modules, klass) {
+  return allExportsOfModules(modules).filter(exprt => exprt.type === 'class' && exprt.klass.prototype instanceof klass);
+}
+
 //--------------------------------------------------------------------------------------------
 (function() { // <<<< An Immediately Invoked Function Expression (IIFE)
   console.log(`### >>>>> Importing plugins/*.js`);
@@ -37,65 +62,51 @@ const webpackImportPluginJsFiles = () => { // a top-scope function for webpack t
 //--------------------------------------------------------------------------------------------
 //========== |||||||||||||||||||| =================================================================
 export class ModelRootWithPlugins extends GameModelRoot {
+
+  plugins={}
+
   init(options) {
     // @ts-ignore
     super.init(options);
     console.log(`### ModelRootWithPlugins.init() ${JSON.stringify(globalPluginModules)}`);
+    const modelExports = allExportsOfModulesExtendingClass(globalPluginModules, Model);
+    // const viewExports = allExportsOfModulesExtendingClass(globalPluginModules, View);
     
-    // Create proxy instances and assign them to this
-    Object.keys(globalPluginModules).forEach((name) => {
-      const module = globalPluginModules[name];
-      console.log(`### ---- module = globalPluginModules[<color=cyan>${name}</color>] --- w/ typeof ${typeof module}`);
-      inspectPlugin(module);
-      
-      let PluginClass;
-      
-      if (typeof module === 'function' && isClass(module)) {
-        PluginClass = module;
-        console.log('### module is directly a class');
-      } else if (typeof module === 'object' && module !== null) {
-        console.log('### module is an object');
-        if (typeof module.default === 'function' && isClass(module.default)) {
-          PluginClass = module.default;
-          console.log('### module.default is a class');
-        } else {
-          // Search for a class in the module
-          const classKey = Object.keys(module).find(key => isClass(module[key]));
-          if (classKey) {
-            PluginClass = module[classKey];
-            console.log(`### Found class in module: ${classKey}`);
-          } else {
-            console.log(`### No class found in module '${name}'`);
-            return;
-          }
-        }
-      } else {
-        console.log(`### Exported '${name}' is not a valid plugin`);
-        return;
-      }
-
-      console.log(`### ----------- Creating instance of plugin '${name}' ---------`);
-
-      // check if PluginClass extends Croquet.Model
-      if (!(PluginClass.prototype instanceof Model)) { // as in Croquet Model
-        console.error(`### Plugin '${name}' does not extend Croquet.Model`);
-        return;
-      } else {
-        console.log(`### Plugin '${name}' correctly extends Croquet.Model`);
-        // call create() if it exists
-        if (typeof PluginClass.create === 'function') {
-          console.log(`### 'plugins/${PluginClass.name}.js' has static ${PluginClass.name}.create() function`);
-          this[`__${name}`] = PluginClass.create();
-        } else {
-          console.error(`### Plugin '${name}' extends Croquet.Model, but it lacks a .create() function!!`);
-        }
-      }
-      
+    modelExports.forEach(exprt => {
+      console.log(`### Plugin '${exprt.name}' correctly extends Croquet.Model`);
+      this.plugins[exprt.moduleNm] = exprt.klass.create();
+    });
+    
+  }
+}
+// @ts-ignore
+ModelRootWithPlugins.register('ModelRootWithPlugins');
+//--------------------------------------------------------------------------------------------
+//========== ||||||||||||||||||| =================================================================
+export class ViewRootWithPlugins extends GameViewRoot {
+  plugins={}
+  constructor(model) {
+    super(model);
+    console.log(`### PluginsViewRoot.constructor() ${JSON.stringify(globalPluginModules)}`);
+    const viewExports = allExportsOfModulesExtendingClass(globalPluginModules, View);
+    
+    console.log('$$$$',{model});
+    viewExports.forEach(exp => {
+      console.log(`### Plugin '${exp.name}' correctly extends Croquet.View`);
+      // this[`__${exp.name}`] = exp.value.create(this[`__${exp.name}`]);
+      // make a new using new exp.value(this[`__${exp.name}`])
+      const pluginModel = model.plugins[exp.moduleNm];
+      console.log(`### Plugin '${exp.name}' model: ${pluginModel}`);
+      this.plugins[exp.modelNm] = new exp.klass(pluginModel);
     });
   }
 }
 
 
+// === Helper functions ========================================================================
+// === Helper functions ========================================================================
+// === Helper functions ========================================================================
+// === Helper functions ========================================================================
 const inspectPlugin = (plugin) => {
   console.log('Plugin contents:');
   Object.keys(plugin).forEach(key => {
