@@ -1,4 +1,4 @@
-# Tutorial 10 - SyncVars & SyncCommands
+# SyncVars & SyncCommands
 
 
 ![](images/image24.png)
