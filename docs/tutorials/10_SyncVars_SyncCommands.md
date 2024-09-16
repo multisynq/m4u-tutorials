@@ -26,7 +26,7 @@ The SyncVar system is a powerful tool for automatically synchronizing variables 
 
 ## Full code example
 
-```csharp
+```cs
   using UnityEngine;
 
   public class PlayerHealth : SyncedBehaviour {
