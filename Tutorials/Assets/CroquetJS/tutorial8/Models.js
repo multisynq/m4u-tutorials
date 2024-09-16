@@ -14,17 +14,17 @@ class BaseActor extends mix(Actor).with(AM_Spatial) {
         super.init(options);
         this.subscribe("input", "pointerHit", this.doPointerHit);
     }
-    
+
     doPointerHit(e) {
         // e has a list of hits { actor, xyz, layers }
         const { actor, xyz } = e.hits[0];
         if (actor === this) this.doSpawn(xyz);
     }
-    
+
     doSpawn(xyz) {
         ClickableActor.create({parent: this, translation: xyz});
     }
-    
+
 }
 BaseActor.register('BaseActor');
 
@@ -141,22 +141,6 @@ MyUser.register('MyUser');
 
 
 //------------------------------------------------------------------------------------------
-//--SyncVar Actor ------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------------
-
-class SyncVarActor extends Actor {
-  get gamePawnType() { return '' }
-  init(options) {
-    super.init(options)
-    this.subscribe('SyncVar', 'set1', this.syncVarChange)
-  }
-  syncVarChange(msg) {
-    this.publish('SyncVar', 'set2', msg)
-  }
-}
-SyncVarActor.register('SyncVarActor')
-
-//------------------------------------------------------------------------------------------
 //-- MyModelRoot ---------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------
 
@@ -168,8 +152,7 @@ export class MyModelRoot extends GameModelRoot {
 
     init(options) {
         super.init(options);
-        this.syncer = SyncVarActor.create({});
-
+        console.log("Start model root!");
         this.base = BaseActor.create();
         this.parent = TestActor.create({parent: this.base, translation: [0, 1, 0]});
         this.child = ColorActor.create({parent: this.parent, translation: [0, 0, -2]});
@@ -178,14 +161,8 @@ export class MyModelRoot extends GameModelRoot {
         this.child.behavior.start({ name: "SpinBehavior", axis: [0, 0, 1], speed: 3 });
 
         this.subscribe("input", "cDown", this.colorChange);
-
-        // this.subscribe("CroquetSyncVarMgr", "setValue", this.syncVarChange);
-
     }
-    // syncVarChange(msg) {
-    //     console.log("setValueFromCroquet", msg);
-    //     this.publish("CroquetSyncVarMgr", "setValueFromCroquet", msg);
-    // }
+
     colorChange() {
         const color = [this.random(), this.random(), this.random()];
         this.child.set({ color });
