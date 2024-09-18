@@ -6,7 +6,7 @@ using UnityEngine;
   to call methods sync-hronously on all networked clients.
 */
 //========== ||||||||||| ========================
-public class DamageFlash : SyncedBehaviour {
+public class DamageFlash : SyncBehaviour {
   private float timer = 0;
   private bool showDamagePanel = false;
   private string damageMessage = "";

@@ -1,9 +1,9 @@
 using UnityEngine;
 
 //========== ||||||||||| ====================
-public class PlayerCoins : SyncedBehaviour {
+public class PlayerCoins : SyncBehaviour {
 
-  [SyncVar] 
+  [SyncVar]
   public int coins = 0;
 
   void Update() {
