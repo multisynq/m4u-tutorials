@@ -454,9 +454,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'WASD to move
+  m_text: '<size=-15>Tutorial 8</size>
 
-    Right Click + Drag to rotate camera'
+    WASD to move
+
+    Right Click + Drag
+    to rotate camera
+
+    <size=-18>Ideally, run in editor & as a build simultaneously
+    to see sync.</size>
+
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -603,7 +612,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.48126557, g: 0.6618952, b: 0.9716981, a: 1}
+  m_BackGroundColor: {r: 0.38781595, g: 0.53325063, b: 0.7830189, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
