@@ -72,3 +72,5 @@ $RECYCLE.BIN/
 
 # Add Dev patch
 pkg-dev.patch
+
+Tutorials/BUILD_MAC.app/

@@ -1,0 +1,29 @@
+{
+    "01_HelloWorld": {
+        "title": "T1 - Hello World"
+    },
+    "02_ViewSmoothing": {
+        "title": "T2 - View Smoothing"
+    },
+    "03_UsingBehaviors": {
+        "title": "T3 - Using Behaviors"
+    },
+    "04_SnapQuaternions": {
+        "title": "T4 - Snap & Quaternions"
+    },
+    "05_AddingProperties": {
+        "title": "T5 - Adding Properties"
+    },
+    "06_PointerInteractions": {
+        "title": "T6 - Pointer Interactions"
+    },
+    "07_CreatingBehaviors": {
+        "title": "T7 - Creating Behaviors"
+    },
+    "08_BasicAvatars": {
+        "title": "T8 - Basic Avatars"
+    },
+    "09_FirstPersonAvatars": {
+        "title": "T9 - First-Person Avatars"
+    }
+}
