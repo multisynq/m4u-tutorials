@@ -11,5 +11,4 @@ export class SyncCommand_Mgr_Model extends Model {
         this.publish('SyncCommand', 'execute2', msg);
     }
 }
-SyncCommand_Mgr_Model.register('SyncCommandMgrModel');
-      
+SyncCommand_Mgr_Model.register('SyncCommand_Mgr_Model');

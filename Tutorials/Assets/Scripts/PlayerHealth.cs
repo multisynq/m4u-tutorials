@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerHealth : SyncedBehaviour {
+public class PlayerHealth : SyncBehaviour {
 
   [SyncVar(CustomName = "hp", OnChangedCallback = nameof(OnHealthChanged) )] 
   public int health = 100;
