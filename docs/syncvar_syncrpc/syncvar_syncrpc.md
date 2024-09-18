@@ -1,5 +1,5 @@
 # [SyncVar] & [SyncRPC]
-
+## Usage and Examples
 
 ![](images/image24.png)
 

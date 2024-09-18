@@ -9,37 +9,39 @@ This guide will walk you through the process of installing and setting up Croque
 
 ## Installation Steps
 
-1. **Download the Croquet Unity Package**
-   - Visit the Croquet developer portal
-   - Download the latest Croquet for Unity package
+### 1. **Download the Croquet Unity Package**
 
-2. **Import the Package into Unity**
-   - Open your Unity project
-   - Go to Assets > Import Package > Custom Package
-   - Select the downloaded Croquet package and import all assets
+   ![](images/build_assistant/package_manager.png)
 
-3. **Open the Croquet Build Assistant**
-   - In the Unity menu bar, click on "Croquet"
-   - Select "Open Build Assistant Window"
+   1. From Unity menu, click on Window > Package Manager
+   2. Click the [“Packages: _____ v”] combo picker
+   3. Select: [ Unity Registry ]
+   4. Click to focus in the Search input at the right
+   5. Type “croquet”
+   6. Click the [ Install ] button (await download)
+   7. Alternately, you may install directly from github using the upper left [ + ] button and “Add package from Git url” and paste this link: [https://github.com/croquet/croquet-for-unity-package.git](https://github.com/croquet/croquet-for-unity-package.git)
 
-4. **Follow the Build Assistant Steps**
+
+### 2. **Open the Croquet Build Assistant**
+
+   ![](images/build_assistant/menu.png)
+
+   1. In the Unity menu bar, click on "Croquet"
+   2. Select "Open Build Assistant Window"
+
+### 3. **Follow the Build Assistant Steps**
+   
+   ![](images/build_assistant/guide.png)
+
    - Click "Check If Ready" to start the configuration process
    - Follow the instructions for each step in the Build Assistant
    - Resolve any issues indicated by red X marks
 
-5. **Configure Your API Key**
-   - Sign up for a Croquet account if you haven't already
-   - Copy your API Key from the Croquet developer portal
-   - Paste the API Key in the Croquet Settings asset (accessible via the Build Assistant)
-
-6. **Add the Bridge GameObject**
-   - Use the Build Assistant to create or locate the Bridge GameObject in your scene
-
-7. **Build Your Project**
+### 4. **Build Your Project**
    - Once all steps in the Build Assistant show green checkmarks, your project is ready for Croquet integration
 
 ## Next Steps
 
-After installation, refer to the Croquet documentation for information on creating multi-user experiences and synchronizing objects across the network.
+After installation, refer to this documentation for information on creating multi-user experiences and synchronizing objects across the network.
 
 For troubleshooting and additional questions, consult the FAQ or reach out to Croquet support.

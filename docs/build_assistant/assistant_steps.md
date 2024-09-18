@@ -21,7 +21,7 @@ Each step in the Build Assistant typically includes:
 
 ## Automatic Checks
 
-The Build Assistant continuously monitors your project's configuration. Each `StatusItem` performs regular checks to ensure all components are properly set up for your Croquet application.
+When you press `Check if Ready` The Build Assistant examines your project's configuration. Each `StatusItem` performs a check to ensure all components are properly set up for your Croquet application.
 
 ## User Interaction
 
@@ -29,7 +29,7 @@ While many issues can be resolved automatically, some steps may require your inp
 
 ---
 
-The following sections detail each step in the Croquet Build Assistant, explaining their purpose, potential issues, and how to resolve them.
+The following sections detail each step in the `Build Assistant Window`, explaining their purpose, potential issues, and how to resolve them.
 
 
 ## API Key
@@ -40,10 +40,10 @@ The API Key is crucial for authenticating your Croquet application.
 
 | Type | Content |
 |------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | The API Key is ready to go! |
+| <strong style="color:#2196F3; font-weight:700;">INFO</strong> | The API Key is ready to go! |
 | <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | The API Key is not set |
-| <strong style="color:#2196F3; font-weight:700;">INFO</strong> | Let's get you a free API Key. It's easy. |
-| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | The API Key is configured!!! Well done! |
+| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Let's get you a free API Key. It's easy. |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | The API Key is configured!!! Well done! |
 
 ### Buttons
 
@@ -65,10 +65,10 @@ The Bridge GameObject connects your Unity scene with Croquet.
 
 | Type | Content |
 |------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Bridge GameObject is ready to go! |
+| <strong style="color:#2196F3; font-weight:700;">INFO</strong> | Bridge GameObject is ready to go! |
 | <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Bridge GameObject is missing! |
-| <strong style="color:#2196F3; font-weight:700;">INFO</strong> | Bridge GameObject is missing in scene! Click Create Bridge to make one. |
-| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Bridge Gob (GameObject) found!! Well done! |
+| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Bridge GameObject is missing in scene! Click Create Bridge to make one. |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Bridge Gob (GameObject) found!! Well done! |
 
 ### Buttons
 
@@ -94,10 +94,10 @@ This step ensures that the Bridge GameObject is correctly connected to the Croqu
 
 | Type | Content |
 |------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Bridge has settings! |
+| <strong style="color:#2196F3; font-weight:700;">INFO</strong> | Bridge has settings! |
 | <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Bridge is missing settings! |
-| <strong style="color:#2196F3; font-weight:700;">INFO</strong> | Bridge is missing settings! Click Auto Connect to connect it. |
-| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Bridge connected to settings!!! Well done! |
+| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Bridge is missing settings! Click Auto Connect to connect it. |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Bridge connected to settings!!! Well done! |
 
 ### Buttons
 
@@ -124,9 +124,10 @@ This step ensures that the built output folders match the Unity Build scene list
 
 | Type | Content |
 |------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Built output folders match the building scene list! |
+| <strong style="color:#2196F3; font-weight:700;">INFO</strong> | Built output folders match the building scene list! |
 | <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Compare output JS folders to Unity Build scene list with [ Check Building Scenes ] button. |
 | <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Compare output JS folders to Unity Build scene list with [ Check Building Scenes ] button. |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Built output folders match the building scene list! Well done! |
 
 ### Buttons
 
@@ -155,10 +156,10 @@ This step ensures that the app's JavaScript file (index.js) is properly set up f
 
 | Type | Content |
 |------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Input JS: index.js for AppName is ready to go! |
+| <strong style="color:#2196F3; font-weight:700;">INFO</strong> | Input JS: index.js for AppName is ready to go! |
 | <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Input JS: index.js for AppName is missing |
-| <strong style="color:#2196F3; font-weight:700;">INFO</strong> | Input JS: index.js for AppName is missing! |
-| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Input JS: index.js for AppName found! Well done! |
+| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Input JS: index.js for AppName is missing! |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Input JS: index.js for AppName found! Well done! |
 
 ### Buttons
 
@@ -189,10 +190,10 @@ This step ensures that the versions of JS Build Tools in the Unity Editor and in
 
 | Message Type | Content |
 |--------------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Versions of <strong style="color:#E5DB1C; font-weight:700;">JS Build</strong> Tools and Built output match!!! Well done! |
-| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Versions of <strong style="color:#E5DB1C; font-weight:700;">JS Build</strong> Tools and Built output do not match |
 | <strong style="color:#2196F3; font-weight:700;">INFO</strong> | Versions of <strong style="color:#E5DB1C; font-weight:700;">JS Build</strong> Tools and Built output match! |
+| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Versions of <strong style="color:#E5DB1C; font-weight:700;">JS Build</strong> Tools and Built output do not match |
 | <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Versions of <strong style="color:#E5DB1C; font-weight:700;">JS Build</strong> Tools and Built output do not match!<br><b>Make a new or first build!</b> |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Versions of <strong style="color:#E5DB1C; font-weight:700;">JS Build</strong> Tools and Built output match!!! Well done! |
 
 ### Buttons
 
@@ -222,10 +223,10 @@ This step ensures that the JavaScript build for your Croquet application is prop
 
 | Message Type | Content |
 |--------------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Output JS was built! Well done! |
-| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Output JS missing. |
 | <strong style="color:#2196F3; font-weight:700;">INFO</strong> | Output JS was built! |
+| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Output JS missing. |
 | <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Output JS not found. Need to Build JS. |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Output JS was built! Well done! |
 
 ### Buttons
 
@@ -259,10 +260,10 @@ This step ensures that the necessary JavaScript build tools are installed and re
 
 | Message Type | Content |
 |--------------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | JS Build Tools installed!!! Well done! |
-| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | JS Build Tools are missing |
 | <strong style="color:#2196F3; font-weight:700;">INFO</strong> | JS Build Tools are ready to go! |
+| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | JS Build Tools are missing |
 | <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | JS Build Tools are missing! Click <b>Copy JS Build Tools</b> to get them. |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | JS Build Tools installed!!! Well done! |
 
 ### Buttons
 
@@ -292,10 +293,10 @@ This step ensures that all necessary C#-to-JS Proxy Plugins are present for your
 
 | Message Type | Content |
 |--------------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | All needed C#-to-<strong style="color:#FFFF44; font-weight:700;">JS</strong>-Proxy-Plugins found!  Well done! |
-| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Missing some C#-to-<strong style="color:#FFFF44; font-weight:700;">JS</strong>-Proxy-Plugins! |
 | <strong style="color:#2196F3; font-weight:700;">INFO</strong> | All needed C#-to-<strong style="color:#FFFF44; font-weight:700;">JS</strong>-Proxy-Plugins found! |
+| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Missing some C#-to-<strong style="color:#FFFF44; font-weight:700;">JS</strong>-Proxy-Plugins! |
 | <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Missing some C#-to-<strong style="color:#FFFF44; font-weight:700;">JS</strong>-Proxy-Plugins! |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | All needed C#-to-<strong style="color:#FFFF44; font-weight:700;">JS</strong>-Proxy-Plugins found!  Well done! |
 
 ### Buttons
 
@@ -328,10 +329,10 @@ This step ensures that Node.js is properly set up and configured for your Croque
 
 | Message Type | Content |
 |--------------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | <strong style="color:#417E37; font-weight:700;">Node</strong> path configured!!! Well done! |
-| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | <strong style="color:#417E37; font-weight:700;">Node</strong> is not running |
 | <strong style="color:#2196F3; font-weight:700;">INFO</strong> | <strong style="color:#417E37; font-weight:700;">Node</strong> is ready to go! |
+| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | <strong style="color:#417E37; font-weight:700;">Node</strong> is not running |
 | <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | <strong style="color:#417E37; font-weight:700;">Node</strong> needs your help getting set up. |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | <strong style="color:#417E37; font-weight:700;">Node</strong> path configured!!! Well done! |
 
 ### Buttons
 
@@ -369,10 +370,10 @@ This step provides an overall status of your Croquet application setup and readi
 
 | Message Type | Content |
 |--------------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | W00t!!! You are ready to <strong style="color:#006AFF; font-weight:700;">Synq</strong>! |
-| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Warn 00000 |
 | <strong style="color:#2196F3; font-weight:700;">INFO</strong> | You are <strong style="color:#77ff77; font-weight:700;">Ready to <span style="color:#006AFF;">Synq</span></strong>      All green lights below. |
+| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Warn 00000 |
 | <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Look below to fix what's not ready... |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | W00t!!! You are ready to <strong style="color:#006AFF; font-weight:700;">Synq</strong>! |
 
 ### Buttons
 
@@ -403,10 +404,10 @@ This step ensures that the Croquet Settings asset is properly created and config
 
 | Message Type | Content |
 |--------------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Settings are configured!!! Well done! |
-| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Settings are set to defaults! Look for other red items below to fix this. |
 | <strong style="color:#2196F3; font-weight:700;">INFO</strong> | Settings are ready to go! |
+| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Settings are set to defaults! Look for other red items below to fix this. |
 | <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Settings asset is missing! Click <b>Create Settings</b> to make some. |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Settings are configured!!! Well done! |
 
 ### Buttons
 
@@ -441,10 +442,10 @@ This step ensures that all necessary Croquet Systems components are present in y
 
 | Message Type | Content |
 |--------------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Croquet Systems installed!!! Well done! |
-| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Croquet Systems are missing |
 | <strong style="color:#2196F3; font-weight:700;">INFO</strong> | Croquet Systems are ready to go! |
+| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Croquet Systems are missing |
 | <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Croquet Systems are missing! Click <b>Add Croquet Systems</b> to get them. |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Croquet Systems installed!!! Well done! |
 
 ### Buttons
 
