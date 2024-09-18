@@ -1,4 +1,5 @@
-## Tutorial 9 - First Person Avatars
+## Deterministic (Advanced)
+### Tutorial 9 - First Person Avatars
 *How to create a third-person avatar, and enabling users to “shove” other avatars.*
 
 *Uses the groundPlane, woodCube and tutorial9Avatar prefabs.*

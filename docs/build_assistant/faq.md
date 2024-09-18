@@ -23,5 +23,3 @@
 
 6. **Q: The Bridge GameObject is missing from my scene. How do I add it?**
    A: In the Build Assistant, click the "Create Bridge Gob" button under the Bridge GameObject section.
-
-[Add more FAQs as needed...]

@@ -1,4 +1,5 @@
-## Tutorial 3 - Using Behaviors
+## Deterministic (Advanced)
+### Tutorial 3 - Using Behaviors
 
 *How to use behaviors to control actors.*
 

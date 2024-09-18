@@ -1,4 +1,5 @@
-## Tutorial 8 - Basic Avatars
+## Deterministic (Advanced)
+### Tutorial 8 - Basic Avatars
 *How to create avatars.*
 
 *Uses the groundPlane, woodCube and tutorial8Avatar prefabs.*

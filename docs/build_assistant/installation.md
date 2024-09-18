@@ -1,11 +1,11 @@
-# Croquet for Unity Installation Guide
+# Unity Installation Guide
 
 This guide will walk you through the process of installing and setting up Croquet for your Unity project.
 
 ## Prerequisites
 
 - Unity 2021.3 or later
-- A Croquet account (sign up at https://croquet.io/account/)
+- A Croquet account (sign up at [https://croquet.io/account/](https://croquet.io/account/))
 
 ## Installation Steps
 

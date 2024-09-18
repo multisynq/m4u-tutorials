@@ -8,7 +8,7 @@ Migrating over from Photon? Check out our [Migration Guide](./photon_migration_g
 The [`Croquet for Unity`](https://github.com/croquet/croquet-for-unity-package) package provides a simple framework for using Croquet with Unity.
 [`Croquet for Unity`](https://github.com/croquet/croquet-for-unity-package) is a Multiplayer Package that allows you to build flawlessly synchronized, bit-identical simulations with JavaScript. Deploy effortlessly everywhere without the hassle of server management, complex netcode, or rollback. Author how something behaves once, and it will behave that way for everyone playing your game.
 
-## Tutorials
+## Deterministic (Advanced) Tutorials
 An introduction to Croquet for Unity one concept at a time. Start here to dive in! Find these tutorials in the "Tutorials" section of the navigation bar.
 
 1. [Hello World] {@tutorial 01_HelloWorld}

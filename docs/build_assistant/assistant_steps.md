@@ -189,10 +189,10 @@ This step ensures that the versions of JS Build Tools in the Unity Editor and in
 
 | Message Type | Content |
 |--------------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Versions of <b><color=#E5DB1C>JS Build</color></b> Tools and Built output match!!! Well done! |
-| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Versions of <b><color=#E5DB1C>JS Build</color></b> Tools and Built output do not match |
-| <strong style="color:#2196F3; font-weight:700;">INFO</strong> | Versions of <b><color=#E5DB1C>JS Build</color></b> Tools and Built output match! |
-| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Versions of <b><color=#E5DB1C>JS Build</color></b> Tools and Built output do not match!<br><b>Make a new or first build!</b> |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Versions of <strong style="color:#E5DB1C; font-weight:700;">JS Build</strong> Tools and Built output match!!! Well done! |
+| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Versions of <strong style="color:#E5DB1C; font-weight:700;">JS Build</strong> Tools and Built output do not match |
+| <strong style="color:#2196F3; font-weight:700;">INFO</strong> | Versions of <strong style="color:#E5DB1C; font-weight:700;">JS Build</strong> Tools and Built output match! |
+| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Versions of <strong style="color:#E5DB1C; font-weight:700;">JS Build</strong> Tools and Built output do not match!<br><b>Make a new or first build!</b> |
 
 ### Buttons
 
@@ -292,10 +292,10 @@ This step ensures that all necessary C#-to-JS Proxy Plugins are present for your
 
 | Message Type | Content |
 |--------------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | All needed C#-to-<b><color=#FFFF44>JS</color></b>-Proxy-Plugins found!  Well done! |
-| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Missing some C#-to-<b><color=#FFFF44>JS</color></b>-Proxy-Plugins! |
-| <strong style="color:#2196F3; font-weight:700;">INFO</strong> | All needed C#-to-<b><color=#FFFF44>JS</color></b>-Proxy-Plugins found! |
-| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Missing some C#-to-<b><color=#FFFF44>JS</color></b>-Proxy-Plugins! |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | All needed C#-to-<strong style="color:#FFFF44; font-weight:700;">JS</strong>-Proxy-Plugins found!  Well done! |
+| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Missing some C#-to-<strong style="color:#FFFF44; font-weight:700;">JS</strong>-Proxy-Plugins! |
+| <strong style="color:#2196F3; font-weight:700;">INFO</strong> | All needed C#-to-<strong style="color:#FFFF44; font-weight:700;">JS</strong>-Proxy-Plugins found! |
+| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Missing some C#-to-<strong style="color:#FFFF44; font-weight:700;">JS</strong>-Proxy-Plugins! |
 
 ### Buttons
 
@@ -328,10 +328,10 @@ This step ensures that Node.js is properly set up and configured for your Croque
 
 | Message Type | Content |
 |--------------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | <b><color=#417E37>Node</color></b> path configured!!! Well done! |
-| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | <b><color=#417E37>Node</color></b> is not running |
-| <strong style="color:#2196F3; font-weight:700;">INFO</strong> | <b><color=#417E37>Node</color></b> is ready to go! |
-| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | <b><color=#417E37>Node</color></b> needs your help getting set up. |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | <strong style="color:#417E37; font-weight:700;">Node</strong> path configured!!! Well done! |
+| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | <strong style="color:#417E37; font-weight:700;">Node</strong> is not running |
+| <strong style="color:#2196F3; font-weight:700;">INFO</strong> | <strong style="color:#417E37; font-weight:700;">Node</strong> is ready to go! |
+| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | <strong style="color:#417E37; font-weight:700;">Node</strong> needs your help getting set up. |
 
 ### Buttons
 
@@ -369,7 +369,7 @@ This step provides an overall status of your Croquet application setup and readi
 
 | Message Type | Content |
 |--------------|---------|
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | W00t!!! You are ready to <b><color=#006AFF>Synq</color></b>! |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | W00t!!! You are ready to <strong style="color:#006AFF; font-weight:700;">Synq</strong>! |
 | <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Warn 00000 |
 | <strong style="color:#2196F3; font-weight:700;">INFO</strong> | You are <strong style="color:#77ff77; font-weight:700;">Ready to <span style="color:#006AFF;">Synq</span></strong>      All green lights below. |
 | <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Look below to fix what's not ready... |

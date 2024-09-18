@@ -1,4 +1,5 @@
-## Tutorial 2 - View Smoothing
+## Deterministic (Advanced)
+### Tutorial 2 - View Smoothing
 *How to create parent-child relationships and use view smoothing, a first look at random numbers, and behavior implemented using future messages.*
 
 *Uses the basicCube and smoothedCube prefabs.*

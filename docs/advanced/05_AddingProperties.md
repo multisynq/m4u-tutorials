@@ -1,4 +1,5 @@
-## Tutorial 5 - Adding Properties
+## Deterministic (Advanced)
+### Tutorial 5 - Adding Properties
 *How to add new properties to actors, another use of random numbers, and how to transmit events with say() and listen().*
 
 *Uses the colorableCube and smoothedCube prefabs.*

@@ -1,4 +1,5 @@
-## Tutorial 7 - Creating Behaviors
+## Deterministic (Advanced)
+### Tutorial 7 - Creating Behaviors
 
 
 *How to create your own behaviors.*

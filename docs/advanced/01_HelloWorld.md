@@ -1,4 +1,5 @@
-## Tutorial 1 - Hello World
+## Deterministic (Advanced)
+### Tutorial 1 - Hello World
 How to set up your model root and view root, and how to create an object in the world.
 
 Uses the basicCube prefab.

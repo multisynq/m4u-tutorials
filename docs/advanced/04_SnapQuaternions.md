@@ -1,4 +1,5 @@
-## Tutorial 4 - Snap & Quaternions
+## Deterministic (Advanced)
+### Tutorial 4 - Snap & Quaternions
 *How to use snap to override view smoothing, and how rotations are stored.*
 
 *Uses the `smoothedCube` prefab.*

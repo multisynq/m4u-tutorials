@@ -1,4 +1,5 @@
-## Tutorial 6 - Pointer Interactions
+## Deterministic (Advanced)
+### Tutorial 6 - Pointer Interactions
 *How to use the Interactable mixin to receive pointer-hit events.*
 
 *Uses the colorableCube, interactableCube and groundPlane prefabs.*

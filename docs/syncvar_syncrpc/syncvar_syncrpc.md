@@ -1,4 +1,4 @@
-# SyncVars & SyncCommands
+# [SyncVar] & [SyncRPC]
 
 
 ![](images/image24.png)
