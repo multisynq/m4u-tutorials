@@ -1,8 +1,8 @@
 {
   "name": "croquet-for-unity-tutorials",
-  "description": "Croquet for Unity Tutorials",
+  "description": "Multisynq for Unity Tutorials",
   "private": true,
-  "author": "Croquet Labs",
+  "author": "Multisynq",
   "license": "Apache-2.0",
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.24.8",

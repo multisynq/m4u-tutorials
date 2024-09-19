@@ -366,7 +366,7 @@ PrefabInstance:
     - target: {fileID: 3475047936742257374, guid: 1e816dfed6d2248eba7d62bdd192bdb9,
         type: 3}
       propertyPath: m_Name
-      value: Croquet
+      value: Multisynq
       objectReference: {fileID: 0}
     - target: {fileID: 3479632283134871797, guid: 1e816dfed6d2248eba7d62bdd192bdb9,
         type: 3}
@@ -384,7 +384,8 @@ PrefabInstance:
       propertyPath: defaultSessionName
       value: 123
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8384737280626780053, guid: 1e816dfed6d2248eba7d62bdd192bdb9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e816dfed6d2248eba7d62bdd192bdb9, type: 3}
 --- !u!1 &704267031 stripped
 GameObject:
@@ -415,7 +416,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 704267031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e126d841f13fa49678dac14addec6e6e, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a11ee8820edb4f59abb30af45cec6e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetManifestString: 
+  addressablesReady: 0
+--- !u!114 &704267034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704267031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab07564dbb49f475f84484839caa72d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1063858355
@@ -717,7 +732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.19461104}
-  m_AnchoredPosition: {x: 0, y: -4.2500854}
+  m_AnchoredPosition: {x: 0, y: -4.2500916}
   m_SizeDelta: {x: 0, y: -8.499829}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2089676686

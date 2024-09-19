@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Multisynq;
 
 public class MouseLookAvatar : MonoBehaviour
 {
@@ -21,20 +22,20 @@ public class MouseLookAvatar : MonoBehaviour
     private float pitch = 0;
 
     private int croquetHandle;
-    private CroquetDrivableComponent croquetAvatarComponent;
+    private Mq_Drivable_Comp croquetAvatarComponent;
 
     private bool isActiveAvatarLastFrame = false;
 
     void Start()
     {
-        croquetHandle = GetComponent<CroquetEntityComponent>().croquetHandle;
-        croquetAvatarComponent = gameObject.GetComponent<CroquetDrivableComponent>();
+        croquetHandle = GetComponent<Mq_Entity_Comp>().croquetHandle;
+        croquetAvatarComponent = gameObject.GetComponent<Mq_Drivable_Comp>();
         avatarCamera = Camera.main;
     }
 
     void Update()
     {
-        CroquetDrivableComponent activeAvatar = CroquetDrivableSystem.Instance.GetActiveDrivableComponent();
+        Mq_Drivable_Comp activeAvatar = Mq_Drivable_System.Instance.GetActiveDrivableComponent();
         if (croquetAvatarComponent != activeAvatar)
         {
             isActiveAvatarLastFrame = false;
@@ -175,7 +176,7 @@ public class MouseLookAvatar : MonoBehaviour
         trans.localPosition = newPos;
         trans.localRotation = yawQ;
 
-        CroquetSpatialSystem.Instance.DrivePawn(croquetHandle, newPos, yawQ);
-        CroquetSpatialSystem.Instance.DriveActor(croquetHandle, false, newPos, yawQ);
+        Mq_Spatial_System.Instance.DrivePawn(croquetHandle, newPos, yawQ);
+        Mq_Spatial_System.Instance.DriveActor(croquetHandle, false, newPos, yawQ);
     }
 }
