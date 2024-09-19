@@ -1,11 +1,11 @@
-# [SyncVar] & [SyncRPC]
+# [SynqVar] & [SynqRPC]
 ## Usage and Examples
 
 ![](images/image24.png)
 
 ## Introduction
 
-The SyncVar system is a powerful tool for automatically synchronizing variables across a network in Croquet for Unity. It simplifies the process of keeping game state consistent across multiple clients by allowing developers to mark specific variables for synchronization using a simple attribute.
+The SynqVar system is a powerful tool for automatically synchronizing variables across a network in Multisynq for Unity. It simplifies the process of keeping game state consistent across multiple clients by allowing developers to mark specific variables for synchronization using a simple attribute.
 
 ## Full code example
 
@@ -14,15 +14,15 @@ The SyncVar system is a powerful tool for automatically synchronizing variables 
 
   public class PlayerHealth : SyncedBehaviour {
 
-    [SyncVar(CustomName = "hp", OnChangedCallback = nameof(OnHealthChanged) )] 
+    [SynqVar(CustomName = "hp", OnChangedCallback = nameof(OnHealthChanged) )] 
     public int health = 100;
 
-    [SyncVar] public int legHealth = 100;
-    [SyncVar] public int torsoHealth = 100;
-    [SyncVar(updateInterval=0.5f)] public int headHealth = 100;
+    [SynqVar] public int legHealth = 100;
+    [SynqVar] public int torsoHealth = 100;
+    [SynqVar(updateInterval=0.5f)] public int headHealth = 100;
 
     private void OnHealthChanged(int newValue) {
-      Debug.Log($"[SyncVar] Player health changed to {newValue}");
+      Debug.Log($"[SynqVar] Player health changed to {newValue}");
       if      (newValue <= 0) Die();
       else if (newValue < 70) LowHealthWarning();
     }
@@ -68,24 +68,24 @@ The SyncVar system is a powerful tool for automatically synchronizing variables 
 
 ## Key Components
 
-The SyncVar system consists of several key components:
+The SynqVar system consists of several key components:
 
-1. **SyncVarAttribute**: An attribute used to mark fields or properties for synchronization.
-2. **SyncVarMgr**: A manager class that handles the detection, registration, and synchronization of SyncVar-marked variables.
-3. **SyncVarInfo**: A class (and its subclasses SyncFieldInfo and SyncPropInfo) that stores information about synchronized variables.
+1. **SynqVarAttribute**: An attribute used to mark fields or properties for synchronization.
+2. **SynqVarMgr**: A manager class that handles the detection, registration, and synchronization of SynqVar-marked variables.
+3. **SynqVarInfo**: A class (and its subclasses SyncFieldInfo and SyncPropInfo) that stores information about synchronized variables.
 4. **JavaScript Integration**: A JS plugin that facilitates communication with the Croquet model.
 
-## SyncVar Attribute
+## SynqVar Attribute
 
-The `[SyncVar]` attribute is used to mark fields or properties that should be synchronized across the network. It can be applied to both public and private members of classes that inherit from `SyncedBehaviour`.
+The `[SynqVar]` attribute is used to mark fields or properties that should be synchronized across the network. It can be applied to both public and private members of classes that inherit from `SyncedBehaviour`.
 
 ### Syntax
 
 ```csharp
-[SyncVar]
+[SynqVar]
 public int health = 100;
 
-[SyncVar(CustomName = "pos", OnChangedCallback = "OnPositionChanged", updateInterval = 0.5f)]
+[SynqVar(CustomName = "pos", OnChangedCallback = "OnPositionChanged", updateInterval = 0.5f)]
 private Vector3 position;
 ```
 
@@ -96,11 +96,11 @@ private Vector3 position;
 - `updateEveryInterval`: If true, forces update every interval even if the value hasn't changed.
 - `OnChangedCallback`: Name of a method to call when the value changes.
 
-## SyncVarMgr Class
+## SynqVarMgr Class
 
-The `SyncVarMgr` class is responsible for managing the synchronization of all SyncVar-marked variables. It handles:
+The `SynqVarMgr` class is responsible for managing the synchronization of all SynqVar-marked variables. It handles:
 
-- Detection and registration of SyncVars
+- Detection and registration of SynqVars
 - Sending and receiving synchronization messages
 - Applying received updates to local variables
 - Invoking change callbacks when values are updated
@@ -108,7 +108,7 @@ The `SyncVarMgr` class is responsible for managing the synchronization of all Sy
 ## Usage Guide
 
 1. Ensure your class inherits from `SyncedBehaviour` instead of `MonoBehaviour`.
-2. Mark the variables you want to synchronize with the `[SyncVar]` attribute.
+2. Mark the variables you want to synchronize with the `[SynqVar]` attribute.
 3. Optionally, implement callback methods for when synchronized values change.
 
 Example:
@@ -116,10 +116,10 @@ Example:
 ```csharp
 public class Player : SyncedBehaviour
 {
-    [SyncVar(OnChangedCallback = nameof(OnHealthChanged))]
+    [SynqVar(OnChangedCallback = nameof(OnHealthChanged))]
     public int health = 100;
 
-    [SyncVar(CustomName = "pos")]
+    [SynqVar(CustomName = "pos")]
     public Vector3 position;
 
     private void OnHealthChanged(int newHealth)
@@ -168,8 +168,8 @@ Use the `updateInterval` option to control how often a variable is synchronized.
 
 ## Troubleshooting
 
-- **Variables not synchronizing**: Ensure the class inherits from `SyncedBehaviour` and the `[SyncVar]` attribute is correctly applied.
+- **Variables not synchronizing**: Ensure the class inherits from `SyncedBehaviour` and the `[SynqVar]` attribute is correctly applied.
 - **Performance issues**: Check if you're synchronizing too many variables or using too small update intervals.
 - **Inconsistent state**: Verify that all clients are running the same version of the game and that no desynchronization is occurring due to frame rate differences or network latency.
 
-For more complex issues, enable debugging by setting `dbg = true` in the `SyncVarMgr` class and check the Unity console for detailed logs.
+For more complex issues, enable debugging by setting `dbg = true` in the `SynqVarMgr` class and check the Unity console for detailed logs.
