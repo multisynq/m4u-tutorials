@@ -3,11 +3,11 @@
 
 ![](images/image14.gif)
 
-*How to create a multiplayer game with a thousand perfectly synchronized bots, missiles and avatars in Croquet for Unity.*
+*How to create a multiplayer game with a thousand perfectly synchronized bots, missiles and avatars in Multisynq for Unity.*
 
 *Introducing Navigation Grid and a deep dive on Behaviors.*
 
-This section describes the Croquet for Unity Guardians application available on github here: [https://github.com/croquet/croquet-for-unity-guardians](https://github.com/croquet/croquet-for-unity-guardians) . See the releases page at [https://github.com/croquet/croquet-for-unity-guardians/releases](https://github.com/croquet/croquet-for-unity-guardians/releases) for pre-built MacOS and Windows builds.
+This section describes the Multisynq for Unity Guardians application available on github here: [https://github.com/multisynq/m4u-guardians](https://github.com/multisynq/m4u-guardians) . See the releases page at [https://github.com/multisynq/m4u-guardians/releases](https://github.com/multisynq/m4u-guardians/releases) for pre-built MacOS and Windows builds.
 
 Guardians is a simple cooperative game where players defend their rocketship which has landed in an alien, futuristic world. It was designed to demonstrate how to create a multiplayer game with a number of features including:
 
@@ -16,7 +16,7 @@ Guardians is a simple cooperative game where players defend their rocketship whi
 *   Firing of any number of missiles that interact with their environment by bouncing off objects and destroying bots, also perfectly synchronized.
 *   A number of static object barriers that the avatars, bots and missiles interact with.
 
-The bots and missiles are particularly interesting, as they demonstrate large numbers of perfectly synchronized simulated objects. This is where Croquet is especially powerful: you need only code the simulation, the movement of the object and its interaction with other objects within the world. There is no server management, and no netcode. Synchronization is automatic and perfect.
+The bots and missiles are particularly interesting, as they demonstrate large numbers of perfectly synchronized simulated objects. This is where Multisynq is especially powerful: you need only code the simulation, the movement of the object and its interaction with other objects within the world. There is no server management, and no netcode. Synchronization is automatic and perfect.
 
 We also introduce navigation grids, which is a data structure used to quickly determine collisions among many objects.
 
@@ -82,7 +82,7 @@ This prefab is also equipped with a Collider and a Rigidbody, to generate a coll
 ![](images/image11.png)
 
 ## Avatars
-Avatars need to respond instantly to user controls and obstacle collisions. To achieve this, each user's avatar calculates its motion exclusively in that user's Unity view, and uses Croquet to inform other users of how the avatar has already moved. Those users will see the movements with a slight delay due to reflector latency, but the delay has no effect on gameplay. This is in contrast to the firing of a missile, on which all users must see exactly the same effects: this is achieved by making every missile launch be a replicated event sent to the synchronized model. When any user clicks, or hits the spacebar, all users see the same newly generated missile set off on its assigned path.
+Avatars need to respond instantly to user controls and obstacle collisions. To achieve this, each user's avatar calculates its motion exclusively in that user's Unity view, and uses Multisynq to inform other users of how the avatar has already moved. Those users will see the movements with a slight delay due to reflector latency, but the delay has no effect on gameplay. This is in contrast to the firing of a missile, on which all users must see exactly the same effects: this is achieved by making every missile launch be a replicated event sent to the synchronized model. When any user clicks, or hits the spacebar, all users see the same newly generated missile set off on its assigned path.
 
 ![](images/image4.png)
 

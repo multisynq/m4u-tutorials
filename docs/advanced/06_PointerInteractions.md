@@ -10,7 +10,7 @@
 
 We add a BaseActor class that is shown as a ground plane. Its pawn includes the **Interactable** mixin.
 
-The **Croquet Interactable System** that appears on the **Croquet** object in this scene provides click detection for all objects that have the **Croquet Interactable Component**. On a pointer-down interaction, the system performs a raycast and publishes a "pointerHit" event listing all interactable game objects along that ray, sorted by increasing distance. The bridge to JavaScript figures out the corresponding actors, and publishes an event that goes via the reflector to every client's model.
+The **Mq_Interactable_System** that appears on the **Multisynq** object in this scene provides click detection for all objects that have the **Mq_Interactable_Comp**. On a pointer-down interaction, the system performs a raycast and publishes a "pointerHit" event listing all interactable game objects along that ray, sorted by increasing distance. The bridge to JavaScript figures out the corresponding actors, and publishes an event that goes via the reflector to every client's model.
 
 In this tutorial, the BaseActor is the only one that subscribes to "pointerHit" events. It looks at the first actor in the supplied list. If that actor is itself, it spawns a new child at the clicked point, assigning it a "layers" property value - an array of strings - that will be provided if that actor appears in a future pointerHit event.
 

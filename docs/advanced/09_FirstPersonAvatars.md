@@ -54,6 +54,6 @@ class AvatarActor extends mix(Actor).with(AM_Spatial, AM_Drivable) {
 AvatarActor.register('AvatarActor');
 ```
 
-The **Mouse Look Avatar** component that appears on that prefab asks the **Croquet Drivable System** which object is the currently active drivable - which by default is set according to the drivable whose driver property matches the local viewId. If the script finds that the active drivable is not the object it's currently running on, it ignores all user interaction. Otherwise it responds to a combination of mouse and keyboard: when the right mouse button is down, the mouse continuously updates the yaw, while the WASD keys determine movement.
+The **Mouse Look Avatar** component that appears on that prefab asks the **Mq_Drivable_System** which object is the currently active drivable - which by default is set according to the drivable whose driver property matches the local viewId. If the script finds that the active drivable is not the object it's currently running on, it ignores all user interaction. Otherwise it responds to a combination of mouse and keyboard: when the right mouse button is down, the mouse continuously updates the yaw, while the WASD keys determine movement.
 
 The third-person camera following is handled by two components added to this scene's main camera: **Follow Cam** places the camera relative to a designated game object in the scene, and **Assign Follow Cam Target** uses the active-drivable setting - again, queried from the Drivable System - to designate that target.
