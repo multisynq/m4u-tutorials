@@ -45,7 +45,9 @@ class TestActor extends mix(Actor).with(AM_Spatial) {
     }
 }
 
-TestActor.register('TestActor');```
+TestActor.register('TestActor');
+
+```
 The init method of the model root - which, again, is only ever executed once in the entire lifetime of its Multisynq session - assembles a basic scene, consisting of a single instance of TestActor.
 ```js
 export class MyModelRoot extends ModelRoot {
