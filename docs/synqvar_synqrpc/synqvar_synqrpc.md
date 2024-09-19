@@ -81,7 +81,7 @@ The `[SynqVar]` attribute is used to mark fields or properties that should be sy
 
 ### Syntax
 
-```csharp
+```cs
   [SynqVar]
   public int health = 100;
 
@@ -113,7 +113,7 @@ The `SynqVarMgr` class is responsible for managing the synchronization of all Sy
 
 Example:
 
-```csharp
+```cs
   public class Player : SyncedBehaviour {
     [SynqVar(OnChangedCallback = nameof(OnHealthChanged))]
     public int health = 100;
@@ -133,7 +133,7 @@ Example:
 
 For complex types, you may need to implement custom serialization. Extend the `SerializationExtensions` class to add support for your custom types:
 
-```csharp
+```cs
   public static class SerializationExtensions {
     public static string Serialize(this Vector3 vector) {
       return $"{vector.x},{vector.y},{vector.z}";
