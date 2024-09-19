@@ -1,4 +1,6 @@
 using UnityEngine;
+using Multisynq;
+
 /*
   DamageFlash.cs
   A demonstration of using:

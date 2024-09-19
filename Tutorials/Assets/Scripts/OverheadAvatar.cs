@@ -1,4 +1,5 @@
 using UnityEngine;
+using Multisynq;
 
 public class OverheadAvatar : MonoBehaviour
 {
@@ -9,18 +10,18 @@ public class OverheadAvatar : MonoBehaviour
     private int right = 0;
 
     private int croquetHandle;
-    private CroquetDrivableComponent croquetAvatarComponent;
+    private Mq_Drivable_Comp croquetAvatarComponent;
 
     void Start()
     {
-        croquetHandle = gameObject.GetComponent<CroquetEntityComponent>().croquetHandle;
-        croquetAvatarComponent = gameObject.GetComponent<CroquetDrivableComponent>();
+        croquetHandle = gameObject.GetComponent<Mq_Entity_Comp>().croquetHandle;
+        croquetAvatarComponent = gameObject.GetComponent<Mq_Drivable_Comp>();
         // Debug.Log($"OverheadAvatar on {croquetHandle}");
     }
 
     void Update()
     {
-        CroquetDrivableComponent activeAvatar = CroquetDrivableSystem.Instance.GetActiveDrivableComponent();
+        Mq_Drivable_Comp activeAvatar = Mq_Drivable_System.Instance.GetActiveDrivableComponent();
         if (croquetAvatarComponent != activeAvatar)
         {
             return;
@@ -110,7 +111,7 @@ public class OverheadAvatar : MonoBehaviour
         Vector3 tt = newRot * t;
         Vector3 newPos = transform.localPosition + tt;
 
-        CroquetSpatialSystem.Instance.DrivePawn(croquetHandle, newPos, newRot);
-        CroquetSpatialSystem.Instance.DriveActor(croquetHandle, false, newPos, newRot); // false => no "snap"
+        Mq_Spatial_System.Instance.DrivePawn(croquetHandle, newPos, newRot);
+        Mq_Spatial_System.Instance.DriveActor(croquetHandle, false, newPos, newRot); // false => no "snap"
     }
 }

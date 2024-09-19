@@ -1,4 +1,5 @@
 using UnityEngine;
+using Multisynq;
 
 //========== ||||||||||| ====================
 public class PlayerCoins : SyncBehaviour {

@@ -90,12 +90,12 @@ TextMesh\ Pro.meta
 # Packed Addressables
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
-# Croquet-built JavaScript and support code
+# Multisynq-built JavaScript and support code
 /[Aa]ssets/[Ss]treaming[Aa]ssets*
 /[Aa]ssets/[Pp]ackages*
-/[Aa]ssets/CroquetJS/build-tools
-/[Aa]ssets/CroquetJS/build-tools.meta
+/[Aa]ssets/MultisynqJS/build-tools
+/[Aa]ssets/MultisynqJS/build-tools.meta
 
-# WebGL templates CroquetLoader
-Assets/WebGLTemplates/CroquetLoader
-Assets/WebGLTemplates/CroquetLoader.meta
+# WebGL templates MultisynqLoader
+Assets/WebGLTemplates/MultisynqLoader
+Assets/WebGLTemplates/MultisynqLoader.meta

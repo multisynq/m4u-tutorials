@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Croquet Models essential to the working of the Unity Bridge",
   "main": "game-support-models.js",
-  "author": "Croquet Labs",
+  "author": "Multisynq",
   "license": "Apache-2.0"
 }
