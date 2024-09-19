@@ -39,7 +39,7 @@ An introduction to Multisynq for Unity one concept at a time. Start here to dive
 9. [First-Person Avatars] {@tutorial 09_FirstPersonAvatars}
    - First-person view with mouselook navigation; nudge other avatars
 
-10. [Using SyncVars & SyncCommands] {@tutorial 10_SyncVars_SyncCommands}
+10. [Using SynqVars & SynqRpc] {@tutorial 10_SynqVars_SynqRpc}
 
 ## Documentation
 

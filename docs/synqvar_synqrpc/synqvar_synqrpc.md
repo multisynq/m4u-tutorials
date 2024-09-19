@@ -82,11 +82,11 @@ The `[SynqVar]` attribute is used to mark fields or properties that should be sy
 ### Syntax
 
 ```csharp
-[SynqVar]
-public int health = 100;
+  [SynqVar]
+  public int health = 100;
 
-[SynqVar(CustomName = "pos", OnChangedCallback = "OnPositionChanged", updateInterval = 0.5f)]
-private Vector3 position;
+  [SynqVar(CustomName = "pos", OnChangedCallback = "OnPositionChanged", updateInterval = 0.5f)]
+  private Vector3 position;
 ```
 
 ### Options
@@ -114,19 +114,17 @@ The `SynqVarMgr` class is responsible for managing the synchronization of all Sy
 Example:
 
 ```csharp
-public class Player : SyncedBehaviour
-{
+  public class Player : SyncedBehaviour {
     [SynqVar(OnChangedCallback = nameof(OnHealthChanged))]
     public int health = 100;
 
     [SynqVar(CustomName = "pos")]
     public Vector3 position;
 
-    private void OnHealthChanged(int newHealth)
-    {
-        Debug.Log($"Player health changed to {newHealth}");
+    private void OnHealthChanged(int newHealth) {
+      Debug.Log($"Player health changed to {newHealth}");
     }
-}
+  }
 ```
 
 ## Advanced Features
@@ -136,23 +134,20 @@ public class Player : SyncedBehaviour
 For complex types, you may need to implement custom serialization. Extend the `SerializationExtensions` class to add support for your custom types:
 
 ```csharp
-public static class SerializationExtensions
-{
-    public static string Serialize(this Vector3 vector)
-    {
-        return $"{vector.x},{vector.y},{vector.z}";
+  public static class SerializationExtensions {
+    public static string Serialize(this Vector3 vector) {
+      return $"{vector.x},{vector.y},{vector.z}";
     }
 
-    public static Vector3 DeserializeVector3(this string serialized)
-    {
-        var parts = serialized.Split(',');
-        return new Vector3(
-            float.Parse(parts[0]),
-            float.Parse(parts[1]),
-            float.Parse(parts[2])
-        );
+    public static Vector3 DeserializeVector3(this string serialized) {
+      var parts = serialized.Split(',');
+      return new Vector3(
+        float.Parse(parts[0]),
+        float.Parse(parts[1]),
+        float.Parse(parts[2])
+      );
     }
-}
+  }
 ```
 
 ### Performance Optimization
