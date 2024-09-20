@@ -699,7 +699,7 @@ PrefabInstance:
     - target: {fileID: 3479632283134871797, guid: 1e816dfed6d2248eba7d62bdd192bdb9,
         type: 3}
       propertyPath: JSLogForwarding.log
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3479632283134871797, guid: 1e816dfed6d2248eba7d62bdd192bdb9,
         type: 3}
@@ -746,6 +746,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ea882db0f124376bd4b014905c5403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mq_System: 0
+  mq_Material_System: 0
 --- !u!114 &1026883061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,6 +760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab07564dbb49f475f84484839caa72d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mq_System: 0
+  mq_Spatial_System: 0
 --- !u!114 &1026883062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,6 +774,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a11ee8820edb4f59abb30af45cec6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mq_System: 0
+  mq_Entity_System: 0
   assetManifestString: 
   addressablesReady: 0
 --- !u!1 &1063858355
@@ -1228,10 +1234,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<color=#ffaa00>[<color=#5577ff>Sync</color>Var]</color>
+  m_text: '<color=#ffaa00>[<color=#5577ff>Synq</color>Var]</color>
 
-    <color=#ffdd00>[<color=#5577ff>Sync</color>Command]</color>
-    / <color=#ffdd00>[<color=#5577ff>Sync</color>RPC]</color>
+    <color=#ffdd00>[<color=#5577ff>Synq</color>Command]</color>
+    / <color=#ffdd00>[<color=#5577ff>Synq</color>RPC]</color>
 
     <size=-8>
 
@@ -1246,11 +1252,11 @@ MonoBehaviour:
     uses files:</color></size>
 
     <color=#ddd><size=-20>Assets / CroquetJs / tutorial10
-    / </size><color=white>PlayerHealth.cs</color> <size=-10>( demos <color=#ffaa00>[SyncVar]</color>
+    / </size><color=white>PlayerHealth.cs</color> <size=-10>( demos <color=#ffaa00>[SynqVar]</color>
     )</size>
 
     <size=-20>Assets / CroquetJs / tutorial10 / </size><color=white>TakeDamage.cs
-    </color><size=-10>( demos <color=#ffdd00>[SyncCommand]</color> )</size>
+    </color><size=-10>( demos <color=#ffdd00>[SynqCommand]</color> )</size>
 
     </color>'
   m_isRightToLeft: 0
