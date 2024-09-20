@@ -1,4 +1,4 @@
-# Multisynq for Unity Tutorials
+# Multisynq for Unity (M4U) - Tutorials
 
 This repository contains Multisynq for Unity (M4U) ports of Brian Upton's introductory tutorials for Worldcore. The Tutorial Documentation explaining each of the examples is available in Google Docs here: [Multisynq for Unity Tutorials](https://docs.google.com/document/d/1XXBRe3H6pRdbKw7pfVStnIfaOzQd3d1A7DseA7kEobI/edit?usp=sharing).
 
