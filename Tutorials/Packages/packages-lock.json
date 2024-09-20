@@ -120,15 +120,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "io.multisynq.multiplayer": {
-      "version": "file:../../../croquet-for-unity-package",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {
-        "com.unity.addressables": "1.19.19",
-        "com.unity.inputsystem": "1.5.0"
-      }
-    },
     "net.gree.unity-webview": {
       "version": "https://github.com/gree/unity-webview.git?path=/dist/package-nofragment",
       "depth": 0,
