@@ -41,7 +41,7 @@ class ParentActor extends mix(Actor).with(AM_Spatial) {
 
 ParentActor.register('ParentActor');
 ```
-For the children, we define a separate kind of actor - which doesn't subscribe to input events, but demonstrates basic Croquet time-based simulation by continuously spinning about the y axis.
+For the children, we define a separate kind of actor - which doesn't subscribe to input events, but demonstrates basic Multisynq time-based simulation by continuously spinning about the y axis.
 
 In the **init** method, the actor defines its own rate of spin using a call to **Math.random**. As discussed further in Tutorial 5, this call is guaranteed to generate the same number for every user in the session; every user's first ChildActor, for example, will spin with the same randomized rate.
 

@@ -1,6 +1,6 @@
 # Build Assistant Steps
 
-This document outlines the various steps in the Croquet Build Assistant for Unity. Each step is represented by a `StatusItem` that provides real-time feedback on your project's configuration and readiness.
+This document outlines the various steps in the Multisynq Build Assistant for Unity. Each step is represented by a `StatusItem` that provides real-time feedback on your project's configuration and readiness.
 
 ## Status Indicators
 
@@ -21,7 +21,7 @@ Each step in the Build Assistant typically includes:
 
 ## Automatic Checks
 
-When you press `Check if Ready` The Build Assistant examines your project's configuration. Each `StatusItem` performs a check to ensure all components are properly set up for your Croquet application.
+When you press `Check if Ready` The Build Assistant examines your project's configuration. Each `StatusItem` performs a check to ensure all components are properly set up for your Multisynq application.
 
 ## User Interaction
 
@@ -34,7 +34,7 @@ The following sections detail each step in the `Build Assistant Window`, explain
 
 ## API Key
 
-The API Key is crucial for authenticating your Croquet application.
+The API Key is crucial for authenticating your Multisynq application.
 
 ### Messages
 
@@ -47,12 +47,12 @@ The API Key is crucial for authenticating your Croquet application.
 
 ### Buttons
 
-1. **Sign Up on the Site**: Opens the Croquet account page ([https://croquet.io/account/](https://croquet.io/account/)).
-2. **Goto API Key**: Opens the Unity Project Settings and selects the Croquet Settings asset.
+1. **Sign Up on the Site**: Opens the Multisynq account page ([https://croquet.io/account/](https://croquet.io/account/)).
+2. **Goto API Key**: Opens the Unity Project Settings and selects the Multisynq Settings asset.
 
 ### Setup Process
 
-1. Click `Sign Up on the Site` if you don't have a Croquet account.
+1. Click `Sign Up on the Site` if you don't have a Multisynq account.
 2. Copy the API Key you created from the website.
 3. Click `Goto API Key` in the Build Assistant Window.
 4. Paste your API Key into the appropriate field in the Inspector.
@@ -60,7 +60,7 @@ The API Key is crucial for authenticating your Croquet application.
 
 ## Bridge GameObject
 
-The Bridge GameObject connects your Unity scene with Croquet.
+The Bridge GameObject connects your Unity scene with Multisynq.
 
 ### Messages
 
@@ -80,16 +80,16 @@ The Bridge GameObject connects your Unity scene with Croquet.
 
 1. If the Bridge GameObject is missing, click `Create Bridge Gob`.
 2. If it exists, click `Goto Bridge Gob` to select it in the Hierarchy.
-3. Verify that the `CroquetBridge` component and other necessary components are attached.
+3. Verify that the `Mq_Bridge` component and other necessary components are attached.
 
 ### Additional Notes
 
-- Creating a Bridge GameObject automatically adds `CroquetBridge`, `CroquetRunner`, `CroquetEntitySystem`, `CroquetSpatialSystem`, `CroquetMaterialSystem`, and `CroquetFileReader` components.
-- If Croquet Settings exist in the project, they will be automatically assigned to the `CroquetBridge` component.
+- Creating a Bridge GameObject automatically adds `Mq_Bridge`, `Mq_Runner`, `Mq_Entity_System`, `Mq_Spatial_System`, `Mq_Material_System`, and `Mq_File_Reader` components.
+- If Multisynq Settings exist in the project, they will be automatically assigned to the `Mq_Bridge` component.
 
 ## Bridge Has Settings
 
-This step ensures that the Bridge GameObject is correctly connected to the Croquet Settings asset.
+This step ensures that the Bridge GameObject is correctly connected to the Multisynq Settings asset.
 
 ### Messages
 
@@ -102,19 +102,19 @@ This step ensures that the Bridge GameObject is correctly connected to the Croqu
 
 ### Buttons
 
-1. **Auto Connect**: Automatically connects the Bridge to the Croquet Settings asset.
-2. **Goto Croquet Settings**: Opens the Croquet Settings asset in the Inspector.
+1. **Auto Connect**: Automatically connects the Bridge to the Multisynq Settings asset.
+2. **Goto Multisynq Settings**: Opens the Multisynq Settings asset in the Inspector.
 
 ### Setup Process
 
-1. If the Bridge is missing settings, click `Auto Connect` to automatically link it to the Croquet Settings asset.
-2. If you need to manually adjust settings, click `Goto Croquet Settings` to open the asset in the Inspector and edit properties there as needed.
+1. If the Bridge is missing settings, click `Auto Connect` to automatically link it to the Multisynq Settings asset.
+2. If you need to manually adjust settings, click `Goto Multisynq Settings` to open the asset in the Inspector and edit properties there as needed.
 3. Verify that the Bridge is correctly connected to the settings.
 
 ### Additional Notes
 
-- The Auto Connect feature will search for the `CroquetBridge` component in the scene and the `CroquetSettings` asset in the project.
-- If either the `CroquetBridge` or `CroquetSettings` is missing, an error message will be displayed.
+- The Auto Connect feature will search for the `Mq_Bridge` component in the scene and the `Mq_Settings` asset in the project.
+- If either the `Mq_Bridge` or `Mq_Settings` is missing, an error message will be displayed.
 - After successful connection, the status will update automatically.
 
 ## Built Output
@@ -139,7 +139,7 @@ This step ensures that the built output folders match the Unity Build scene list
 ### Setup Process
 
 1. If the current scene has unsaved changes, click `Save Open Scene`.
-2. Click `Check Building Scenes` to verify that all scenes have a `CroquetBridge` with the appName set and the corresponding app folder in `Assets/StreamingAssets`.
+2. Click `Check Building Scenes` to verify that all scenes have a `Mq_Bridge` with the appName set and the corresponding app folder in `Assets/StreamingAssets`.
 3. If issues are found, address them in each scene as needed.
 4. Use `Goto Build Panel` to review and adjust your build settings if necessary.
 
@@ -147,11 +147,11 @@ This step ensures that the built output folders match the Unity Build scene list
 
 - The status will show a warning if the scene is not dirty (has no unsaved changes) to remind you to check the building scenes.
 - If all scenes have the correct setup, you'll see a success message.
-- If some scenes are missing the `CroquetBridge` or have incorrect settings, an error message will be displayed.
+- If some scenes are missing the `Mq_Bridge` or have incorrect settings, an error message will be displayed.
 
 ## Has App JS
 
-This step ensures that the app's JavaScript file `index.js` is properly set up for your Croquet application.
+This step ensures that the app's JavaScript file `index.js` is properly set up for your Multisynq application.
 
 ### Messages
 
@@ -164,22 +164,22 @@ This step ensures that the app's JavaScript file `index.js` is properly set up f
 
 ### Buttons
 
-1. **Set App Name**: Guides you to set the app name in the `CroquetBridge` component.
+1. **Set App Name**: Guides you to set the app name in the `Mq_Bridge` component.
 2. **Make App JS File**: Creates the necessary JavaScript files for your app.
 3. **Goto App JS File**: Opens the index.js file in your default editor.
 4. **Goto App JS Folder**: Opens the folder containing the app's JavaScript files.
 
 ### Setup Process
 
-1. If the app name is not set, click `Set App Name` and follow the instructions to set it in the `CroquetBridge` component.
+1. If the app name is not set, click `Set App Name` and follow the instructions to set it in the `Mq_Bridge` component.
 2. If the `index.js` file is missing, click `Make App JS File` to create it along with other necessary files.
 3. Use `Goto App JS File` or `Goto App JS Folder` to view and edit your app's JavaScript files.
 4. The status will update automatically once the index.js file is detected.
 
 ### Additional Notes
 
-- The app name must be set in the `CroquetBridge` component before creating the JavaScript files.
-- The index.js file should be located in `Assets/CroquetJS/\<appName\>/index.js` .
+- The app name must be set in the `Mq_Bridge` component before creating the JavaScript files.
+- The index.js file should be located in `Assets/MultisynqJS/\<appName\>/index.js` .
 - Creating the app JS file will copy a starter template to your project.
 - After creating or modifying the JavaScript files, Unity will refresh the `AssetDatabase` automatically.
 
@@ -210,7 +210,7 @@ This step ensures that the versions of JS Build Tools in the Unity Editor and in
 
 ### Additional Notes
 
-- The version check compares the `.last-installed-tools` files in the `DotJsBuild` and `CroquetBridge` directories.
+- The version check compares the `.last-installed-tools` files in the `DotJsBuild` and `Mq_Bridge` directories.
 - If versions don't match, an error log will show the differences between the Build and Editor versions.
 - Ensuring version match is crucial for consistent behavior between the Unity Editor and the built application.
 - Regular builds help maintain synchronization between the Editor and built output versions of the JS Build Tools.
@@ -218,7 +218,7 @@ This step ensures that the versions of JS Build Tools in the Unity Editor and in
 
 ## JS Build
 
-This step ensures that the JavaScript build for your Croquet application is properly generated and managed.
+This step ensures that the JavaScript build for your Multisynq application is properly generated and managed.
 
 ### Messages
 
@@ -250,12 +250,12 @@ This step ensures that the JavaScript build for your Croquet application is prop
 - If JS Build Tools are missing, the system will attempt to install them before building.
 - After building, Unity's AssetDatabase is refreshed to reflect the changes.
 - If the build fails or files are missing, appropriate error messages will be displayed.
-- Regular builds help ensure your Croquet application's JavaScript is up-to-date with your Unity project.
+- Regular builds help ensure your Multisynq application's JavaScript is up-to-date with your Unity project.
 
 
 ## JS Build Tools
 
-This step ensures that the necessary JavaScript build tools are installed and ready for your Croquet application.
+This step ensures that the necessary JavaScript build tools are installed and ready for your Multisynq application.
 
 ### Messages
 
@@ -280,15 +280,15 @@ This step ensures that the necessary JavaScript build tools are installed and re
 
 ### Additional Notes
 
-- JS Build Tools are expected to be in the `Assets/CroquetJS/node_modules` folder of your Unity project.
+- JS Build Tools are expected to be in the `Assets/MultisynqJS/node_modules` folder of your Unity project.
 - If the tools are missing, an error message will be logged with the expected location.
-- Installing the JS Build Tools is a prerequisite for building your Croquet application's JavaScript.
+- Installing the JS Build Tools is a prerequisite for building your Multisynq application's JavaScript.
 - The `Build JS Now` button (from the JS Build step) will be shown only when the build tools are properly installed.
 - Regular checks ensure that the build tools are always available for your project.
 
 ## JS Plugins
 
-This step ensures that all necessary `C#-to-JS Proxy Plugins` are present for your Croquet application.
+This step ensures that all necessary `C#-to-JS Proxy Plugins` are present for your Multisynq application.
 
 ### Messages
 
@@ -314,15 +314,15 @@ This step ensures that all necessary `C#-to-JS Proxy Plugins` are present for yo
 
 ### Additional Notes
 
-- JS Plugins are located in the `Assets/CroquetJS/<AppName>/plugins` folder of your Unity project.
+- JS Plugins are located in the `Assets/MultisynqJS/<AppName>/plugins` folder of your Unity project.
 - The system analyzes all JS plugins and reports any missing ones in the console.
 - Adding plugins will refresh the Unity AssetDatabase to reflect the changes.
 - After adding plugins, the system will recheck the status automatically.
-- Regular checks ensure that all necessary plugins are available for your Croquet application.
+- Regular checks ensure that all necessary plugins are available for your Multisynq application.
 
 ## Node
 
-This step ensures that Node.js is properly set up and configured for your Croquet application.
+This step ensures that Node.js is properly set up and configured for your Multisynq application.
 
 ### Messages
 
@@ -339,16 +339,16 @@ This step ensures that Node.js is properly set up and configured for your Croque
 
 ### Buttons
 
-1. **Goto Node Path**: Opens the Croquet Settings to view or edit the Node path.
+1. **Goto Node Path**: Opens the Multisynq Settings to view or edit the Node path.
 2. **Try Auto**: Attempts to automatically set up Node.
 3. **Docs**: Opens the documentation for this step.
 
 ### Setup Process
 
-1. The system checks for a valid Node installation using the path in Croquet Settings.
+1. The system checks for a valid Node installation using the path in Multisynq Settings.
 2. If Node is not found or configured, click `Try Auto` for automatic setup.
 3. If automatic setup fails, use the Node Path dropdown to select a valid installation.
-4. Use `Goto Node Path` to manually edit the Node path in Croquet Settings if needed.
+4. Use `Goto Node Path` to manually edit the Node path in Multisynq Settings if needed.
 5. The status updates automatically after each action or selection.
 
 ### Additional Notes
@@ -362,7 +362,7 @@ This step ensures that Node.js is properly set up and configured for your Croque
 
 ## Ready Total
 
-This step provides an overall status of your Croquet application setup and readiness.
+This step provides an overall status of your Multisynq application setup and readiness.
 
 ### Messages
 
@@ -391,12 +391,12 @@ This step provides an overall status of your Croquet application setup and readi
 - The success message `W00t!!!` is displayed briefly before switching to the `Ready to Synq` message.
 - If not all steps are ready, the system will guide you to look at the individual steps below for more details.
 - The `Be Awesome` button is a fun addition to celebrate your successful setup.
-- Regular checks ensure that your Croquet application remains properly configured throughout development.
+- Regular checks ensure that your Multisynq application remains properly configured throughout development.
 
 
 ## Settings
 
-This step ensures that the Croquet Settings asset is properly created and configured for your application.
+This step ensures that the Multisynq Settings asset is properly created and configured for your application.
 
 ### Messages
 
@@ -409,22 +409,22 @@ This step ensures that the Croquet Settings asset is properly created and config
 
 ### Buttons
 
-1. **Goto Settings**: Opens the Croquet Settings asset in the Inspector.
-2. **Create Settings**: Creates a new Croquet Settings asset if one doesn't exist.
+1. **Goto Settings**: Opens the Multisynq Settings asset in the Inspector.
+2. **Create Settings**: Creates a new Multisynq Settings asset if one doesn't exist.
 3. **Goto Node Path**: Opens the Node Folder
-4. **Goto API Key**: Shows the Croquet Settings asset in the Inspector.
+4. **Goto API Key**: Shows the Multisynq Settings asset in the Inspector.
 5. **Docs**: Opens the documentation for this step.
 
 ### Setup Process
 
-1. The system checks for the existence of a Croquet Settings asset.
+1. The system checks for the existence of a Multisynq Settings asset.
 2. If the asset is missing, click `Create Settings` to generate a new one.
 3. Once created, use `Goto Settings` to view and edit the settings in the Inspector.
 4. The status updates automatically after creating or modifying the settings.
 
 ### Additional Notes
 
-- The Croquet Settings asset is crucial for configuring your application's behavior.
+- The Multisynq Settings asset is crucial for configuring your application's behavior.
 - If settings are missing, the `Create Settings` button will be shown.
 - After creating settings, additional buttons like `Goto Node Path` and `Goto API Key` may appear for further configuration.
 - The system will automatically select and highlight the settings asset in the Unity Project window after creation or when using `Goto Settings`.
@@ -432,42 +432,42 @@ This step ensures that the Croquet Settings asset is properly created and config
 - If settings are set to defaults, you may need to configure other aspects of your project, indicated by red items in other sections.
 
 
-## Croquet Systems
+## Multisynq Systems
 
-This step ensures that all necessary Croquet Systems components are present in your Unity scene.
+This step ensures that all necessary Multisynq Systems components are present in your Unity scene.
 
 ### Messages
 
 | Message Type | Content |
 |--------------|---------|
-| <strong style="color:#2196F3; font-weight:700;">READY</strong> | Croquet Systems are ready to go! |
-| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Croquet Systems are missing |
-| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Croquet Systems are missing! Click <b>Add Croquet Systems</b> to get them. |
-| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Croquet Systems installed!!! Well done! |
+| <strong style="color:#2196F3; font-weight:700;">READY</strong> | Multisynq Systems are ready to go! |
+| <strong style="color:#FFA500; font-weight:700;">WARNING</strong> | Multisynq Systems are missing |
+| <strong style="color:#FF5252; font-weight:700;">ERROR</strong> | Multisynq Systems are missing! Click <b>Add Multisynq Systems</b> to get them. |
+| <strong style="color:#4CAF50; font-weight:700;">SUCCESS</strong> | Multisynq Systems installed!!! Well done! |
 
 ### Buttons
 
-1. **Add Croquet Systems**: Adds missing Croquet System components to the `CroquetBridge` GameObject.
-2. **List Missing Systems**: Displays a list of missing Croquet System components.
+1. **Add Multisynq Systems**: Adds missing Multisynq System components to the `Mq_Bridge` GameObject.
+2. **List Missing Systems**: Displays a list of missing Multisynq System components.
 3. **Docs**: Opens the documentation for this step.
 
 ### Setup Process
 
-1. The system automatically checks for the presence of required Croquet System components.
-2. If any systems are missing, click `Add Croquet Systems` to add them to the `CroquetBridge` GameObject.
+1. The system automatically checks for the presence of required Multisynq System components.
+2. If any systems are missing, click `Add Multisynq Systems` to add them to the `Mq_Bridge` GameObject.
 3. Use `List Missing Systems` to view which components are absent from your scene.
 4. The status updates automatically after adding or checking for systems.
 
 ### Additional Notes
 
-- Critical Croquet Systems include:
-  - `CroquetRunner`
-  - `CroquetFileReader`
-  - `CroquetEntitySystem`
-  - `CroquetSpatialSystem`
-- Optional Croquet Systems include:
-  - `CroquetMaterialSystem`
+- Critical Multisynq Systems include:
+  - `Mq_Runner`
+  - `Mq_File_Reader`
+  - `Mq_Entity_System`
+  - `Mq_Spatial_System`
+- Optional Multisynq Systems include:
+  - `Mq_Material_System`
 - Missing critical systems will trigger an error status, while missing optional systems will show a warning.
-- All Croquet Systems should be attached to the `CroquetBridge` GameObject in your scene.
+- All Multisynq Systems should be attached to the `Mq_Bridge` GameObject in your scene.
 - The system differentiates between critical and optional missing components in its reports.
-- Regular checks ensure that all necessary Croquet Systems remain properly configured throughout development.
+- Regular checks ensure that all necessary Multisynq Systems remain properly configured throughout development.

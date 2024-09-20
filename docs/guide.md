@@ -1,6 +1,6 @@
 ![](images/image3.png)
 
-This document introduces key Croquet concepts, serves as a companion to the tutorials found on our [Github](https://github.com/croquet/croquet-for-unity-tutorials) , as well as walking through other demo projects in order of complexity. If you have not already done so, please join our [Discord server](https://croquet.io/discord/) where we maintain a Unity channel for support and discussion.
+This document introduces key Multisynq concepts, serves as a companion to the tutorials found on our [Github](https://github.com/multisynq/m4u-tutorials) , as well as walking through other demo projects in order of complexity. If you have not already done so, please join our [Discord server](https://multisynq.io/discord/) where we maintain a Unity channel for support and discussion. 
 
 Copyright 2024 Croquet Labs
 
@@ -10,24 +10,24 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 Version 0.93 Apr 9, 2024 (updated in line with package v0.9.3)
 
-# Introduction to Croquet for Unity
+# Introduction to Multisynq for Unity
 
 
 ![](images/image17.gif)
 
-This is Guardians - which will be covered in a later section of this document. It has up to 1000 perfectly synchronized bots, missiles, and avatar tanks. You can try the web version of the game right now here: [https://croquet.io/guardians/](https://croquet.io/guardians/)
+This is Guardians - which will be covered in a later section of this document. It has up to 1000 perfectly synchronized bots, missiles, and avatar tanks. You can try the web version of the game right now here: [https://multisynq.io/examples#Guardians](https://multisynq.io/examples#Guardians)
 
-Croquet for Unity was designed to enable complex multiplayer capabilities within Unity without the need to set up servers or write any netcode. It uses the Croquet bit-identical synchronized computation platform written in JavaScript, and a bridge to the Unity application which uses C#. This is a relatively seamless system, though of course it does require you to have a working knowledge of JavaScript and will require some additional setup.
+Multisynq for Unity was designed to enable complex multiplayer capabilities within Unity without the need to set up servers or write any netcode. It uses the Multisynq bit-identical synchronized computation platform written in JavaScript, and a bridge to the Unity application which uses C#. This is a relatively seamless system, though of course it does require you to have a working knowledge of JavaScript and will require some additional setup.
 
-There are ten tutorials that cover the fundamentals of creating a multiplayer game in Croquet for Unity, as well as a fully working game called Guardians that provides an example of an end-to-end application.
+There are ten tutorials that cover the fundamentals of creating a multiplayer game in Multisynq for Unity, as well as a fully working game called Guardians that provides an example of an end-to-end application.
 
 # Why JavaScript?
 
-Croquet depends on a guarantee of deterministic computation across multiple platforms, as well as the ability to take a snapshot of the full program state, and dynamically recreate that state from a snapshot on a different machine. The object-oriented synchronous subset [\[1\]](#ftnt1)  of JavaScript provides these guarantees and is the most widely available language across platforms. JavaScript is single threaded, which further eliminates race conditions which can also cause divergence in computations. Even so, certain operations like transcendental functions (e.g. sine , cosine , etc.) do not guarantee that the low-order bits on different systems are identical. The Croquet system patches these operations to ensure that they are. Finally, Croquet also provides a deterministic Math.random() function to again ensure identical calculations.
+Multisynq depends on a guarantee of deterministic computation across multiple platforms, as well as the ability to take a snapshot of the full program state, and dynamically recreate that state from a snapshot on a different machine. The object-oriented synchronous subset [\[1\]](#ftnt1)  of JavaScript provides these guarantees and is the most widely available language across platforms. JavaScript is single threaded, which further eliminates race conditions which can also cause divergence in computations. Even so, certain operations like transcendental functions (e.g. sine , cosine , etc.) do not guarantee that the low-order bits on different systems are identical. The Multisynq system patches these operations to ensure that they are. Finally, Multisynq also provides a deterministic Math.random() function to again ensure identical calculations.
 
 # Basic Operation
 
-**Worldcore** is a framework built on top of the Croquet kernel. It makes it particularly easy to create and animate objects within Croquet worlds. Worldcore utilizes a **model-view** design pattern. In this case, the **model** is the synchronized computation that is guaranteed to run bit identically on all participating users’ systems. In the case of Croquet for Unity, this is the JavaScript part of the system. The view provides the visual representation of the model as well as the interface (this is often referred to as model/view/controller). Croquet guarantees that the model will run identically on any system - including Windows, Macintosh, Android and iOS. This means that any game created with Croquet for Unity enables multiplayer between phones, tablets, computers and potentially console devices. This is particularly useful for Unity applications, as Unity can target many different systems. It does mean that the programmer will need to build part of their application in JavaScript.
+**Worldcore** is a framework built on top of the Croquet kernel. It makes it particularly easy to create and animate objects within Croquet worlds. Worldcore utilizes a **model-view** design pattern. In this case, the **model** is the synchronized computation that is guaranteed to run bit identically on all participating users’ systems. In the case of Multisynq for Unity, this is the JavaScript part of the system. The view provides the visual representation of the model as well as the interface (this is often referred to as model/view/controller). Croquet guarantees that the model will run identically on any system - including Windows, Macintosh, Android and iOS. This means that any game created with Multisynq for Unity enables multiplayer between phones, tablets, computers and potentially console devices. This is particularly useful for Unity applications, as Unity can target many different systems. It does mean that the programmer will need to build part of their application in JavaScript.
 
 The elements that make up the model are called **actors**. Actors are JavaScript objects that are the basis of the shared simulated state. The Unity view side is made of Unity game objects that we will refer to as **pawns**. Pawns are instantiated and destroyed on demand as Croquet Worldcore actors come in and out of existence. When you join a session that is currently in progress, or has been run at some time in the past, pawns will be created for all the actors in the active session, and be kept in sync from then on.
 
@@ -52,7 +52,7 @@ This means that `doSomething()` will be called every 100 milliseconds. But more
 
 The Croquet model and Unity view communicate using the **publish/subscribe** pattern. There is no direct communication between players (views on different machines), they all communicate only with the shared model.
 
-A publish **from the Croquet model to the Unity view** goes directly across the Croquet bridge, so is received immediately. This is to inform the Unity pawns that something in an actor changed, and used to update the animations from simulations being performed within the model. Since it is local, bandwidth is not much of a problem.
+A publish **from the Croquet model to the Unity view** goes directly across the Multisynq bridge, so is received immediately. This is to inform the Unity pawns that something in an actor changed, and used to update the animations from simulations being performed within the model. Since it is local, bandwidth is not much of a problem.
 
 A publish of user-generated events **from a Unity view to a Croquet model** is the only valid non-deterministic input to the system, and will be replicated to all users. This is how your game can react to multi-user input while still producing exactly the same end result on every machine. The published event is sent via a Croquet reflector which attaches a timestamp and forwards the event to all participants in the same session.
 
@@ -84,35 +84,35 @@ If `data` was passed to the publish call, it will be passed as an argument to th
 The say/listen pattern is a simplified version of publish/subscribe that is used to communicate between a specific Croquet model and the associated Unity view. This enables you to send an event from your pawn to that pawn's specific actor on the model side, and vice versa. Under the covers, these are publish and subscribe invocations where the “scope” is set to the actor's model ID.
 
 ## Level Building with Unity Editor
-If you build out a level in Unity using objects that have a manifest, Croquet will gather up the critical information for a level and handle distributing that information to other players.
+If you build out a level in Unity using objects that have a manifest, Multisynq will gather up the critical information for a level and handle distributing that information to other players.
 
 # Setting Up
-The [readme](https://github.com/croquet/croquet-for-unity-tutorials) in the Github Repository is the best way to get started. This covers installation and successfully running your application. These tutorials are arranged as a set of scenes. Each scene builds upon the previous scene enabling more complex behaviors.
+The [readme](https://github.com/multisynq/m4u-tutorials) in the Github Repository is the best way to get started. This covers installation and successfully running your application. These tutorials are arranged as a set of scenes. Each scene builds upon the previous scene enabling more complex behaviors.
 
 ![](images/image22.png)
 
 # Unity Scenes, Systems and Prefabs
-Once you have set up Croquet for Unity as described in the repository's readme (not forgetting to ensure that **Build JS on Play** is selected on the editor's **Croquet** menu) , you are ready to run the tutorials. Each tutorial has its own scene within the Unity project; double click on the scene you wish to run, and hit play.
+Once you have set up Multisynq for Unity as described in the repository's readme (not forgetting to ensure that **Build JS on Play** is selected on the editor's **Multisynq** menu) , you are ready to run the tutorials. Each tutorial has its own scene within the Unity project; double click on the scene you wish to run, and hit play.
 
 ![](images/image6.png)
 
-We now describe briefly the main pieces needed on the Unity side to run a Croquet for Unity app.
+We now describe briefly the main pieces needed on the Unity side to run a Multisynq for Unity app.
 
 Every scene must include a GameObject that includes the components for setting up and managing communication with a Croquet JavaScript session. Here is a screenshot of that object in the scene for Tutorial 1 .
 
 ![](images/image2.png)
 
-*An inspector on the Croquet object in the Tutorial 1 scene.*
+*An inspector on the Multisynq object in the Tutorial 1 scene.*
 
-The **Croquet Bridge** component specifies where to find the JavaScript code that this scene is designed to run with (the **App Name** is used to locate the code under the project's Assets/CroquetJS  folder). Once the Croquet session is running, the Bridge handles all communication with it.
+The **Multisynq Bridge** component specifies where to find the JavaScript code that this scene is designed to run with (the **App Name** is used to locate the code under the project's `Assets/MultisynqJS/`  folder). Once the Croquet session is running, the Bridge handles all communication with it.
 
-The **Croquet Runner** is responsible for actually launching the Croquet session, using either an invisible WebView or an external browser (if **Debug Using External Session** is checked) or – especially on Windows, where WebView is not currently supported – using Node.js.
+The **Mq_Runner** is responsible for actually launching the Croquet session, using either an invisible WebView or an external browser (if **Debug Using External Session** is checked) or – especially on Windows, where WebView is not currently supported – using Node.js.
 
-In addition, every scene must include at least the **Croquet Entity System** , which manages the creation and destruction of Unity pawns under instructions from Croquet. Any scene with pawns that are placed in 3D (in other words, any interesting scene) needs the **Croquet Spatial System** to manage that placement. Other such "systems" are introduced below.
+In addition, every scene must include at least the **Mq_Entity_System** , which manages the creation and destruction of Unity pawns under instructions from Multisynq. Any scene with pawns that are placed in 3D (in other words, any interesting scene) needs the **Mq_Spatial_System** to manage that placement. Other such "systems" are introduced below.
 
-Unity pawns are instantiated from prefabs, and use components that are specifically designed to work with the Croquet actors. Each prefab included in the Unity project has a **Croquet Actor Manifest** where we define the features expected of any actor using this prefab (strictly, of the Worldcore view-side proxy for that actor, which handles communication between the actor and its Unity pawn).
+Unity pawns are instantiated from prefabs, and use components that are specifically designed to work with the Croquet actors. Each prefab included in the Unity project has a **Mq_ActorManifest** where we define the features expected of any actor using this prefab (strictly, of the Worldcore view-side proxy for that actor, which handles communication between the actor and its Unity pawn).
 
-Below is an inspector on the basicCube prefab. Because Worldcore classes make use of mixins to define their functionality, the principal property of the manifest is the **Mixins** list. In this case it contains just **Spatial** , which is responsible for ensuring that the actor constantly communicates to Unity its translation (referred to in Unity as position), rotation, and scale. When this prefab is instantiated, the presence of Spatial also results in attachment of a **Croquet Spatial Component** to the game object.
+Below is an inspector on the basicCube prefab. Because Worldcore classes make use of mixins to define their functionality, the principal property of the manifest is the **Mixins** list. In this case it contains just **Spatial** , which is responsible for ensuring that the actor constantly communicates to Unity its translation (referred to in Unity as position), rotation, and scale. When this prefab is instantiated, the presence of Spatial also results in attachment of a **Mq_Spatial_Comp** to the game object.
 
 ![](images/image1.png)
 
@@ -128,7 +128,7 @@ The following are all the mixins used in these tutorials:
 
 **Drivable**: can be moved instantly by the local user, while announcing every move so that other users can see (with a small latency) the same changes
 
-Both **Spatial** and **Smoothed** introduce a **Croquet Spatial Component** , which requires the presence of a **Croquet Spatial System** in the scene. The other three come with their own component/system pairs (e.g., **Croquet Drivable Component** , **Croquet Drivable System** ).
+Both **Spatial** and **Smoothed** introduce a **Mq_Spatial_Comp** , which requires the presence of a **Mq_Spatial_System** in the scene. The other three come with their own component/system pairs (e.g., **Mq_Drivable_Comp** , **Mq_Drivable_System** ).
 
 Here are the various prefabs used throughout the tutorials, along with their included mixins and the tutorials they are used in:
 
@@ -154,7 +154,7 @@ Here are the various prefabs used throughout the tutorials, along with their inc
 # Appendix 1: Worldcore Vector Package
 Croquet Worldcore includes a simple vector package. All vectors, colors, quaternions and matrices used within the model are simple JavaScript arrays. It also includes other useful functions.
 
-The full package is included with Croquet for Unity, but can be viewed here:
+The full package is included with Multisynq for Unity, but can be viewed here:
 
 [https://github.com/croquet/worldcore/blob/main/packages/kernel/src/Vector.js](https://github.com/croquet/worldcore/blob/main/packages/kernel/src/Vector.js)
 

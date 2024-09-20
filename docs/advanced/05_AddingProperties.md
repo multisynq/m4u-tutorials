@@ -49,4 +49,4 @@ export class MyModelRoot extends GameModelRoot {
 MyModelRoot.register("MyModelRoot");
 ```
 
-This tutorial depends on the colorableCube prefab, which includes the **Material** mixin and declares **color** as a watched property. The **Material System** receives notifications whenever the color value changes on an object that has a **Material Component**, and automatically updates the color on any materials found on the object. For now, color is the only property handled by this system, but in the future it will be extended to offer a range of material properties and features across all HDRP and URP pipelines.
+This tutorial depends on the colorableCube prefab, which includes the **Material** mixin and declares **color** as a watched property. The **Mq_Material_System** receives notifications whenever the color value changes on an object that has a **Mq_Material_Comp**, and automatically updates the color on any materials found on the object. For now, color is the only property handled by this system, but in the future it will be extended to offer a range of material properties and features across all HDRP and URP pipelines.

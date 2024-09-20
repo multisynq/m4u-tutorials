@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657886, g: 0.49641275, b: 0.5748176, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 455072782}
   - component: {fileID: 455072781}
   m_Layer: 0
-  m_Name: '[SyncClones_Mgr]'
+  m_Name: '[SynqClones_Mgr]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 690354121}
   - component: {fileID: 690354122}
   m_Layer: 0
-  m_Name: '[SyncVar_Mgr]'
+  m_Name: '[SynqVar_Mgr]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -905,7 +905,7 @@ GameObject:
   - component: {fileID: 1197908291}
   - component: {fileID: 1197908289}
   m_Layer: 0
-  m_Name: SyncCommand_Demo
+  m_Name: SynqCommand_Demo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -950,7 +950,7 @@ GameObject:
   - component: {fileID: 1291531444}
   - component: {fileID: 1291531443}
   m_Layer: 0
-  m_Name: '[SyncCommand_Mgr]'
+  m_Name: '[SynqCommand_Mgr]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1348,7 +1348,7 @@ GameObject:
   - component: {fileID: 4346149723542427823}
   - component: {fileID: 4346149723542427824}
   m_Layer: 0
-  m_Name: SyncVar_Demo
+  m_Name: SynqVar_Demo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

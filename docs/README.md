@@ -22,9 +22,9 @@ To preview/generate/deploy the docs, they need to be rendered into HTML.
 
 To generate the HTML, clone https://github.com/croquet/croquet-docs next to `unity`:
 
-    ├── croquet-for-unity-tutorials/    # repo clone
+    ├── m4u-tutorials/        # repo clone
     │
-    └── croquet-docs/                   # repo clone
+    └── croquet-docs/         # repo clone
 
 Then
 
@@ -38,7 +38,7 @@ Then
 
 This will generate the docs into `../dist/unity/`:
 
-    ├── croquet-for-unity-tutorials/   # repo clone
+    ├── c4u-tutorials/                 # repo clone
     │   └── docs/
     │       ├── top.md                 # becomes index.html
     │       ├── unity-doc.js           # becomes global.html
