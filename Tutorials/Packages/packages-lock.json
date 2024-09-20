@@ -120,6 +120,16 @@
       },
       "url": "https://packages.unity.com"
     },
+    "io.multisynq.multiplayer": {
+      "version": "https://github.com/multisynq/m4u-package.git#develop",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.addressables": "1.19.19",
+        "com.unity.inputsystem": "1.5.0"
+      },
+      "hash": "8eebfb28d50486986cc1bebd6de9817e85a09ba0"
+    },
     "net.gree.unity-webview": {
       "version": "https://github.com/gree/unity-webview.git?path=/dist/package-nofragment",
       "depth": 0,
