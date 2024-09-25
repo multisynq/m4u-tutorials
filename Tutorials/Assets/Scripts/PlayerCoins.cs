@@ -13,7 +13,7 @@ public class PlayerCoins : SynqBehaviour {
   //-- ||||| ----------------------------------------
   void OnGUI() { // Old school Unity UI! Yuck. But self-contained!   =]
     var scl   = Screen.height / 400f;
-    int xOffset = 22;
+    int xOffset = 20;
     var y     = 185 * scl;
     var paneW = 150 * scl;
     var paneH = 40 * scl;
