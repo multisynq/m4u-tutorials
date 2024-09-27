@@ -1,5 +1,5 @@
 import { StartSession } from '@croquet/unity-bridge'
-import { ModelRootWithPlugins, ViewRootWithPlugins } from './plugins/indexPlugins'
+import { PluginsModelRoot, PluginsViewRoot } from './plugins/indexOfPlugins'
 import { BUILD_IDENTIFIER } from './buildIdentifier'
 
-StartSession(ModelRootWithPlugins, ViewRootWithPlugins, BUILD_IDENTIFIER)
+StartSession(PluginsModelRoot, PluginsViewRoot, BUILD_IDENTIFIER)

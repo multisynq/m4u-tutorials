@@ -1,4 +1,4 @@
-import { Model, View } from '@croquet/croquet';
+import { Model } from '@croquet/croquet';
 
 export class SynqCommand_Mgr_Model extends Model {
   dbg = false
@@ -14,11 +14,3 @@ export class SynqCommand_Mgr_Model extends Model {
 }
 SynqCommand_Mgr_Model.register('SynqCommand_Mgr_Model');
       
-
-//---------- |||||||||||||||||||| -------------------
-export class SynqCommand_Mgr_View extends View {
-  constructor(model) {
-    super(model);
-    if (model.dbg) console.log('### <color=green>SynqCommand_Mgr_View.constructor() <<<<<<<<<<<<<<<<<<<<< </color>');
-  }
-}
