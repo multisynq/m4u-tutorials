@@ -367,12 +367,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: '// ### imports %%
 
-    %[Import: import %%CODE%% from ''./%%PLUGIN%%'';]%
+    <%Import: import <%CODE%> from ''./<%PLUGIN%>'';%>
 
     //
     ### imports end
 
-    var x = {x:100}'
+'
   snips:
   - tag: Import
     code: '{ Cat, Dog }'
@@ -387,23 +387,22 @@ MonoBehaviour:
     End: ']%'
   - Start: '%%'
     End: '%%'
-  output: "// ### imports\n import { Cat, Dog } from './animals';\n// ### imports
-    end\nvar x = {x\n import { Ant, Beetle } from './animals';\n// ### imports end\nvar
-    x = {x100}"
-  tokensReport: "Token: '// ### imports\n'    DelimIdx: -1\n   DelimDepths: [0, 0,
-    0]\n\nToken: '%['    DelimIdx: 0\n   DelimDepths: [1, 0, 0]\n\nToken: 'Import'   
-    DelimIdx: -1\n   DelimDepths: [1, 0, 0]\n\nToken: ':'    DelimIdx: 2\n   DelimDepths:
-    [1, 1, 0]\n\nToken: ' import '    DelimIdx: -1\n   DelimDepths: [1, 1, 0]\n\nToken:
-    '%%'    DelimIdx: 3\n   DelimDepths: [1, 1, 1]\n\nToken: 'CODE'    DelimIdx:
+  output: // ### imports 100}
+  tokensReport: "Token: '// ### imports '    DelimIdx: -1\n   DelimDepths: [0, 0,
+    0]\n\nToken: '%%'    DelimIdx: 3\n   DelimDepths: [0, 0, 1]\n\nToken: '\n'   
+    DelimIdx: -1\n   DelimDepths: [0, 0, 1]\n\nToken: '%['    DelimIdx: 0\n   DelimDepths:
+    [1, 0, 1]\n\nToken: 'Import'    DelimIdx: -1\n   DelimDepths: [1, 0, 1]\n\nToken:
+    ':'    DelimIdx: 2\n   DelimDepths: [1, 1, 1]\n\nToken: ' import '    DelimIdx:
     -1\n   DelimDepths: [1, 1, 1]\n\nToken: '%%'    DelimIdx: 3\n   DelimDepths:
-    [1, 1, 0]\n\nToken: ' from './'    DelimIdx: -1\n   DelimDepths: [1, 1, 0]\n\nToken:
-    '%%'    DelimIdx: 3\n   DelimDepths: [1, 1, 1]\n\nToken: 'PLUGIN'    DelimIdx:
+    [1, 1, 0]\n\nToken: 'CODE'    DelimIdx: -1\n   DelimDepths: [1, 1, 0]\n\nToken:
+    '%%'    DelimIdx: 3\n   DelimDepths: [1, 1, 1]\n\nToken: ' from './'    DelimIdx:
     -1\n   DelimDepths: [1, 1, 1]\n\nToken: '%%'    DelimIdx: 3\n   DelimDepths:
-    [1, 1, 0]\n\nToken: '';'    DelimIdx: -1\n   DelimDepths: [1, 1, 0]\n\nToken:
-    ']%'    DelimIdx: 1\n   DelimDepths: [1, 1, 0]\n\nToken: '\n// ### imports end\nvar
-    x = {x'    DelimIdx: -1\n   DelimDepths: [1, 1, 0]\n\nToken: ':'    DelimIdx:
-    2\n   DelimDepths: [1, 2, 0]\n\nToken: '100}'    DelimIdx: -1\n   DelimDepths:
-    [0, 0, 0]\n\n"
+    [1, 1, 0]\n\nToken: 'PLUGIN'    DelimIdx: -1\n   DelimDepths: [1, 1, 0]\n\nToken:
+    '%%'    DelimIdx: 3\n   DelimDepths: [1, 1, 1]\n\nToken: '';'    DelimIdx: -1\n  
+    DelimDepths: [1, 1, 1]\n\nToken: ']%'    DelimIdx: 1\n   DelimDepths: [1, 1,
+    1]\n\nToken: '\n// ### imports end\nvar x = {x'    DelimIdx: -1\n   DelimDepths:
+    [1, 1, 1]\n\nToken: ':'    DelimIdx: 2\n   DelimDepths: [1, 2, 1]\n\nToken: '100}'   
+    DelimIdx: -1\n   DelimDepths: [0, 0, 0]\n\n"
 --- !u!4 &451898121
 Transform:
   m_ObjectHideFlags: 0

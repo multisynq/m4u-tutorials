@@ -30,4 +30,4 @@ export class SynqVar_Mgr_View extends View {
     globalThis.theGameEngineBridge.sendBundleToUnity(messages) // MIMICS  model.publish('SynqVar', 'everybodySetVar', msg)
   }
 }
-      
+        
