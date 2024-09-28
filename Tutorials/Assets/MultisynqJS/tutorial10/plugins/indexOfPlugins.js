@@ -9,7 +9,8 @@ import { SynqCommand_Mgr_Model } from './SynqCommand_Mgr'
 import { SynqVar_Mgr_Model, SynqVar_Mgr_View } from './SynqVar_Mgr'
 // ########
 
-export class ModelRootWithPlugins extends GameModelRoot {
+//========== |||||||||||||||| =================================================================
+export class PluginsModelRoot extends GameModelRoot {
   plugins={}
   init(options) {
     // @ts-ignore
@@ -24,10 +25,10 @@ export class ModelRootWithPlugins extends GameModelRoot {
   }
 }
 // @ts-ignore
-ModelRootWithPlugins.register('ModelRootWithPlugins');
+PluginsModelRoot.register('PluginsModelRoot');
         
-//========== ||||||||||||||||||| =================================================================
-export class ViewRootWithPlugins extends GameViewRoot {
+//========== ||||||||||||||| =================================================================
+export class PluginsViewRoot extends GameViewRoot {
   plugins={}
   constructor(model) {
     super(model);
