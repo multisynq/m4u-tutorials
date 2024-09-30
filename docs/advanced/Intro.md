@@ -1,16 +1,4 @@
-![](images/mq_unity_logo.svg)
-
-This document introduces key Multisynq concepts, serves as a companion to the tutorials found on our [Github](https://github.com/multisynq/m4u-tutorials) , as well as walking through other demo projects in order of complexity. If you have not already done so, please join our [Discord server](https://multisynq.io/discord/) where we maintain a Unity channel for support and discussion. 
-
-Copyright 2024 Croquet Labs
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-Version 0.93 Apr 9, 2024 (updated in line with package v0.9.3)
-
-# Introduction to Multisynq for Unity
+# Introduction to M4U Advanced
 
 
 ![](images/image17.gif)
