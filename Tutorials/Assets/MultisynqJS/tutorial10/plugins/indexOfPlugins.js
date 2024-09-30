@@ -13,8 +13,8 @@ import { SynqVar_Mgr_Model, SynqVar_Mgr_View } from './SynqVar_Mgr'
 export class PluginsModelRoot extends GameModelRoot {
   plugins={}
   init(options) {
-    // @ts-ignore
-    super.init(options);
+    //@ts-expect-error: init() missing
+    super.init(options);  
 
     // ######## modelInits
     this.plugins['SynqClones_Mgr_Model'] = SynqClones_Mgr_Model.create({})
@@ -24,7 +24,7 @@ export class PluginsModelRoot extends GameModelRoot {
 
   }
 }
-// @ts-ignore
+//@ts-expect-error: register() missing
 PluginsModelRoot.register('PluginsModelRoot');
         
 //========== ||||||||||||||| =================================================================
@@ -41,7 +41,8 @@ export class PluginsViewRoot extends GameViewRoot {
   }
   detach() { 
     Object.values(this.plugins).forEach(plugin => plugin.detach());
-    super.detach(); 
+    //@ts-expect-error: detach() missing
+    super.detach();
   }
 }
       

@@ -33,21 +33,3 @@ public class PlayerCoins : SynqBehaviour {
     GUI.Label(new Rect(txtX, y + (10 * scl), txtW, lineH), $" Coins:     {coins}", style);
   }
 }
-
-/*
-<size=-15><align=center>Demonstration of:</size>
-<color=#ffaa00>[<color=#5577ff>Synq</color>Var]</color><size=-10> and</size> <color=#ffdd00>[<color=#5577ff>Synq</color>RPC]</color></align>
-<size=-14>
-Demo Keymap:<size=-37>
-
-</size>  <color=#aaa>[ <color=#55ff55><b>H</b></color> ]</color> - Heal all
-  <color=#aaa>[ <color=#ff4444><b>L</b></color> ]</color> - Leg damage
-  <color=#aaa>[ <color=#ff4444><b>T</b></color> ]</color> - Torso damage
-  <color=#aaa>[ <color=#ff4444>A</color> ]</color> - Arm damage
-  <color=#aaa>[ <color=#ffff00><b>C</b></color> ]</color> - Coins +1
-
-<color=#ddd>Demo files:</color></size>
-<color=#ddd><size=-20>Assets / Scripts / </size><size=-14><color=white>PlayerHealth.cs</color></size> <size=-17>( demos <color=#ffaa00>[<color=#5577ff>Synq</color>Var]</color> )</size>
-<size=-20>Assets / Scripts / </size><size=-14><color=white>DamageFlash.cs </color></size><size=-17>( demos <color=#ffdd00>[<color=#5577ff>Synq</color>RPC]</color> )</size>
-</color>
-*/
