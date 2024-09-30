@@ -11,7 +11,7 @@ public class PlayerHealth : SynqBehaviour {
   [SynqVar(updateInterval=0.5f)] public int armHealth = 100;
 
   private void OnHealthChanged(int newValue) {
-    Debug.Log($"[SynqVar] Player health changed to {newValue}");
+    Debug.Log($"PlayerHealth.health changed to {newValue}");
     if      (newValue <= 0) Die();
     else if (newValue < 70) LowHealthWarning();
   }
