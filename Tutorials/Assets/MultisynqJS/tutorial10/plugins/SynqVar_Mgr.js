@@ -25,7 +25,7 @@ export class SynqVar_Mgr_View extends View {
     this.model = model
     console.log('### <color=green>SynqVar_Mgr_View.constructor() <<<<<<<<<<<<<<<<<<<<< </color>')
     const messages = model.varValuesAsMessages.map( (msg) => (
-      `croquetPub\x01SynqVar\x01varChanged\x01${msg}`
+      `croquetPub\x01SynqVar\x01everybodySetVar\x01${msg}`
     ))
     globalThis.theGameEngineBridge.sendBundleToUnity(messages) // MIMICS  model.publish('SynqVar', 'everybodySetVar', msg)
   }
