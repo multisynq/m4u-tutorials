@@ -11,15 +11,15 @@ import { SynqVar_Mgr_Model, SynqVar_Mgr_View } from './SynqVar_Mgr'
 
 //========== |||||||||||||||| =================================================================
 export class PluginsModelRoot extends GameModelRoot {
-  plugins={}
+  pluginModels={}
   init(options) {
     //@ts-expect-error: init() missing
-    super.init(options);  
+    super.init(options);
 
     // ######## modelInits
-    this.plugins['SynqClones_Mgr_Model'] = SynqClones_Mgr_Model.create({})
-    this.plugins['SynqCommand_Mgr_Model'] = SynqCommand_Mgr_Model.create({})
-    this.plugins['SynqVar_Mgr_Model'] = SynqVar_Mgr_Model.create({})
+    this.pluginModels['SynqClones_Mgr_Model'] = SynqClones_Mgr_Model.create({})
+    this.pluginModels['SynqCommand_Mgr_Model'] = SynqCommand_Mgr_Model.create({})
+    this.pluginModels['SynqVar_Mgr_Model'] = SynqVar_Mgr_Model.create({})
     // ########
 
   }
@@ -29,18 +29,18 @@ PluginsModelRoot.register('PluginsModelRoot');
         
 //========== ||||||||||||||| =================================================================
 export class PluginsViewRoot extends GameViewRoot {
-  plugins={}
+  pluginViews={}
   constructor(model) {
     super(model);
 
     // ######### viewInits
-    this.plugins['SynqClones_Mgr_View'] = new SynqClones_Mgr_View(model.plugins['SynqClones_Mgr_Model'])
-    this.plugins['SynqVar_Mgr_View'] = new SynqVar_Mgr_View(model.plugins['SynqVar_Mgr_Model'])
+    this.pluginViews['SynqClones_Mgr_View'] = new SynqClones_Mgr_View(model.pluginModels['SynqClones_Mgr_Model'])
+    this.pluginViews['SynqVar_Mgr_View'] = new SynqVar_Mgr_View(model.pluginModels['SynqVar_Mgr_Model'])
     // #########
 
   }
   detach() { 
-    Object.values(this.plugins).forEach(plugin => plugin.detach());
+    Object.values(this.pluginViews).forEach(vPlug => vPlug.detach());
     //@ts-expect-error: detach() missing
     super.detach();
   }
