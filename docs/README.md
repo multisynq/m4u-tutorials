@@ -1,8 +1,8 @@
 # About the docs
 
-The docs are deployed at https://croquet.io/docs/unity
+The docs are deployed at https://multisynq.io/docs/unity
 
-Pre-release docs are at https://croquet.io/dev/docs/unity
+Pre-release docs are at https://multisynq.dev/docs/unity
 
 The docs are generated from the files in this directory using the [Croquet docs generator](https://github.com/croquet/croquet-docs) which has the corresponding JSDoc definitions and theme.
 

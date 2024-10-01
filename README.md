@@ -41,7 +41,7 @@ In the `Unity Hub` app, select `Open => Add project from disk`, then navigate to
 
 In the Project Navigator (typically at bottom left), go to `Assets/Settings` and click `Mq_Settings.asset`.  The main field that you need to set up is the **Api Key**.
 
-The API Key is a token of around 40 characters that you can create for yourself at https://croquet.io/account.  It provides access to the Multisynq infrastructure.
+The API Key is a token of around 40 characters that you can create for yourself at https://multisynq.io/account.  It provides access to the Multisynq infrastructure.
 
 The App Prefix is the way of identifying with your organization the Multisynq apps that you develop and run.  The combination of this prefix and the App Name provided on the Multisynq Bridge component in each scene is a full App ID - for example, `io.multisynq.m4u.tutorial1`.  For running the tutorials it is fine to leave this prefix as is, but when you develop your own apps you must change the prefix so that the App ID is a globally unique identifier.  The ID must follow the Android reverse domain naming convention - i.e., each dot-separated segment must start with a letter, and only letters, digits, and underscores are allowed.
 

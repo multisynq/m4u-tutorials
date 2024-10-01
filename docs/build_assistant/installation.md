@@ -5,7 +5,7 @@ This guide will walk you through the process of installing and setting up Multis
 ## Prerequisites
 
 - Unity 2021.3 or later
-- A Multisynq account (sign up at [https://croquet.io/account/](https://croquet.io/account/))
+- A Multisynq account (sign up at [https://multisynq.io/account/](https://multisynq.io/account/))
 
 ## Installation Steps
 
