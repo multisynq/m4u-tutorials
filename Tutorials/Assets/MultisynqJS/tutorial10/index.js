@@ -1,4 +1,4 @@
-import { StartSession } from '@croquet/unity-bridge'
+import { StartSession } from '@multisynq/m4u-package'
 import { PluginsModelRoot, PluginsViewRoot } from './plugins/indexOfPlugins'
 import { BUILD_IDENTIFIER } from './buildIdentifier'
 

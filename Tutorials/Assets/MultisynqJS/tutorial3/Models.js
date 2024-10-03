@@ -1,7 +1,7 @@
 // Tutorial 3 Models
 
 import { Actor, mix, AM_Spatial, AM_Behavioral } from "@croquet/worldcore-kernel";
-import { GameModelRoot } from "@croquet/game-models";
+import { GameModelRoot } from "@multisynq/m4u-package";
 
 //------------------------------------------------------------------------------------------
 // ParentActor -----------------------------------------------------------------------------

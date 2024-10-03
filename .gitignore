@@ -74,3 +74,4 @@ $RECYCLE.BIN/
 pkg-dev.patch
 
 Tutorials/BUILD_MAC.app/
+*.code-workspace

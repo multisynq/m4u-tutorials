@@ -6,7 +6,7 @@
 // a Unity object, usually generated from an instrumented prefab.
 
 import { Actor, mix, AM_Spatial } from "@croquet/worldcore-kernel";
-import { GameModelRoot } from "@croquet/game-models";
+import { GameModelRoot } from "@multisynq/m4u-package";
 
 //------------------------------------------------------------------------------------------
 // TestActor -------------------------------------------------------------------------------
