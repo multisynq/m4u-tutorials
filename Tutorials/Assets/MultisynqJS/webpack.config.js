@@ -63,7 +63,7 @@ module.exports = env => {
             alias: {
                 // force all croquet imports to use the same package instance
                 // this is specifically to avoid needing node_modules in m4u-package
-                "@croquet/croquet": (env.buildTarget === 'node') 
+                "@croquet/croquet": (env.buildTarget === 'node')
                     ? require.resolve("@croquet/croquet")
                     : require.resolve("@croquet/croquet/cjs/croquet-croquet.js"),
                 "@croquet/worldcore-kernel": require.resolve("@croquet/worldcore-kernel"),
@@ -143,19 +143,12 @@ module.exports = env => {
                 inject: 'body',
                 chunks: ['lobby'],
             }),
-            isWebGL && new webpack.ProvidePlugin({
-                Buffer: ['buffer', 'Buffer'],
-            }),
-            isWebGL && new webpack.ProvidePlugin({
-                process: 'process/browser',
-            }),
         ].filter(x => x), // removes any undefined by the && predicate being false
-        externals: env.buildTarget !== 'node' ? [] : [
+        externals: env.buildTarget !== 'node' ? [] :
             {
                 'utf-8-validate': 'commonjs utf-8-validate',
-                bufferutil: 'commonjs bufferutil',
+                'bufferutil': 'commonjs bufferutil',
             },
-        ],
         target: env.buildTarget !== 'node' ? 'web' : 'node',
         experiments: {
             outputModule: isWebGL,
