@@ -1,15 +1,50 @@
-The Multisynq for Unity package provides a simple framework for using Multisynq with Unity.
-This documentation assumes that you are familiarized with Croquet's [main concepts](../croquet/index.html#main-concepts) and how [views](../croquet/index.html#views) and [models](../croquet/index.html#models) interact via [events](../croquet/index.html#events).
+Multisynq for Unity (M4U) is a Unity package that easily adds multiplayer to Unity games.
+
+Skip the server code. Just add `[SynqVar]` and `[SynqRPC]` to any MonoBehaviour field or method, drop in an API key and you've got multiplayer running everywhere: Unity editor, built native, or WebGL.
+
+Easy for simple projects, but scales to enable traffic-reducing, deterministic, bit-identical multiplayer-synchronization (multi-synq `=]` ).
+
+Let's go. [Installing M4U](./build_assistant-installation.html)
 
 Migrating over from Photon? Check out our [Migration Guide](./photon_migration_guide.html)
 
 ## Overview
 
-The [`Multisynq for Unity`](https://github.com/multisynq/m4u-package) package provides a simple framework for using Multisynq with Unity.
-[`Multisynq for Unity`](https://github.com/multisynq/m4u-package) is a Multiplayer Package that allows you to build flawlessly synchronized, bit-identical simulations with JavaScript. Deploy effortlessly everywhere without the hassle of server management, complex netcode, or rollback. Author how something behaves once, and it will behave that way for everyone playing your game.
+[`Multisynq for Unity`](https://github.com/multisynq/m4u-package) is a Multiplayer Package that helps you to build synchronized, bit-identical simulations with JavaScript. Deploy effortlessly everywhere without the hassle of server management, complex netcode, or rollback. Author how something behaves once, and it will behave that way for everyone playing your game. Snapshots? Handled. Catchup state? Handled.
+
+- Model/View architecture with client deterministic synchronized computation eliminates netcode.
+- Eliminate tons of network traffic due to client deterministic architecture.
+
+Here's the Github repo: [`https://github.com/multisynq/m4u-package`](https://github.com/multisynq/m4u-package).
+
+This guide is quite handy to get going: [Installing M4U](./build_assistant-installation.html)
+
+## How easy?
+
+- Add C# attributes to your fields and methods.
+  - `[SynqVar]` and `[SynqRPC]` (RPC = Remote Procedure Call)
+- Swap MonoBehaviour for SynqBehaviour.
+- Get the build assistant to all green checkmarks
+
+*Like this:*
+![](images/playerCoins.png)
+
+## The M4U Build Assistant
+
+If only there was a checklist to get everything ready to run and build. Oh wait, there is.
+
+The Build Assistant checks all the settings you'll need to get going and automatically troubleshoots stuff that might get in your way. From new scene to multiplayer calls and values, the build assistant has got your back.
 
 ## Deterministic (Advanced) Tutorials
-An introduction to Multisynq for Unity one concept at a time. Start here to dive in! Find these tutorials in the `Tutorials` section of the navigation bar.
+
+Multiplayer (usually) has lots of limitations. Need a hoarde of 5000 network-synched monsters? Ouch. Crazy physics everywhere? To get the best of both worlds, you need deterministic, bit-identical computation in a model/view architecture. Computer science for the win! Why use bandwidth when you can activate identical clockwork compute on every player's machine? Sometimes, your net traffic is exactly zero as thousands of entities synchronously dance on all player screens.
+
+This Multisynq package glues all those smarts into a comfy spot where you write simple game logic code. Nothing fancy. Multisynq gets that code running where it ought to be and just handles all the stuff that usually sucks: snapshots, late-joining, catchup, lag, prediction, etc. Less traffic. Lower costs. Simpler code.
+
+The tutorials below are an introduction to Deterministic Multisynq for Unity one concept at a time. Start here to dive in! Find these tutorials in the `Tutorials` section of the navigation bar.
+
+PArts of these tutorials assume that you are familiarized with Croquet's [main concepts](../croquet/index.html#main-concepts) and how [views](../croquet/index.html#views) and [models](../croquet/index.html#models) interact via [events](../croquet/index.html#events).
+
 
 1. [Hello World] {@tutorial 01_HelloWorld}
    - Create a block that jumps sideways on z and x keys
