@@ -15,7 +15,7 @@ Migrating over from Photon? Check out our [Migration Guide](./photon_migration_g
 - Model/View architecture with client deterministic synchronized computation eliminates netcode.
 - Eliminate tons of network traffic due to client deterministic architecture.
 
-Here's the Github repo: [`https://github.com/multisynq/m4u-package`](https://github.com/multisynq/m4u-package).
+Here's the GitHub repo: [`https://github.com/multisynq/m4u-package`](https://github.com/multisynq/m4u-package).
 
 This guide is quite handy to get going: [Installing M4U](./build_assistant-installation.html)
 
@@ -27,7 +27,7 @@ This guide is quite handy to get going: [Installing M4U](./build_assistant-insta
 - Get the build assistant to all green checkmarks
 
 *Like this:*
-![](images/playerCoins.png)
+![Player Coins SynqVar Example](images/playerCoins.png)
 
 ## The M4U Build Assistant
 
@@ -37,9 +37,9 @@ The Build Assistant checks all the settings you'll need to get going and automat
 
 ## Deterministic (Advanced) Tutorials
 
-Multiplayer (usually) has lots of limitations. Need a hoarde of 5000 network-synched monsters? Ouch. Crazy physics everywhere? To get the best of both worlds, you need deterministic, bit-identical computation in a model/view architecture. Computer science for the win! Why use bandwidth when you can activate identical clockwork compute on every player's machine? Sometimes, your net traffic is exactly zero as thousands of entities synchronously dance on all player screens.
+Multiplayer (usually) has lots of limitations. Need a hoard of 5000 network-synched monsters? Ouch. Crazy physics everywhere? To get the best of both worlds (big synch, small traffic), you need deterministic, bit-identical computation in a model/view architecture. Computer science for the win! Why use bandwidth when you can activate identical clockwork compute on every player's machine? Sometimes, your net traffic is exactly zero as thousands of entities synchronously dance on all player screens.
 
-This Multisynq package glues all those smarts into a comfy spot where you write simple game logic code. Nothing fancy. Multisynq gets that code running where it ought to be and just handles all the stuff that usually sucks: snapshots, late-joining, catchup, lag, prediction, etc. Less traffic. Lower costs. Simpler code.
+This Multisynq package glues all the needed smarts into a comfy spot where you write simple game logic code. Nothing fancy. Multisynq gets that code running where it ought to be and just handles all the stuff that usually sucks: snapshots, late-joining, lag, catchup, prediction, etc. Less traffic. Lower costs. Astounding entity counts. Simpler code.
 
 The tutorials below are an introduction to Deterministic Multisynq for Unity one concept at a time. Start here to dive in! Find these tutorials in the `Tutorials` section of the navigation bar.
 
