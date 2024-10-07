@@ -47,7 +47,7 @@ The API Key is crucial for authenticating your Multisynq application.
 
 ### Buttons
 
-1. **Sign Up on the Site**: Opens the Multisynq account page ([https://croquet.io/account/](https://croquet.io/account/)).
+1. **Sign Up on the Site**: Opens the Multisynq account page ([https://multisynq.io/account/](https://multisynq.io/account/)).
 2. **Goto API Key**: Opens the Unity Project Settings and selects the Multisynq Settings asset.
 
 ### Setup Process
