@@ -26,7 +26,7 @@ public class DamageFlash : SynqBehaviour {
     showDamagePanel = true;
     timer = Time.time;
     damageMessage = $"Heal all";
-    Debug.Log($"<color=#22dd22>[SynqCommand]</color> DamageFlash.Heal() ");
+    Debug.Log($"<color=#ffdd00>[<color=#5577ff>Synq</color>RPC]</color> DamageFlash.Heal() ");
   }
   // Methods with [SynqCommand] or [SynqRPC] attributes can be called from RPC() or CallSynqCommand()
   // [SynqCommand] or [SynqRPC] are identical in functionality to make porting from legacy networking easier.
