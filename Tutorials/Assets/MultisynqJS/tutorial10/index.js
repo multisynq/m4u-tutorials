@@ -1,11 +1,11 @@
 import { BUILD_IDENTIFIER } from './buildIdentifier'
-import { StartSession }     from '@multisynq/m4u-package'
+import { StartSession }     from '@multisynq/unity-js'
 
 // ==== Choice A: ==== If you are using any JsPlugins like [SynqVar] or [SynqRPC]
 import { PluginsModelRoot as _ModelRoot, PluginsViewRoot as _ViewRoot } from './plugins/indexOfPlugins'
 
 // ==== Choice B: ==== If you want to use the default base classes
-// import { GameModelRoot as _ModelRoot, GameViewRoot as _ViewRoot } from "@multisynq/m4u-package"
+// import { GameModelRoot as _ModelRoot, GameViewRoot as _ViewRoot } from "@multisynq/unity-js"
 
 //=== ||||||||||| =================================== ||||||| ||||||  ========
 class MyModelRoot extends _ModelRoot { // Learn about Croquet Models: https://croquet.io/dev/docs/croquet/Model.html
