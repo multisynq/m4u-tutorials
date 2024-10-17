@@ -1,7 +1,7 @@
 // Tutorial 6 Models
 
 import { Actor, mix, AM_Spatial, AM_Behavioral } from "@croquet/worldcore-kernel";
-import { GameModelRoot } from "@multisynq/m4u-package";
+import { GameModelRoot } from "@multisynq/unity-js";
 
 //------------------------------------------------------------------------------------------
 // -- BaseActor ----------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-import { StartSession, GameViewRoot } from "@multisynq/m4u-package";
+import { StartSession, GameViewRoot } from "@multisynq/unity-js";
 import { MyModelRoot } from "./Models";
 
 StartSession(MyModelRoot, GameViewRoot);

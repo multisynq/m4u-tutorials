@@ -1,7 +1,7 @@
 // Tutorial 2 Models
 
 import { Actor, mix, AM_Spatial, q_axisAngle, q_multiply } from "@croquet/worldcore-kernel";
-import { GameModelRoot } from "@multisynq/m4u-package";
+import { GameModelRoot } from "@multisynq/unity-js";
 
 //------------------------------------------------------------------------------------------
 // ParentActor -----------------------------------------------------------------------------
