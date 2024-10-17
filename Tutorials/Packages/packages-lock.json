@@ -29,7 +29,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "3.0.25",
+      "version": "3.0.31",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -81,7 +81,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.textmeshpro": {
-      "version": "3.0.6",
+      "version": "3.0.9",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -111,7 +111,7 @@
       }
     },
     "com.unity.visualscripting": {
-      "version": "1.9.1",
+      "version": "1.9.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -121,21 +121,20 @@
       "url": "https://packages.unity.com"
     },
     "io.multisynq.multiplayer": {
-      "version": "https://github.com/multisynq/m4u-package.git#develop",
+      "version": "file:../../../m4u-package",
       "depth": 0,
-      "source": "git",
+      "source": "local",
       "dependencies": {
         "com.unity.addressables": "1.19.19",
         "com.unity.inputsystem": "1.5.0"
-      },
-      "hash": "f8152e5febf7e255d2c5c90d8f44fb527d101b8f"
+      }
     },
     "net.gree.unity-webview": {
       "version": "https://github.com/gree/unity-webview.git?path=/dist/package-nofragment",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "6b49b82199304381a43fb2bd3ec70833c242cd28"
+      "hash": "2ae3cb08093914eb31a3995c9d2b1f41b9fc745a"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
