@@ -18,7 +18,7 @@ public class DamageFlash : SynqBehaviour {
     showDamagePanel = true;
     timer = Time.time;
     damageMessage = $"Damage: {bodyPart}";
-    Debug.Log($"<color=#dd5522>[SynqRPC]</color> DamageFlash.TakeDamage( {bodyPart} ) ");
+    Debug.Log($"<color=#ffdd00>[<color=#5577ff>Synq</color>RPC]</color> DamageFlash.TakeDamage( {bodyPart} ) ");
   }
 
   [SynqCommand] // identical to [SynqRPC] (Variant B)
