@@ -10,9 +10,9 @@ The SynqVar system is a powerful tool for automatically synchronizing variables 
 ## Full code example
 
 ```cs
-  using UnityEngine;
+  using Multisynq;
 
-  public class PlayerHealth : SyncedBehaviour {
+  public class PlayerHealth : SynqBehaviour {
 
     [SynqVar(CustomName = "hp", OnChangedCallback = nameof(OnHealthChanged) )] 
     public int health = 100;
