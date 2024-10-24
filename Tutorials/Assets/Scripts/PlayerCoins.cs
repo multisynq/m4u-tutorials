@@ -4,7 +4,7 @@ using Multisynq;
 //========== ||||||||||| ====================
 public class PlayerCoins : SynqBehaviour {
 
-  [SynqVar]
+  [SynqVarUI]
   public int coins = 0;
 
   float timer = 0f;

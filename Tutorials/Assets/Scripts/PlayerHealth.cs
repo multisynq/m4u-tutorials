@@ -36,6 +36,7 @@ public class PlayerHealth : SynqBehaviour {
 
   //-- ||||| ----------------------------------------
   void OnGUI() { // Old school Unity UI! Yuck. But self-contained!   =]
+    return;
     var scl = Screen.height / 400f; // bottom edge y
     int xOffset = 22;
     var y     = 90 * scl;
