@@ -15,11 +15,14 @@ public class PlayerInventory : SynqBehaviour {
   [SynqVarUI(order=40, clonePath=_.inv, formatStr=_.fmt, labelTxt="G<color=yellow>L</color>ass")] public int glass = 64;
   float timer = 0f;
 
-  // SynqVar<string> beacon = new("[*]-----==----====------");
+  [SerializeField]
+  // SynqVar<string> beacon;
   
   void Start() {
     // beacon = new( this, "beacon", "[*]-----==----====------" );
+    // Debug.Log( $"beacon.Get()={beacon.Get()}");
     // beacon.Set("Hello World!");
+    // Debug.Log( $"beacon.Get()={beacon.Get()}");
   }
 
   void Update() {
