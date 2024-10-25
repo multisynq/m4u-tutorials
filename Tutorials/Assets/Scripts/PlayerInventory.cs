@@ -1,12 +1,12 @@
 using UnityEngine;
 using Multisynq;
 
+//========== ||||||||||||||| ====================
+public class PlayerInventory : SynqBehaviour {
 public static partial class _ {
     public const string inv = "/VarInventory_Canvas/Panel/Inventory_Lay/InvItem";
     public const string fmt = "<b>{{key}}</b>\n<color=#4ff>{{value}}</color>";
 }
-//========== ||||||||||||||| ====================
-public class PlayerInventory : SynqBehaviour {
 
   [SynqVarUI(order= 5, clonePath=_.inv, formatStr=_.fmt)] public int wood = 0;
   [SynqVarUI(order=10, clonePath=_.inv, formatStr=_.fmt)] public int gold = 0;

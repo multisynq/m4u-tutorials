@@ -22,42 +22,23 @@ public class PlayerHealth : SynqBehaviour {
 
   void Update() {
     // Each key "damages" a body part, L, T, A, or heal all parts with H!
-    if (Input.GetKeyDown(KeyCode.L)) legHealth   -= 3;
-    if (Input.GetKeyDown(KeyCode.T)) torsoHealth -= 3;
-    if (Input.GetKeyDown(KeyCode.A)) armHealth   -= 3; 
-    if (Input.GetKeyDown(KeyCode.H)) { // Reset (Heal)
+    KeyDo(KeyCode.L, ref legHealth,   -3);
+    KeyDo(KeyCode.T, ref torsoHealth, -3);
+    KeyDo(KeyCode.A, ref armHealth,   -3);
+    if (Input.GetKeyDown(KeyCode.H)) { // Heal all parts
       health = 100;
       legHealth = 100;
       torsoHealth = 100;
       armHealth = 100;
+      CalcHealth();
     }
-    CalcHealth();
   }
 
-  //-- ||||| ----------------------------------------
-  void OnGUI() { // Old school Unity UI! Yuck. But self-contained!   =]
-    return;
-    var scl = Screen.height / 400f; // bottom edge y
-    int xOffset = 22;
-    var y     = 90 * scl;
-    var paneW = 150 * scl;
-    var paneH = 100 * scl;
-    var paneX = Screen.width - ((xOffset+10) * scl) - paneW;
-    var txtW  = 100 * scl;
-    var txtX  = Screen.width - ((xOffset+50) * scl) - txtW;
-    var lineH = 20 * scl;
-    GUI.backgroundColor = new Color(0f, 0f, 0f, 0.5f);
-    GUI.Box(new Rect(paneX, y, paneW, paneH), ""); // panel background
-    GUI.contentColor = Color.white;
-
-    GUIStyle style = new GUIStyle();
-    style.alignment = TextAnchor.MiddleLeft;
-    style.fontSize = (int)(20 * scl);
-    style.normal.textColor = new Color(0.5f, 1f, 0.5f, 1f); // lime green
-    GUI.Label(new Rect(txtX, y + (10 * scl), txtW, lineH), $" Health:  {health.ToString("F1")}",       style);
-    GUI.Label(new Rect(txtX, y + (30 * scl), txtW, lineH), $" Leg:      {legHealth.ToString("F1")}", style);
-    GUI.Label(new Rect(txtX, y + (50 * scl), txtW, lineH), $" Torso:   {torsoHealth.ToString("F1")}", style);
-    GUI.Label(new Rect(txtX, y + (70 * scl), txtW, lineH), $" Arm:     {armHealth.ToString("F1")}", style);
+  void KeyDo(KeyCode key, ref int var, int mod) {
+    if (Input.GetKeyDown(key)) {
+      var += mod;
+      CalcHealth();
+    }
   }
 
 }
