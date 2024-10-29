@@ -4,8 +4,15 @@ using Multisynq;
 //========== ||||||||||| ====================
 public class PlayerCoins : SynqBehaviour {
 
-  [SynqVarUI] public int coins     = 0;
-  [SynqVarUI] public int teamCoins = 0;
+  public static partial class _ {
+    public const string fs = "<color=#4ff>{{value}}</color>";
+    public const string irp = "Icons";
+    public const string cp = "/VarImage_Canvas/Panel/Items/InvItem";
+    public const string icp = "Icon_Box/Icon_Img";
+  }
+
+  [SynqVarUI(imgRsrcPath = _.irp, clonePath = _.cp, imgCompPath = _.icp, formatStr = _.fs)] public int coins = 0;
+  [SynqVarUI(imgRsrcPath = _.irp, clonePath = _.cp, imgCompPath = _.icp, formatStr = _.fs, imgName = "coins")] public int teamCoins = 0;
 
   float timer = 0f;
 
