@@ -1,5 +1,8 @@
 {
   "synqvar_synqrpc": {
       "title": "T-10 - Usage & Examples"
+  },
+  "synqvar_ui": {
+      "title": "[SynqVarUI]"
   }
 }
