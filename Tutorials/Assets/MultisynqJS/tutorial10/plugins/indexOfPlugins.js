@@ -3,9 +3,7 @@
 import { GameModelRoot, GameViewRoot } from '@multisynq/unity-js';
 
 // ######## imports generated from each JsPlugin_Behavior.cs subclass
-import { SynqClones_Mgr_Model, SynqClones_Mgr_View } from './SynqClones_Mgr'
-import { SynqCommand_Mgr_Model } from './SynqCommand_Mgr'
-import { SynqVar_Mgr_Model, SynqVar_Mgr_View } from './SynqVar_Mgr'
+import { SynqCollider_Mgr_Model, SynqCollider_Mgr_View } from './SynqCollider_Mgr'
 // ########
 
 //========== |||||||||||||||| =================================================================
@@ -16,9 +14,7 @@ export class PluginsModelRoot extends GameModelRoot {
     super.init(options);
 
     // ######## modelInits
-    this.pluginModels['SynqClones_Mgr_Model'] = SynqClones_Mgr_Model.create({})
-    this.pluginModels['SynqCommand_Mgr_Model'] = SynqCommand_Mgr_Model.create({})
-    this.pluginModels['SynqVar_Mgr_Model'] = SynqVar_Mgr_Model.create({})
+    this.pluginModels['SynqCollider_Mgr_Model'] = SynqCollider_Mgr_Model.create({})
     // ########
 
   }
@@ -33,8 +29,7 @@ export class PluginsViewRoot extends GameViewRoot {
     super(model);
 
     // ######### viewInits
-    this.pluginViews['SynqClones_Mgr_View'] = new SynqClones_Mgr_View(model.pluginModels['SynqClones_Mgr_Model'])
-    this.pluginViews['SynqVar_Mgr_View'] = new SynqVar_Mgr_View(model.pluginModels['SynqVar_Mgr_Model'])
+    this.pluginViews['SynqCollider_Mgr_View'] = new SynqCollider_Mgr_View(model.pluginModels['SynqCollider_Mgr_Model'])
     // #########
 
   }
@@ -44,3 +39,4 @@ export class PluginsViewRoot extends GameViewRoot {
     super.detach();
   }
 }
+      

@@ -11,9 +11,10 @@ public class PlayerCoins : SynqBehaviour {
     imgRsrcPath: "Icons",
     formatStr: "<color=#4ff>{{value}}</color>"
   );
-
-  [SynqVarUI(theme="Coins",         order=777)] public int coins = 0;
+  [SynqVarUI(theme="Coins",         order=777)] public int coins     = 0;
   [SynqVarUI(theme="Coins", imgName = "coins")] public int teamCoins = 0;
+  [SynqVarUI(theme="Coins")                   ] public int diamonds  = 7;
+  [SynqVarUI(theme="Coins")                   ] public int gems      = 0;
 
   float timer = 0f;
 

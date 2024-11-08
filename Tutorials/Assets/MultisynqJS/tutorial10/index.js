@@ -30,7 +30,7 @@ StartSession(MyModelRoot, MyViewRoot, BUILD_IDENTIFIER)
 
 /*
   NOTICE:
-  In order to get you up and running, your code has been relegated down here as a comment.
+  In order to get you up and running, your code has been relegated down here as a comment. 
   You can uncomment and merge the logic you desire into the code above.
   Primarily this occurs when you are using JsPlugins that require the import of PluginsModelRoot and PluginsViewRoot.
   If you want plugins, make sure to keep references to PluginsModelRoot and PluginsViewRoot referenced.
