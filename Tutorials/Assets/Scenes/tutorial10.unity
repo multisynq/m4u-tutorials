@@ -1085,7 +1085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f6c6d1aa0744bf0af6d05e42cbe90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultUGuiToClone: {fileID: 0}
+  defaultUGuiToClone: {fileID: 67098637}
 --- !u!1 &515981635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,7 +1834,7 @@ SphereCollider:
   m_GameObject: {fileID: 779110336}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.49999997
   m_Center: {x: 0, y: 0, z: 0}
