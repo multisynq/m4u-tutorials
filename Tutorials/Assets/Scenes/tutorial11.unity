@@ -2541,6 +2541,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3479632283134871797, guid: 1e816dfed6d2248eba7d62bdd192bdb9,
         type: 3}
+      propertyPath: croquetDebugLogging.write
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3479632283134871797, guid: 1e816dfed6d2248eba7d62bdd192bdb9,
+        type: 3}
       propertyPath: ignoreCodeDiffsForSession
       value: 0
       objectReference: {fileID: 0}

@@ -4,6 +4,8 @@ import { GameModelRoot, GameViewRoot } from '@multisynq/unity-js';
 
 // ######## imports generated from each JsPlugin_Behavior.cs subclass
 import { SynqCollider_Mgr_Model, SynqCollider_Mgr_View } from './SynqCollider_Mgr'
+import { SynqCommand_Mgr_Model } from './SynqCommand_Mgr'
+import { SynqVar_Mgr_Model, SynqVar_Mgr_View } from './SynqVar_Mgr'
 // ########
 
 //========== |||||||||||||||| =================================================================
@@ -15,6 +17,8 @@ export class PluginsModelRoot extends GameModelRoot {
 
     // ######## modelInits
     this.pluginModels['SynqCollider_Mgr_Model'] = SynqCollider_Mgr_Model.create({})
+    this.pluginModels['SynqCommand_Mgr_Model'] = SynqCommand_Mgr_Model.create({})
+    this.pluginModels['SynqVar_Mgr_Model'] = SynqVar_Mgr_Model.create({})
     // ########
 
   }
@@ -30,6 +34,7 @@ export class PluginsViewRoot extends GameViewRoot {
 
     // ######### viewInits
     this.pluginViews['SynqCollider_Mgr_View'] = new SynqCollider_Mgr_View(model.pluginModels['SynqCollider_Mgr_Model'])
+    this.pluginViews['SynqVar_Mgr_View'] = new SynqVar_Mgr_View(model.pluginModels['SynqVar_Mgr_Model'])
     // #########
 
   }
