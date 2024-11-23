@@ -3,6 +3,23 @@ using Multisynq;
 
 //========== ||||||||||| ====================
 public class PlayerCoins : SynqBehaviour {
+  // !!!!!!!!!!!!!!!!!!!!
+  // !!!!!!!!!!!!!!!!!!!!
+  // !!!!!!!!!!!!!!!!!!!!
+  // !!!!!!!!!!!!!!!!!!!!
+  void OnSessionStart(string viewId) {
+    Debug.Log($"%yel%==================PlayerCoins.%gr%OnSessionStart( %cy%{viewId}%gr% )%gr%".TagColors());
+  }
+  void OnUserJoin(string viewId) {
+    Debug.Log($"%yel%==================PlayerCoins.%gr%OnUserJoin( %cy%{viewId}%gr% )%gr%".TagColors());
+  }
+  void OnUserExit(string viewId) {
+    Debug.Log($"%yel%==================PlayerCoins.%gr%OnUserExit( %cy%{viewId}%gr% )%gr%".TagColors());
+  }
+  // !!!!!!!!!!!!!!!!!!!!
+  // !!!!!!!!!!!!!!!!!!!!
+  // !!!!!!!!!!!!!!!!!!!!
+  // !!!!!!!!!!!!!!!!!!!!
 
   public SynqVarUIAttribute SynqVarUITheme = new SynqVarUIAttribute(
     theme: "Coins",
