@@ -39,50 +39,46 @@ public class PlayerMovement_Mgr : JsPlugin_Behaviour {
               super.init(options)
 
               // Movement parameters
-              this.moveSpeed = 5
-              this.acceleration = 30
-              this.deceleration = 20
-              this.maxSpeed = 8
-              this.jumpForce = 8
-              this.gravity = 20
-              this.groundLevel = 0.5
-              this.friction = 3
+              this.moveSpeed    = 0.3
+              this.acceleration = 0.2
+              this.deceleration = 1
+              this.maxSpeed     = 1.2
+              this.jumpForce    = 5
+              this.gravity      = 10
+              this.groundLevel  = 0.5
+              this.friction     = 3
 
               // Player states
-              this.positions = new Map()
-              this.velocities = new Map()
-              this.isGrounded = new Map()
-              this.playerInputs = new Map() // Track current input state for each player
-              this.lastBroadcastTime = new Map() // Track last broadcast for each player
+              this.positions   = new Map()
+              this.velocities  = new Map()
+              this.isGrounded  = new Map()
+              this.playerState = new Map() // Track full player state (input, jumping)
 
-              this.broadcastInterval = 100 // Broadcast position every 100ms if moving
+              // Subscribe only to essential events from Unity
+              this.subscribe('PlayerMove', 'input',      this.onInputChange)
+              this.subscribe('PlayerMove', 'jump',       this.onPlayerJump )
+              this.subscribe('PlayerMove', 'initPlayer', this.onInitPlayer )
 
-              this.subscribe('PlayerMove', 'inputChange', this.onInputChange)
-              this.subscribe('PlayerMove', 'jump', this.onPlayerJump)
-              this.subscribe('PlayerMove', 'initPlayer', this.onInitPlayer)
-
-              this.future(16).tick()
+              this.future(15).tick()
             }
 
             tick() {
               const deltaTime = 0.016
-              const now = this.now() // Current time
 
-              for (const [playerId, velocity] of this.velocities) {
+              for (const [playerId, state] of this.playerState) {
+                if (!this.velocities.has(playerId)) continue
+
                 let pos = this.positions.get(playerId)
-                let vel = { ...velocity }
-                let input = this.playerInputs.get(playerId) || { x: 0, z: 0 }
-                let lastBroadcast = this.lastBroadcastTime.get(playerId) || 0
+                let vel = { ...this.velocities.get(playerId) }
+                
+                // Apply movement based on current state
+                if (state.input) {
+                  let targetVel = {
+                    x: state.input.x * this.maxSpeed,
+                    y: vel.y,
+                    z: state.input.z * this.maxSpeed,
+                  }
 
-                // Apply input-based acceleration
-                let targetVel = {
-                  x: input.x * this.maxSpeed,
-                  y: vel.y,
-                  z: input.z * this.maxSpeed,
-                }
-
-                // Apply acceleration or friction based on input
-                if (input.x !== 0 || input.z !== 0) {
                   vel.x = this.moveTowards(vel.x, targetVel.x, this.acceleration * deltaTime)
                   vel.z = this.moveTowards(vel.z, targetVel.z, this.acceleration * deltaTime)
                 } else {
@@ -91,9 +87,7 @@ public class PlayerMovement_Mgr : JsPlugin_Behaviour {
                 }
 
                 // Apply gravity
-                if (pos.y > this.groundLevel) {
-                  vel.y -= this.gravity * deltaTime
-                }
+                if (pos.y > this.groundLevel) vel.y -= this.gravity * deltaTime
 
                 // Update position
                 pos = {
@@ -107,25 +101,21 @@ public class PlayerMovement_Mgr : JsPlugin_Behaviour {
                   pos.y = this.groundLevel
                   vel.y = 0
                   this.isGrounded.set(playerId, true)
-                } else {
-                  this.isGrounded.set(playerId, false)
-                }
+                  state.jumping = false
+                } else this.isGrounded.set(playerId, false)
 
                 // Store updated values
                 this.positions.set(playerId, pos)
                 this.velocities.set(playerId, vel)
+                this.playerState.set(playerId, state)
 
-                // Broadcast position updates based on conditions
-                const isMoving = Math.abs(vel.x) > 0.001 || Math.abs(vel.y) > 0.001 || Math.abs(vel.z) > 0.001
-                const timeSinceLastBroadcast = now - lastBroadcast
-
-                if (isMoving && timeSinceLastBroadcast >= this.broadcastInterval) {
+                // Send updates if there's any movement or we're not grounded
+                if (!this.isGrounded.get(playerId) || Math.abs(vel.x) > 0.001 || Math.abs(vel.z) > 0.001) {
                   this.publish('PlayerMove', 'positionUpdate', `${playerId}__${pos.x}__${pos.y}__${pos.z}__${vel.x}__${vel.y}__${vel.z}`)
-                  this.lastBroadcastTime.set(playerId, now)
                 }
               }
 
-              this.future(16).tick()
+              this.future(1).tick()
             }
 
             onInputChange(data) {
@@ -133,9 +123,11 @@ public class PlayerMovement_Mgr : JsPlugin_Behaviour {
               const inputX = parseFloat(_inputX)
               const inputZ = parseFloat(_inputZ)
 
-              if (!this.velocities.has(playerId)) return
-
-              this.playerInputs.set(playerId, { x: inputX, z: inputZ })
+              // Only update if values actually changed
+              const state = this.playerState.get(playerId) || { input: null, jumping: false }
+              if (inputX === 0 && inputZ === 0) state.input = null
+              else state.input = { x: inputX, z: inputZ }
+              this.playerState.set(playerId, state)
             }
 
             onInitPlayer(data) {
@@ -149,10 +141,8 @@ public class PlayerMovement_Mgr : JsPlugin_Behaviour {
               this.positions.set(playerId, position)
               this.velocities.set(playerId, { x: 0, y: 0, z: 0 })
               this.isGrounded.set(playerId, true)
-              this.playerInputs.set(playerId, { x: 0, z: 0 })
-              this.lastBroadcastTime.set(playerId, this.now())
+              this.playerState.set(playerId, { input: null, jumping: false })
 
-              // Send initial state
               this.publish('PlayerMove', 'positionUpdate', `${playerId}__${position.x}__${position.y}__${position.z}__0__0__0`)
             }
 
@@ -162,6 +152,10 @@ public class PlayerMovement_Mgr : JsPlugin_Behaviour {
               const vel = this.velocities.get(playerId)
               vel.y = this.jumpForce
               this.velocities.set(playerId, vel)
+
+              const state = this.playerState.get(playerId)
+              state.jumping = true
+              this.playerState.set(playerId, state)
               this.isGrounded.set(playerId, false)
             }
 
