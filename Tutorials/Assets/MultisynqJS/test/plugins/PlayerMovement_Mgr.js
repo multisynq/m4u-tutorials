@@ -1,160 +1,154 @@
-import { Model, View } from '@croquet/croquet';
 
-export class PlayerMovement_Mgr_Model extends Model {
-  init(options) {
-    super.init(options);
+          import { Model, View } from '@croquet/croquet'
 
-    // Movement parameters
-    this.moveSpeed = 5;
-    this.acceleration = 30;
-    this.deceleration = 20;
-    this.maxSpeed = 8;
-    this.jumpForce = 8;
-    this.gravity = 20;
-    this.groundLevel = 0.5;
-    this.friction = 3; // New friction parameter
+          export class PlayerMovement_Mgr_Model extends Model {
+            init(options) {
+              super.init(options)
 
-    // Player states
-    this.positions = new Map();  // playerId -> Vector3
-    this.velocities = new Map(); // playerId -> Vector3
-    this.isGrounded = new Map(); // playerId -> boolean
-    this.lastSentPositions = new Map(); // To track last sent positions
+              // Movement parameters
+              this.moveSpeed = 5
+              this.acceleration = 30
+              this.deceleration = 20
+              this.maxSpeed = 8
+              this.jumpForce = 8
+              this.gravity = 20
+              this.groundLevel = 0.5
+              this.friction = 3
 
-    // Subscribe to input events from Unity
-    this.subscribe('PlayerMove', 'input', this.onPlayerInput);
-    this.subscribe('PlayerMove', 'jump', this.onPlayerJump);
-    this.subscribe('PlayerMove', 'initPlayer', this.onInitPlayer);
+              // Player states
+              this.positions = new Map()
+              this.velocities = new Map()
+              this.isGrounded = new Map()
+              this.playerInputs = new Map() // Track current input state for each player
+              this.lastBroadcastTime = new Map() // Track last broadcast for each player
 
-    // Update physics at fixed intervals
-    this.future(16).tick(); // ~60fps
-  }
+              this.broadcastInterval = 100 // Broadcast position every 100ms if moving
 
-  tick() {
-    const deltaTime = 0.016; // 16ms in seconds
+              this.subscribe('PlayerMove', 'inputChange', this.onInputChange)
+              this.subscribe('PlayerMove', 'jump', this.onPlayerJump)
+              this.subscribe('PlayerMove', 'initPlayer', this.onInitPlayer)
 
-    // Update each player's physics
-    for (const [playerId, velocity] of this.velocities) {
-      let pos = this.positions.get(playerId);
-      let vel = velocity;
-      let lastPos = this.lastSentPositions.get(playerId) || pos;
+              this.future(16).tick()
+            }
 
-      // Apply gravity if not grounded
-      if (pos.y > this.groundLevel) {
-        vel.y -= this.gravity * deltaTime;
-      }
+            tick() {
+              const deltaTime = 0.016
+              const now = this.now() // Current time
 
-      // Apply friction when grounded
-      if (this.isGrounded.get(playerId)) {
-        vel.x = this.applyFriction(vel.x, deltaTime);
-        vel.z = this.applyFriction(vel.z, deltaTime);
-      }
+              for (const [playerId, velocity] of this.velocities) {
+                let pos = this.positions.get(playerId)
+                let vel = { ...velocity }
+                let input = this.playerInputs.get(playerId) || { x: 0, z: 0 }
+                let lastBroadcast = this.lastBroadcastTime.get(playerId) || 0
 
-      // Update position
-      pos = {
-        x: pos.x + vel.x * deltaTime,
-        y: pos.y + vel.y * deltaTime,
-        z: pos.z + vel.z * deltaTime,
-      };
+                // Apply input-based acceleration
+                let targetVel = {
+                  x: input.x * this.maxSpeed,
+                  y: vel.y,
+                  z: input.z * this.maxSpeed,
+                }
 
-      // Ground collision
-      if (pos.y <= this.groundLevel) {
-        pos.y = this.groundLevel;
-        vel.y = 0;
-        this.isGrounded.set(playerId, true);
-      } else {
-        this.isGrounded.set(playerId, false);
-      }
+                // Apply acceleration or friction based on input
+                if (input.x !== 0 || input.z !== 0) {
+                  vel.x = this.moveTowards(vel.x, targetVel.x, this.acceleration * deltaTime)
+                  vel.z = this.moveTowards(vel.z, targetVel.z, this.acceleration * deltaTime)
+                } else {
+                  vel.x = this.applyFriction(vel.x, deltaTime)
+                  vel.z = this.applyFriction(vel.z, deltaTime)
+                }
 
-      // Store updated values
-      this.positions.set(playerId, pos);
-      this.velocities.set(playerId, vel);
+                // Apply gravity
+                if (pos.y > this.groundLevel) {
+                  vel.y -= this.gravity * deltaTime
+                }
 
-      // Only broadcast if there's significant movement
-      const positionDelta = Math.abs(pos.x - lastPos.x) + 
-                           Math.abs(pos.y - lastPos.y) + 
-                           Math.abs(pos.z - lastPos.z);
-      
-      const velocityMagnitude = Math.abs(vel.x) + Math.abs(vel.y) + Math.abs(vel.z);
-      
-      if (positionDelta > 0.001 || velocityMagnitude > 0.001) {
-        this.publish('PlayerMove', 'positionUpdate', `${playerId}__${pos.x}__${pos.y}__${pos.z}`);
-        this.lastSentPositions.set(playerId, {...pos});
-      }
-    }
+                // Update position
+                pos = {
+                  x: pos.x + vel.x * deltaTime,
+                  y: pos.y + vel.y * deltaTime,
+                  z: pos.z + vel.z * deltaTime,
+                }
 
-    this.future(16).tick();
-  }
+                // Ground collision
+                if (pos.y <= this.groundLevel) {
+                  pos.y = this.groundLevel
+                  vel.y = 0
+                  this.isGrounded.set(playerId, true)
+                } else {
+                  this.isGrounded.set(playerId, false)
+                }
 
-  applyFriction(velocity, deltaTime) {
-    const frictionForce = this.friction * deltaTime;
-    
-    if (Math.abs(velocity) <= frictionForce) {
-      return 0; // Stop completely if velocity is very small
-    }
-    
-    return velocity > 0 
-      ? velocity - frictionForce 
-      : velocity + frictionForce;
-  }
+                // Store updated values
+                this.positions.set(playerId, pos)
+                this.velocities.set(playerId, vel)
 
-  onInitPlayer(input) {
-    const [playerId, _x, _y, _z] = input.split('__');
-    const position = { x: parseFloat(_x), y: parseFloat(_y), z: parseFloat(_z) };
+                // Broadcast position updates based on conditions
+                const isMoving = Math.abs(vel.x) > 0.001 || Math.abs(vel.y) > 0.001 || Math.abs(vel.z) > 0.001
+                const timeSinceLastBroadcast = now - lastBroadcast
 
-    console.log('onInitPlayer', playerId, position);
-    this.positions.set(playerId, position);
-    this.lastSentPositions.set(playerId, {...position});
-    this.velocities.set(playerId, { x: 0, y: 0, z: 0 });
-    this.isGrounded.set(playerId, true);
-    console.log('onInitPlayer (After Set)', playerId, this.positions.get(playerId), 
-                this.velocities.get(playerId), this.isGrounded.get(playerId));
-  }
+                if (isMoving && timeSinceLastBroadcast >= this.broadcastInterval) {
+                  this.publish('PlayerMove', 'positionUpdate', `${playerId}__${pos.x}__${pos.y}__${pos.z}__${vel.x}__${vel.y}__${vel.z}`)
+                  this.lastBroadcastTime.set(playerId, now)
+                }
+              }
 
-  onPlayerInput(input) {
-    const [playerId, _inputX, _inputZ] = input.split('__');
-    const inputX = parseFloat(_inputX);
-    const inputZ = parseFloat(_inputZ);
+              this.future(16).tick()
+            }
 
-    console.log('onPlayerInput', playerId, inputX, inputZ);
+            onInputChange(data) {
+              const [playerId, _inputX, _inputZ] = data.split('__')
+              const inputX = parseFloat(_inputX)
+              const inputZ = parseFloat(_inputZ)
 
-    if (!this.velocities.has(playerId)) return;
+              if (!this.velocities.has(playerId)) return
 
-    const vel = this.velocities.get(playerId);
-    const targetVel = {
-      x: inputX * this.maxSpeed,
-      y: vel.y,
-      z: inputZ * this.maxSpeed,
-    };
+              this.playerInputs.set(playerId, { x: inputX, z: inputZ })
+            }
 
-    // Apply acceleration/deceleration
-    const accelRate = inputX !== 0 || inputZ !== 0 ? this.acceleration : this.deceleration;
+            onInitPlayer(data) {
+              const [playerId, _x, _y, _z] = data.split('__')
+              const position = {
+                x: parseFloat(_x),
+                y: parseFloat(_y),
+                z: parseFloat(_z),
+              }
 
-    vel.x = this.moveTowards(vel.x, targetVel.x, accelRate * 0.016);
-    vel.z = this.moveTowards(vel.z, targetVel.z, accelRate * 0.016);
+              this.positions.set(playerId, position)
+              this.velocities.set(playerId, { x: 0, y: 0, z: 0 })
+              this.isGrounded.set(playerId, true)
+              this.playerInputs.set(playerId, { x: 0, z: 0 })
+              this.lastBroadcastTime.set(playerId, this.now())
 
-    console.log('vel', vel);
-    this.velocities.set(playerId, vel);
-  }
+              // Send initial state
+              this.publish('PlayerMove', 'positionUpdate', `${playerId}__${position.x}__${position.y}__${position.z}__0__0__0`)
+            }
 
-  onPlayerJump(playerId) {
-    if (!this.isGrounded.get(playerId)) return;
+            onPlayerJump(playerId) {
+              if (!this.isGrounded.get(playerId)) return
 
-    const vel = this.velocities.get(playerId);
-    vel.y = this.jumpForce;
-    this.velocities.set(playerId, vel);
-    this.isGrounded.set(playerId, false);
-  }
+              const vel = this.velocities.get(playerId)
+              vel.y = this.jumpForce
+              this.velocities.set(playerId, vel)
+              this.isGrounded.set(playerId, false)
+            }
 
-  moveTowards(current, target, maxDelta) {
-    if (Math.abs(target - current) <= maxDelta) return target;
-    return current + Math.sign(target - current) * maxDelta;
-  }
-}
-PlayerMovement_Mgr_Model.register('PlayerMovement_Mgr_Model');
+            moveTowards(current, target, maxDelta) {
+              if (Math.abs(target - current) <= maxDelta) return target
+              return current + Math.sign(target - current) * maxDelta
+            }
 
-export class PlayerMovement_Mgr_View extends View {
-  constructor(model) {
-    super(model);
-    this.model = model;
-  }
-}
+            applyFriction(velocity, deltaTime) {
+              const frictionForce = this.friction * deltaTime
+              if (Math.abs(velocity) <= frictionForce) return 0
+              return velocity > 0 ? velocity - frictionForce : velocity + frictionForce
+            }
+          }
+          PlayerMovement_Mgr_Model.register('PlayerMovement_Mgr_Model')
+
+          export class PlayerMovement_Mgr_View extends View {
+            constructor(model) {
+              super(model)
+              this.model = model
+            }
+          }
+        
