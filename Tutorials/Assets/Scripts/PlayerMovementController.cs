@@ -4,7 +4,7 @@ using Multisynq;
 public class PlayerMovementController : SynqBehaviour {
     [SynqVar(OnChangedCallback = nameof(OnPosChange))] 
     public Vector3 synqPos;
-    
+
     [SerializeField] private string playerId;
     [SerializeField] private float lerpSpeed = 15f;
     [SerializeField] private float rotationSpeed = 10f;
@@ -12,7 +12,6 @@ public class PlayerMovementController : SynqBehaviour {
     private Vector3 lastInput = Vector3.zero;
     private Vector3 targetPosition;
     private Vector3 currentVelocity;
-    [SerializeField] private bool initialized = false;
 
     void Start() {
         playerTransform = transform;
@@ -41,15 +40,12 @@ public class PlayerMovementController : SynqBehaviour {
                 playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
         }
-
-        if (!initialized) {
-            initialized = true;
-            CallSynqCommand(InitializePlayer);
-        }
     }
 
     void OnSessionStart(string viewID) {
+        Debug.Log($"PlayerMovementController: OnSessionStart: {viewID}");
         playerId = viewID;
+        RPC(InitializePlayer);
         CallSynqCommand(InitializePlayer);
         Croquet.Subscribe("PlayerMove", "positionUpdate", OnPositionUpdate);
     }
@@ -58,6 +54,8 @@ public class PlayerMovementController : SynqBehaviour {
     void InitializePlayer() {
         string input = $"{playerId}__{transform.position.x}__{transform.position.y}__{transform.position.z}";
         Croquet.Publish("PlayerMove", "initPlayer", input);
+        // Croquet.Publish("PlayerMove", "initPlayer", a, b, c);
+        // Croquet.Publish("PlayerMove", "initPlayer", $"{playerId}|{transform.position.x}|{transform.position.y}|{transform.position.z}");
     }
 
     [SynqRPC] void SendInput(string input) { Croquet.Publish("PlayerMove", "input", input); }
