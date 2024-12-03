@@ -23,11 +23,11 @@ public class PlayerMovementController : SynqBehaviour {
         Vector3 currentInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
 
         if (currentInput != lastInput) {
-            CallSynqCommand(SendInput, $"{playerId}__{currentInput.x}__{currentInput.z}");
+            RPC(SendInput, RpcTarget.All, $"{playerId}__{currentInput.x}__{currentInput.z}");
             lastInput = currentInput;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) CallSynqCommand(SendJump, playerId);
+        if (Input.GetKeyDown(KeyCode.Space)) RPC(SendJump, RpcTarget.All, playerId);
 
         // Position interpolation
         playerTransform.position = Vector3.Lerp( playerTransform.position, targetPosition, Time.deltaTime * lerpSpeed);
@@ -46,7 +46,6 @@ public class PlayerMovementController : SynqBehaviour {
         Debug.Log($"PlayerMovementController: OnSessionStart: {viewID}");
         playerId = viewID;
         RPC(InitializePlayer);
-        CallSynqCommand(InitializePlayer);
         Croquet.Subscribe("PlayerMove", "positionUpdate", OnPositionUpdate);
     }
 
