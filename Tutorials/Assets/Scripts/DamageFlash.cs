@@ -46,7 +46,7 @@ public class DamageFlash : SynqBehaviour {
       CallSynqCommand(TakeDamage, "Legs");       // calls on all Views (Variant C)
     }
     else if (Input.GetKeyDown(KeyCode.A)) {
-      RPC(TakeDamage, RpcTarget.All, "Arm");    // calls on all Views (Variant B)
+      RPC(TakeDamage, "Arm");    // calls on all Views (Variant B)
     }
     else if (Input.GetKeyDown(KeyCode.H)) {
       CallSynqCommand(Heal);                     // calls on all Views (Variant C)
