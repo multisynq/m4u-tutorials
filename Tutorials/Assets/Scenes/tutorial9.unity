@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657886, g: 0.49641275, b: 0.5748176, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465788, g: 0.49641275, b: 0.5748176, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -331,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61ccb71c8ff749478a1c1cf9b75294d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mq_FileReader: 0
 --- !u!114 &846978919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc112222128984ad89effec9d45ea929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mq_System: 0
+  mq_Drivable_System: 0
 --- !u!114 &846978920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +358,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf357fca780641719fee1618c3cfbc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mq_System: 0
+  mq_Interactable_System: 0
   SendPointerHitEvents: 1
   PointerHitDistance: 50
   userCamera: {fileID: 0}
@@ -370,6 +375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ea882db0f124376bd4b014905c5403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mq_System: 0
+  mq_Material_System: 0
 --- !u!114 &846978922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab07564dbb49f475f84484839caa72d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mq_System: 0
+  mq_Spatial_System: 0
 --- !u!114 &846978923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a11ee8820edb4f59abb30af45cec6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mq_System: 0
+  mq_Entity_System: 0
   assetManifestString: 
   addressablesReady: 0
 --- !u!1 &1042152228
@@ -429,11 +440,11 @@ RectTransform:
   m_Father: {fileID: 1494580357}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.8}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -6}
+  m_SizeDelta: {x: 0, y: 80}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1042152230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,14 +465,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<size=-15>Tutorial 8</size>
+  m_text: '<size=-11>Tutorial 8</size>
 
     WASD to move
 
     Right Click + Drag
     to rotate camera
 
-    <size=-18>Ideally, run in editor & as a build simultaneously
+    <size=-11>Ideally, run in editor & as a build simultaneously
     to see sync.</size>
 
 
@@ -492,10 +503,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 22.85
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -528,7 +539,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 15, y: 0, z: 15, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
