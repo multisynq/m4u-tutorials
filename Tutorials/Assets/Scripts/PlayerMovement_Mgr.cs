@@ -23,7 +23,7 @@ public class PlayerMovement_Mgr : JsPlugin_Behaviour {
   //------------------ ||||| ----------------------
   override public void Start() {
     base.Start();
-    // Croquet.Subscribe("SynqClone", "everybodyClone", OnEverybodyClone);
+    // Croquet.Subscribe("SynqClone", "announceClone", OnAnnounceClone);
   }
   #region JavaScript
     //-------------------------- ||||||||||||||| -------------------------
@@ -48,71 +48,72 @@ public class PlayerMovement_Mgr : JsPlugin_Behaviour {
               this.groundLevel  = 0.5
               this.friction     = 3
 
-              // Player states
-              this.positions   = new Map()
-              this.velocities  = new Map()
-              this.isGrounded  = new Map()
-              this.playerState = new Map() // Track full player state (input, jumping)
+              // Player states - all data that Unity needs to read
+              this.players = new Map() // Stores complete player state objects
 
-              // Subscribe only to essential events from Unity
-              this.subscribe('PlayerMove', 'input',      this.onInputChange)
-              this.subscribe('PlayerMove', 'jump',       this.onPlayerJump )
-              this.subscribe('PlayerMove', 'initPlayer', this.onInitPlayer )
+              this.subscribe('PlayerMove', 'input', this.onInputChange)
+              this.subscribe('PlayerMove', 'jump', this.onPlayerJump)
+              this.subscribe('PlayerMove', 'initPlayer', this.onInitPlayer)
 
               this.future(15).tick()
+
+              // this.player = this.players.get('player')
+            }
+
+            getPlayer(id) {
+              return this.players.get(id)
+            }
+
+            getAllPlayers() {
+              return Array.from(this.players.values())
             }
 
             tick() {
               const deltaTime = 0.016
+              let updates = new Set() // Track which players actually changed
 
-              for (const [playerId, state] of this.playerState) {
-                if (!this.velocities.has(playerId)) continue
+              for (const [playerId, player] of this.players) {
+                const oldPos = {...player.position}
+                const oldVel = {...player.velocity}
 
-                let pos = this.positions.get(playerId)
-                let vel = { ...this.velocities.get(playerId) }
-                
-                // Apply movement based on current state
-                if (state.input) {
-                  let targetVel = {
-                    x: state.input.x * this.maxSpeed,
-                    y: vel.y,
-                    z: state.input.z * this.maxSpeed,
-                  }
-
-                  vel.x = this.moveTowards(vel.x, targetVel.x, this.acceleration * deltaTime)
-                  vel.z = this.moveTowards(vel.z, targetVel.z, this.acceleration * deltaTime)
+                // Update velocity based on input
+                if (player.input) {
+                  player.velocity.x = this.moveTowards(player.velocity.x, player.input.x * this.maxSpeed, this.acceleration * deltaTime)
+                  player.velocity.z = this.moveTowards(player.velocity.z, player.input.z * this.maxSpeed, this.acceleration * deltaTime)
                 } else {
-                  vel.x = this.applyFriction(vel.x, deltaTime)
-                  vel.z = this.applyFriction(vel.z, deltaTime)
+                  player.velocity.x = this.applyFriction(player.velocity.x, deltaTime)
+                  player.velocity.z = this.applyFriction(player.velocity.z, deltaTime)
                 }
 
                 // Apply gravity
-                if (pos.y > this.groundLevel) vel.y -= this.gravity * deltaTime
+                if (player.position.y > this.groundLevel) player.velocity.y -= this.gravity * deltaTime
 
                 // Update position
-                pos = {
-                  x: pos.x + vel.x * deltaTime,
-                  y: pos.y + vel.y * deltaTime,
-                  z: pos.z + vel.z * deltaTime,
-                }
+                player.position.x += player.velocity.x * deltaTime
+                player.position.y += player.velocity.y * deltaTime
+                player.position.z += player.velocity.z * deltaTime
 
                 // Ground collision
-                if (pos.y <= this.groundLevel) {
-                  pos.y = this.groundLevel
-                  vel.y = 0
-                  this.isGrounded.set(playerId, true)
-                  state.jumping = false
-                } else this.isGrounded.set(playerId, false)
+                if (player.position.y <= this.groundLevel) {
+                  player.position.y = this.groundLevel
+                  player.velocity.y = 0
+                  player.isGrounded = true
+                  player.jumping = false
+                } else player.isGrounded = false
 
-                // Store updated values
-                this.positions.set(playerId, pos)
-                this.velocities.set(playerId, vel)
-                this.playerState.set(playerId, state)
-
-                // Send updates if there's any movement or we're not grounded
-                if (!this.isGrounded.get(playerId) || Math.abs(vel.x) > 0.001 || Math.abs(vel.z) > 0.001) {
-                  this.publish('PlayerMove', 'positionUpdate', `${playerId}__${pos.x}__${pos.y}__${pos.z}__${vel.x}__${vel.y}__${vel.z}`)
+                // Check if state changed significantly
+                if (!player.isGrounded || 
+                    Math.abs(oldPos.x - player.position.x) > 0.001 || 
+                    Math.abs(oldPos.y - player.position.y) > 0.001 || 
+                    Math.abs(oldPos.z - player.position.z) > 0.001) {
+                  updates.add(playerId)
                 }
+              }
+
+              // Only publish updates for players that actually moved
+              for (const playerId of updates) {
+                const player = this.players.get(playerId)
+                this.publish('PlayerMove', 'stateUpdated', JSON.stringify({ id: playerId, player }))
               }
 
               this.future(1).tick()
@@ -120,14 +121,12 @@ public class PlayerMovement_Mgr : JsPlugin_Behaviour {
 
             onInputChange(data) {
               const [playerId, _inputX, _inputZ] = data.split('__')
+              const player = this.players.get(playerId)
+              if (!player) return
+
               const inputX = parseFloat(_inputX)
               const inputZ = parseFloat(_inputZ)
-
-              // Only update if values actually changed
-              const state = this.playerState.get(playerId) || { input: null, jumping: false }
-              if (inputX === 0 && inputZ === 0) state.input = null
-              else state.input = { x: inputX, z: inputZ }
-              this.playerState.set(playerId, state)
+              player.input = (inputX === 0 && inputZ === 0) ? null : { x: inputX, z: inputZ }
             }
 
             onInitPlayer(data) {
@@ -135,28 +134,26 @@ public class PlayerMovement_Mgr : JsPlugin_Behaviour {
               const position = {
                 x: parseFloat(_x),
                 y: parseFloat(_y),
-                z: parseFloat(_z),
+                z: parseFloat(_z)
               }
 
-              this.positions.set(playerId, position)
-              this.velocities.set(playerId, { x: 0, y: 0, z: 0 })
-              this.isGrounded.set(playerId, true)
-              this.playerState.set(playerId, { input: null, jumping: false })
-
-              this.publish('PlayerMove', 'positionUpdate', `${playerId}__${position.x}__${position.y}__${position.z}__0__0__0`)
+              this.players.set(playerId, {
+                position,
+                velocity: { x: 0, y: 0, z: 0 },
+                isGrounded: true,
+                jumping: false,
+                input: null,
+                lastUpdate: this.now()
+              })
             }
 
             onPlayerJump(playerId) {
-              if (!this.isGrounded.get(playerId)) return
+              const player = this.players.get(playerId)
+              if (!player?.isGrounded) return
 
-              const vel = this.velocities.get(playerId)
-              vel.y = this.jumpForce
-              this.velocities.set(playerId, vel)
-
-              const state = this.playerState.get(playerId)
-              state.jumping = true
-              this.playerState.set(playerId, state)
-              this.isGrounded.set(playerId, false)
+              player.velocity.y = this.jumpForce
+              player.jumping = true
+              player.isGrounded = false
             }
 
             moveTowards(current, target, maxDelta) {

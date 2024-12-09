@@ -9,7 +9,7 @@ export class SynqClones_Mgr_Model extends Model { // ☭ - There is no I, only w
   }
   onPleaseClone(data) {
     console.log(this.now(), '<color=blue>SynqClone</color> <color=yellow>[JS]</color> <color=magenta>SynqClones_Mgr_Model.onAskForInstance()</color><color=cyan>' + data + '</color>');
-    this.publish('SynqClone', 'everybodyClone', data); // i.e. tell everybody to see the bullet
+    this.publish('SynqClone', 'announceClone', data); // i.e. tell everybody to see the bullet
     this.cloneMsgs.push(data);
   }
 }
@@ -19,7 +19,7 @@ export class SynqClones_Mgr_View extends View {
   constructor(model) {
     super(model);
     this.model = model;
-    globalThis.theGameEngineBridge.bulkPublishToUnity('SynqClone', 'everybodyClone', model.cloneMsgs);
+    globalThis.theGameEngineBridge.bulkPublishToUnity('SynqClone', 'announceClone', model.cloneMsgs);
   }
 
 }

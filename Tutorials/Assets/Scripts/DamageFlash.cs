@@ -40,7 +40,7 @@ public class DamageFlash : SynqBehaviour {
     // Check for key presses and call TakeDamage() three identical ways: Variant A, B, C
     // These variants make porting from legacy networking easier.
     if (Input.GetKeyDown(KeyCode.T)) {
-      RPC("TakeDamage", RpcTarget.All, "Torso"); // calls on all Views (Variant A)
+      RPC("TakeDamage", "Torso"); // calls on all Views (Variant A)
     }
     else if (Input.GetKeyDown(KeyCode.L)) {
       CallSynqCommand(TakeDamage, "Legs");       // calls on all Views (Variant C)
